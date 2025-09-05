@@ -16,6 +16,8 @@ namespace VisualNovelEngine.Elements
     public class TextNode : GraphNode
     {
         public CharacterSO Speaker { get; set; }
+        public bool IsDialogue { get; set; }
+        
         public override void Initialize(Vector2 gridPosition, string nodeGuid = null)
         {
             base.Initialize(gridPosition, nodeGuid);
@@ -92,6 +94,8 @@ namespace VisualNovelEngine.Elements
                 oldIcon?.RemoveFromHierarchy();
                 SetTitleIcon(GUIUtilities.GetIconByName(EditorConstants.DialogueIcon));
 
+                IsDialogue = true;
+                
                 RefreshExpandedState();
             };
 
@@ -110,6 +114,8 @@ namespace VisualNovelEngine.Elements
                 oldIcon?.RemoveFromHierarchy();
                 SetTitleIcon(GUIUtilities.GetIconByName(EditorConstants.TextIcon));
 
+                IsDialogue = false;
+                
                 RefreshExpandedState();
             };
 

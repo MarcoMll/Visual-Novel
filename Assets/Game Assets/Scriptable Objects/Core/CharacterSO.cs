@@ -7,13 +7,25 @@ namespace GameAssets.ScriptableObjects.Core
     public class CharacterSO : ScriptableObject
     {
         [Serializable]
-        public class CharacterEmotionSprite
+        public class CharacterEmotion
         {
             public string spriteName;
             public Sprite sprite;
         }
         
         public string characterName;
-        public CharacterEmotionSprite[] characterEmotionSpriteSheet;
+        public CharacterEmotion[] characterEmotionSpriteSheet;
+        
+        public Sprite GetEmotionSpriteByName(string emotionName)
+        {
+            foreach (var emotion in characterEmotionSpriteSheet)
+            {
+                if (emotion.spriteName == emotionName)
+                    return emotion.sprite;
+            }
+
+            Debug.LogWarning($"Emotion '{emotionName}' not found!");
+            return null;
+        }
     }
 }

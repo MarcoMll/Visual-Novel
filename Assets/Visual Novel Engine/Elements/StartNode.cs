@@ -34,7 +34,7 @@ namespace VisualNovelEngine.Elements
             
             foreach (var choice in Choices)
             {
-                var choicePort = this.CreatePort(choice, capacity: Port.Capacity.Single);
+                var choicePort = this.CreatePort(choice, capacity: Port.Capacity.Multi);
 
                 choicePort.portName = choice;
                 outputContainer.Add(choicePort);

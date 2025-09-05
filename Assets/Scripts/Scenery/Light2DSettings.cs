@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class Light2DSettings
+namespace VisualNovel.Environment
 {
-    public Color color;
-    public float intensity;
-    public float falloff;
-    
+    [Serializable]
+    public class Light2DSettings
+    {
+        public Color color;
+        public float intensity;
+        public float falloff;
+
+    }
 }

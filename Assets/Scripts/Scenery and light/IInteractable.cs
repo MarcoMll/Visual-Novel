@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public interface IInteractable
+namespace VisualNovel.Interaction
 {
-    public void Interact(PlayerInteractionController interactionController)
+    public interface IInteractable
     {
-        
+        public void Interact(PlayerInteractionController interactionController)
+        {
+
+        }
     }
 }

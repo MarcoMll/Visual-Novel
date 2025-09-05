@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Animations
+namespace VisualNovel.UI.Animations
 {
     [RequireComponent(typeof(Image))]
     public class UISpriteAnimator : MonoBehaviour

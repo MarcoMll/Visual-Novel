@@ -91,6 +91,21 @@ namespace VisualNovel.Environment
         public Vector2 size;
         public Vector2 defaultCharacterScale;
     }
+
+    public bool TryGetCharacterPosition(string positionName, out Vector2 position)
+    {
+        position = Vector2.zero;
+        foreach (var characterPosition in characterPositions)
+        {
+            if (characterPosition.positionName == positionName)
+            {
+                position = characterPosition.position;
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     /// <summary>
     /// Switches from the current preset (if any) into the one matching "presetName."

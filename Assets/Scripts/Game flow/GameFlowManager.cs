@@ -97,19 +97,19 @@ namespace VisualNovel.GameFLow
 
         private void ExecuteSceneNode(SceneControllerNode sceneNode)
         {
-            var sceneDirector = SceneryDirector.instance;
+            var sceneDirector = SceneryDirector.Instance;
             if (sceneDirector == null)
             {
                 Debug.LogError("SceneControllerNode is absent on the scene or was not initialized before usage!");
                 return;
             }
-            
+
             sceneDirector.ShowScene(sceneNode.ScenePrefab, sceneNode.SelectedPresetName);
         }
-        
+
         private void ExecuteCharacterNode(ShowCharacterNode characterNode)
         {
-            var sceneDirector = SceneryDirector.instance;
+            var sceneDirector = SceneryDirector.Instance;
             if (sceneDirector == null)
             {
                 Debug.LogError("SceneControllerNode is absent on the scene or was not initialized before usage!");
@@ -118,8 +118,20 @@ namespace VisualNovel.GameFLow
 
             foreach (var characterEntry in characterNode.Characters)
             {
-                // we need to somehow get the final position of the character (pre-defined character position + offset)
-                //sceneDirector.ShowCharacter(characterEntry.Character, characterEntry.Character.GetEmotionSpriteByName(characterEntry.SelectedEmotion), characterEntry.SpriteColor, characterEntry.pos)
+                if (characterEntry.Character == null) continue;
+
+                // Find the emotion object by name
+                var emotion = characterEntry.Character.characterEmotionSpriteSheet
+                    .FirstOrDefault(e => e != null && e.spriteName == characterEntry.SelectedEmotion);
+                if (emotion == null) continue;
+
+                // Resolve final position: predefined character position + offset
+                Vector2 basePosition;
+                sceneDirector.TryGetCharacterPosition(characterEntry.SelectedPositionName, out basePosition);
+                var finalPosition = basePosition + characterEntry.Offset;
+
+                sceneDirector.ShowCharacter(characterEntry.Character, emotion, characterEntry.SpriteColor,
+                    finalPosition, characterEntry.Layer, characterEntry.CharacterScale);
             }
         }
     }

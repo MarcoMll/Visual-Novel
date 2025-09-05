@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
 
@@ -25,7 +27,15 @@ namespace VisualNovel.GameFLow
             FindAndInitializeAllComponents();
             LaunchGraph();
         }
-        
+
+        private void Update()
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                LaunchNextNodes();
+            }
+        }
+
         private void FindAndInitializeAllComponents()
         {
             var initializables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IInitializeOnAwake>();
@@ -42,6 +52,15 @@ namespace VisualNovel.GameFLow
             ExecuteNode(_currentNode);
         }
 
+        public void LaunchNextNodes()
+        {
+            var linkedNodes = _graphTracer.GetConnectedNodes(_currentNode.GUID);
+            foreach (var node in linkedNodes)
+            {
+                ExecuteNode(node);
+            }
+        }
+        
         private void ExecuteNode(GraphNodeData nodeObject)
         {
             var nodeType = _graphTracer.GetNodeType(nodeObject);
@@ -75,7 +94,7 @@ namespace VisualNovel.GameFLow
 
         private void ExecuteTextNode(TextNode textNode)
         {
-            var dialogueTextController = UIDialogueTextController.instance;
+            var dialogueTextController = UIDialogueTextController.Instance;
             if (dialogueTextController == null)
             {
                 Debug.LogError("UIDialogueTextController is absent on the scene or was not initialized before usage!");

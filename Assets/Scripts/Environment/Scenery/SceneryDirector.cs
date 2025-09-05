@@ -12,9 +12,9 @@ namespace VisualNovel.Environment
         private string _currentScenePreset = string.Empty;
 
         private List<CharacterSceneData> _charactersOnSceneData;
-
+        
         public static SceneryDirector Instance { get; private set; }
-
+        
         private class CharacterSceneData
         {
             public SpriteRenderer characterSprite { get; set; }
@@ -67,12 +67,13 @@ namespace VisualNovel.Environment
                 return false;
             return _currentScene.TryGetCharacterPosition(positionName, out position);
         }
-
+        
         public void ShowCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor,
             Vector2 scenePosition, int sortingLayer, Vector2 characterScale)
         {
             var characterSceneData = FindAssociatedCharacterSceneData(character);
             var showInstantly = false;
+            
 
             if (characterSceneData == null)
             {
@@ -83,6 +84,7 @@ namespace VisualNovel.Environment
             {
                 UpdateCharacterOnSceneData(characterSceneData, emotion, multiplyColor, scenePosition, sortingLayer, characterScale);
             }
+            
 
             DisplayCharacter(characterSceneData, showInstantly);
         }
@@ -121,7 +123,7 @@ namespace VisualNovel.Environment
                    characterSceneData.scenePosition != newScenePosition || characterSceneData.sortingLayer != newSortingLayer ||
                    characterSceneData.scale != newScale;
         }
-
+        
         private CharacterSceneData RememberCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor,
             Vector2 scenePosition, int sceneLayer, Vector2 scale)
         {
@@ -137,7 +139,7 @@ namespace VisualNovel.Environment
 
             var characterSprite = new GameObject(character.name).AddComponent<SpriteRenderer>();
             characterSceneData.characterSprite = characterSprite;
-
+            
             _charactersOnSceneData.Add(characterSceneData);
             return characterSceneData;
         }

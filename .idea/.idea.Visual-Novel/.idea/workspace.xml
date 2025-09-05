@@ -1,54 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/GUI.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Decision-making area.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Decision-making area.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Documents.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Documents.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Documents/Empty document template.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Documents/Empty document template.psd.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Documents/Light-settings file icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Documents/Light-settings file icon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/christmas-stars.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/christmas-stars.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/cloudy-day.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/cloudy-day.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/dust.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/dust.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/light-bulb.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/light-bulb.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/music (1).png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/music (1).png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/music.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/music.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/night.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/night.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/rainy.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/rainy.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/sunny.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/sunny.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Code.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Code/GameFlowManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Code/GameFlowManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireScene_Volume.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireScene_Volume.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireVFX.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireVFX.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_FlameAdd 1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_FlameAdd 1.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAdd.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAdd.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_1.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_2.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_2.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/GridMat.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/GridMat.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_BlackSmoke.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_BlackSmoke.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire 1.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire 1.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire_Green.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenSmoke.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenSmoke.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenTorchLight.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenTorchLight.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle_Green.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line_Green.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke_Green.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight_Green.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke_2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/a_VFX_flame.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/a_VFX_flame.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/SceneControllerNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/SceneControllerNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/ShowCharacterNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/ShowCharacterNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Environment/Scenery/SceneryDirector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Environment/Scenery/SceneryDirector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game flow/GameFlowManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game flow/GameFlowManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +16,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Scenery/SceneryDirector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game flow/Interfaces/IInitializeOnAwake.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIDialogueTextController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -74,6 +38,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
@@ -132,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1756917198774</updated>
       <workItem from="1756917199483" duration="30000" />
-      <workItem from="1757086940218" duration="76000" />
+      <workItem from="1757086940218" duration="10148000" />
     </task>
     <servers />
   </component>

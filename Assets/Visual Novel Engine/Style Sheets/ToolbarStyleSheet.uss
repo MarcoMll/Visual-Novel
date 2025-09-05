@@ -1,0 +1,47 @@
+/* Toolbar */
+Toolbar
+{
+    background-color: #1c1c1c;
+    height: 35px;
+}
+
+/* Buttons */
+Button
+{
+    background-color: #242627;
+    border-color: #1D1D1E;
+    margin: 4px;
+    max-height: 25px;
+}
+
+Button:hover
+{
+    background-color: #2B2D2F;
+}
+
+Button:active
+{
+    background-color: #212325;
+}
+
+/* Text Fields */
+TextField
+{
+    padding: 4px;
+}
+
+.unity-text-field__label
+{
+    padding: 4px;
+}
+
+.unity-text-field__input
+{
+    background-color: #1D1D1D;
+    border-color: #27292C;
+    border-radius: 4px;
+    max-height: 25px;
+    min-width: 120px;
+    padding-left: 6px;
+    white-space: normal;
+}

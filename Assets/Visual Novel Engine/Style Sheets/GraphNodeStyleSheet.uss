@@ -1,0 +1,145 @@
+/* Containers */
+
+.gp-node__main-container
+{
+    background-color: #1D1D1D;
+}
+
+.gp-node__extension-container
+{
+    background-color: #1D1D1D;
+    padding: 8px;
+}
+
+.gp-node__custom-data-container
+{
+    background-color: #212325;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.gp-node__label
+{
+    color: #B1B1B1;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+/* Inputs */
+
+.gp-node__text-field > .unity-text-field__input
+{
+    background-color: #1D1D1D;
+    border-color: #27292C;
+    border-radius: 4px;
+    max-width: 240px;
+    min-width: 160px;
+    padding: 8px;
+    white-space: normal;
+}
+
+.gp-node__text-field__hidden > .unity-text-field__input
+{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.gp-node__text-field__hidden > .unity-text-field__input:focus
+{
+    background-color: #1D1D1D;
+    border-color: #27292C;
+}
+
+.gp-node__filename-text-field > .unity-text-field__input
+{
+    max-width: 1000px;
+}
+
+.gp-node__filename-text-field > .unity-text-field__input:focus
+{
+    margin: 4px;
+    padding: 4px;
+}
+
+.gp-node__choice-text-field > .unity-text-field__input
+{
+    font-size: 11px;
+    height: 35px;
+    max-width: 1000px;
+    min-width: 0;
+}
+
+.gp-node__choice-text-field > .unity-text-field__input:focus
+{
+    height: 25px;
+    margin: 4px;
+    padding: 4px;
+}
+
+.gp-node__quote-text-field > .unity-text-field__input
+{
+    background-color: #232527;
+    border-color: transparent;
+    border-left-color: #27292C;
+    border-left-width: 4px;
+    max-width: 300px;
+    padding: 16px;
+}
+
+.gp-node__quote-text-field > .unity-text-field__input:hover
+{
+    background-color: #252729;
+}
+
+.gp-node__quote-text-field > .unity-text-field__input:focus
+{
+    background-color: #1D1D1D;
+    border-color: #27292C;
+}
+
+/* Buttons */
+
+.gp-node__button
+{
+    background-color: #252729;
+    border-color: #1D1D1E;
+    margin: 4px;
+    max-height: 25px;
+}
+
+.gp-node__button:hover
+{
+    background-color: #2B2D2F;
+}
+
+.gp-node__button:active
+{
+    background-color: #212325;
+    color: #FDD057;
+}
+
+/* Elements */
+
+TextField
+{
+    margin-left: 0;
+}
+
+.gp-node__custom-data-container > Foldout
+{
+    margin-left: -4px;
+    margin-top: 4px;
+}
+
+.gp-node__custom-data-container > Foldout > TextField
+{
+    margin-left: -12px;
+    margin-top: 8px;
+}
+
+/* Built-In */
+
+.unity-toggle__text
+{
+    margin-left: 2px;
+}

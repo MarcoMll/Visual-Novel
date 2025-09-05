@@ -1,0 +1,8 @@
+/* Grid */
+GridBackground
+{
+    --grid-background-color: var(--gp-colors-grid-background-color);
+    --line-color: var(--gp-colors-line-color);
+    --spacing: var(--gp-metrics-grid-spacing);
+    --thick-line-color: var(--gp-colors-thick-line-color);
+}

@@ -62,6 +62,21 @@ namespace VisualNovelEngine.Data.Utilities
                     });
                 }
 
+                foreach (var field in node.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+                {
+                    if (!typeof(GraphNode).IsAssignableFrom(field.DeclaringType))
+                        continue;
+
+                    var value = field.GetValue(node);
+                    var json = SerializeValue(value, field.FieldType);
+                    nodeData.Properties.Add(new GraphNodePropertyData
+                    {
+                        Name = field.Name,
+                        Type = field.FieldType.AssemblyQualifiedName,
+                        JsonValue = json
+                    });
+                }
+
                 container.Nodes.Add(nodeData);
             }
 
@@ -177,17 +192,22 @@ namespace VisualNovelEngine.Data.Utilities
 
                 var outputPorts = baseNode.outputContainer.Children().OfType<Port>().ToList();
 
-                Port outputPort;
+                Port outputPort = null;
                 if (link.OutputPortIndex >= 0 && link.OutputPortIndex < outputPorts.Count)
                 {
                     outputPort = outputPorts[link.OutputPortIndex];
                 }
                 else
                 {
-                    outputPort = outputPorts.First(p => p.portName == link.PortName);
+                    outputPort = outputPorts.FirstOrDefault(p => p.portName == link.PortName);
                 }
 
-                var inputPort = (Port)targetNode.inputContainer.Children().First();
+                if (outputPort == null)
+                    continue;
+
+                var inputPort = (Port)targetNode.inputContainer.Children().FirstOrDefault();
+                if (inputPort == null)
+                    continue;
 
                 var edge = outputPort.ConnectTo(inputPort);
                 graphView.AddElement(edge);

@@ -12,9 +12,9 @@ namespace VisualNovel.Environment
         private string _currentScenePreset = string.Empty;
 
         private List<CharacterSceneData> _charactersOnSceneData;
-        
+
         public static SceneryDirector Instance { get; private set; }
-        
+
         private class CharacterSceneData
         {
             public SpriteRenderer characterSprite { get; set; }
@@ -23,6 +23,7 @@ namespace VisualNovel.Environment
             public Color multiplyColor { get; set; }
             public Vector2 scenePosition { get; set; }
             public int sortingLayer { get; set; }
+            public Vector2 scale { get; set; }
         }
 
         public void Initialize()
@@ -59,32 +60,43 @@ namespace VisualNovel.Environment
             _currentScene.ChangePreset(newPreset);
         }
 
-        public void ShowCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor, Vector2 scenePosition, int sortingLayer)
+        public bool TryGetCharacterPosition(string positionName, out Vector2 position)
+        {
+            position = Vector2.zero;
+            if (_currentScene == null)
+                return false;
+            return _currentScene.TryGetCharacterPosition(positionName, out position);
+        }
+
+        public void ShowCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor,
+            Vector2 scenePosition, int sortingLayer, Vector2 characterScale)
         {
             var characterSceneData = FindAssociatedCharacterSceneData(character);
             var showInstantly = false;
-            
+
             if (characterSceneData == null)
             {
-                characterSceneData = RememberCharacter(character, emotion, multiplyColor, scenePosition, sortingLayer);
+                characterSceneData = RememberCharacter(character, emotion, multiplyColor, scenePosition, sortingLayer, characterScale);
                 showInstantly = true;
             }
             else
             {
-                UpdateCharacterOnSceneData(characterSceneData, emotion, multiplyColor, scenePosition, sortingLayer);   
+                UpdateCharacterOnSceneData(characterSceneData, emotion, multiplyColor, scenePosition, sortingLayer, characterScale);
             }
-            
+
             DisplayCharacter(characterSceneData, showInstantly);
         }
 
-        private void UpdateCharacterOnSceneData(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion, Color newMultiplyColor, Vector2 newScenePosition, int newSortingLayer)
+        private void UpdateCharacterOnSceneData(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion,
+            Color newMultiplyColor, Vector2 newScenePosition, int newSortingLayer, Vector2 newScale)
         {
-            if (NeedsUpdate(characterSceneData, newEmotion, newMultiplyColor, newScenePosition, newSortingLayer) == false) return;
-            
+            if (NeedsUpdate(characterSceneData, newEmotion, newMultiplyColor, newScenePosition, newSortingLayer, newScale) == false) return;
+
             characterSceneData.emotion = newEmotion;
             characterSceneData.multiplyColor = newMultiplyColor;
             characterSceneData.scenePosition = newScenePosition;
             characterSceneData.sortingLayer = newSortingLayer;
+            characterSceneData.scale = newScale;
         }
 
         private void DisplayCharacter(CharacterSceneData characterSceneData, bool showInstantly)
@@ -96,19 +108,22 @@ namespace VisualNovel.Environment
             characterSprite.sprite = characterSceneData.emotion.sprite;
             characterSprite.color = characterSceneData.multiplyColor;
             characterSprite.transform.position = characterSceneData.scenePosition;
-            characterSprite.sortingLayerID = characterSceneData.sortingLayer;
+            characterSprite.sortingOrder = characterSceneData.sortingLayer;
+            characterSprite.transform.localScale = characterSceneData.scale;
             
             // implement fade in
         }
         
-        private bool NeedsUpdate(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion, Color newMultiplyColor, Vector2 newScenePosition, int newSortingLayer)
+        private bool NeedsUpdate(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion, Color newMultiplyColor,
+            Vector2 newScenePosition, int newSortingLayer, Vector2 newScale)
         {
             return characterSceneData.emotion != newEmotion || characterSceneData.multiplyColor != newMultiplyColor ||
-                   characterSceneData.scenePosition != newScenePosition || characterSceneData.sortingLayer != newSortingLayer;
+                   characterSceneData.scenePosition != newScenePosition || characterSceneData.sortingLayer != newSortingLayer ||
+                   characterSceneData.scale != newScale;
         }
-        
+
         private CharacterSceneData RememberCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor,
-            Vector2 scenePosition, int sceneLayer)
+            Vector2 scenePosition, int sceneLayer, Vector2 scale)
         {
             var characterSceneData = new CharacterSceneData
             {
@@ -116,13 +131,13 @@ namespace VisualNovel.Environment
                 emotion = emotion,
                 multiplyColor = multiplyColor,
                 scenePosition = scenePosition,
-                sortingLayer = sceneLayer
+                sortingLayer = sceneLayer,
+                scale = scale
             };
 
-            var characterGO = new GameObject(character.name);
-            var characterSprite = Instantiate(characterGO).AddComponent<SpriteRenderer>();;
+            var characterSprite = new GameObject(character.name).AddComponent<SpriteRenderer>();
             characterSceneData.characterSprite = characterSprite;
-            
+
             _charactersOnSceneData.Add(characterSceneData);
             return characterSceneData;
         }

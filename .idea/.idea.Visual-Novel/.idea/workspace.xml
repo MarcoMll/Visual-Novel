@@ -2,21 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Game scenes/Bedroom scene.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game scenes/Bedroom scene.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game scenes/Rustic kitchen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game scenes/Rustic kitchen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Decision-making area.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Decision-making area.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Documents.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Documents.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Documents/Empty document template.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Documents/Empty document template.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Documents/Light-settings file icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Documents/Light-settings file icon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/christmas-stars.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/christmas-stars.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/cloudy-day.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/cloudy-day.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/dust.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/dust.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/light-bulb.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/light-bulb.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/music (1).png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/music (1).png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/music.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/music.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/night.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/night.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/rainy.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/rainy.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/sunny.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/sunny.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Code.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Code/GameFlowManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Code/GameFlowManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireScene_Volume.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireScene_Volume.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireVFX.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/FireVFX.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_FlameAdd 1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_FlameAdd 1.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAdd.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAdd.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_1.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_2.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/A_SmokeAlpha_2.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/GridMat.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Material/GridMat.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_BlackSmoke.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_BlackSmoke.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire 1.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire 1.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Fire_Green.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenSmoke.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenSmoke.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenTorchLight.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GreenTorchLight.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Circle_Green.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_GroundFire_Line_Green.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_Smoke_Green.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight_Green.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Prefab/VFX_TorchLight_Green.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/A_Smoke_2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/a_VFX_flame.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFXPACK_FIRE_WALLCOEUR/Texture/a_VFX_flame.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/SceneControllerNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/SceneControllerNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/ShowCharacterNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/ShowCharacterNode.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="32CGZhfBF4bZUvW2Tqm4Iu0LsI6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,10 +73,56 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\user\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\user\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\user\\AppData\\Local\\Symbols\\src"
+    ]
   }
 }]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.50f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Unity Projects\Visual-Novel&quot; -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Unity Projects\Visual-Novel" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.50f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Unity Projects\Visual-Novel&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Unity Projects\Visual-Novel" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -39,8 +132,12 @@
       <option name="presentableId" value="Default" />
       <updated>1756917198774</updated>
       <workItem from="1756917199483" duration="30000" />
+      <workItem from="1757086940218" duration="76000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />

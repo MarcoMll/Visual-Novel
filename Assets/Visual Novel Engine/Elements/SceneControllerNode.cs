@@ -6,6 +6,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VisualNovel.Environment;
 using Object = UnityEngine.Object;
 
 namespace VisualNovelEngine.Elements

@@ -1,42 +1,45 @@
 using System;
 using UnityEngine;
 
-public class PlayerInteractionController : MonoBehaviour
+namespace VisualNovel.Interaction
 {
-    [SerializeField] private AudioSource sfxPlayer;
-    private IInteractable _selectedInteractable;
-
-    public static PlayerInteractionController Instance { private set; get; }
-
-    private void Awake()
+    public class PlayerInteractionController : MonoBehaviour
     {
-        Instance = this;
-    }
+        [SerializeField] private AudioSource sfxPlayer;
+        private IInteractable _selectedInteractable;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        public static PlayerInteractionController Instance { private set; get; }
+
+        private void Awake()
         {
-            if (_selectedInteractable == null) return;
-            _selectedInteractable.Interact(this);
+            Instance = this;
         }
-    }
 
-    public void SelectInteractable(IInteractable interactable)
-    {
-        _selectedInteractable = interactable;
-    }
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_selectedInteractable == null) return;
+                _selectedInteractable.Interact(this);
+            }
+        }
 
-    public void ResetInteractable(IInteractable interactable)
-    {
-        if (_selectedInteractable == interactable)
-            _selectedInteractable = null;
-    }
-    
-    public void PlaySoundEffect(AudioClip audioClip)
-    {
-        if (sfxPlayer == null || audioClip == null) return;
-        
-        sfxPlayer.PlayOneShot(audioClip);
+        public void SelectInteractable(IInteractable interactable)
+        {
+            _selectedInteractable = interactable;
+        }
+
+        public void ResetInteractable(IInteractable interactable)
+        {
+            if (_selectedInteractable == interactable)
+                _selectedInteractable = null;
+        }
+
+        public void PlaySoundEffect(AudioClip audioClip)
+        {
+            if (sfxPlayer == null || audioClip == null) return;
+
+            sfxPlayer.PlayOneShot(audioClip);
+        }
     }
 }

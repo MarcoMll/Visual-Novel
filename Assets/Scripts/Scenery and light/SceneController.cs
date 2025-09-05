@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class SceneController : MonoBehaviour
+namespace VisualNovel.Environment
 {
+    public class SceneController : MonoBehaviour
+    {
     [SerializeField] private ScenePreset[] scenePresets;
     [SerializeField] private CharacterPosition[] characterPositions;
 
@@ -395,10 +397,11 @@ public class SceneController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         if (characterPositions.Length == 0) return;
-        
+
         foreach (var characterPosition in characterPositions)
         {
             Gizmos.DrawWireCube(characterPosition.position, characterPosition.size);
         }
+    }
     }
 }

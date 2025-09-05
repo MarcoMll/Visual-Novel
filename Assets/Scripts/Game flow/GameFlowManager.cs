@@ -150,7 +150,7 @@ namespace VisualNovel.GameFLow
                 var finalPosition = basePosition + characterEntry.Offset;
 
                 sceneDirector.ShowCharacter(characterEntry.Character, emotion, characterEntry.SpriteColor,
-                    finalPosition, characterEntry.Layer, characterEntry.CharacterScale);
+                    finalPosition, characterEntry.Layer, characterEntry.CharacterScale, characterEntry.SelectedParallaxLayer);
             }
         }
     }

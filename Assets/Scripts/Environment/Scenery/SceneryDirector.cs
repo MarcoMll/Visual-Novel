@@ -24,6 +24,8 @@ namespace VisualNovel.Environment
             public Vector2 scenePosition { get; set; }
             public int sortingLayer { get; set; }
             public Vector2 scale { get; set; }
+            public Transform parentLayer { get; set; }
+            public string parallaxLayerName { get; set; }
         }
 
         public void Initialize()
@@ -69,36 +71,38 @@ namespace VisualNovel.Environment
         }
         
         public void ShowCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor,
-            Vector2 scenePosition, int sortingLayer, Vector2 characterScale)
+            Vector2 scenePosition, int sortingLayer, Vector2 characterScale, string parallaxLayerName)
         {
             var characterSceneData = FindAssociatedCharacterSceneData(character);
             var showInstantly = false;
-            
+
+            var parentLayer = GetParallaxLayerTransform(parallaxLayerName);
 
             if (characterSceneData == null)
             {
-                characterSceneData = RememberCharacter(character, emotion, multiplyColor, scenePosition, sortingLayer, characterScale);
+                characterSceneData = RememberCharacter(character, emotion, multiplyColor, scenePosition, sortingLayer, characterScale, parentLayer, parallaxLayerName);
                 showInstantly = true;
             }
             else
             {
-                UpdateCharacterOnSceneData(characterSceneData, emotion, multiplyColor, scenePosition, sortingLayer, characterScale);
+                UpdateCharacterOnSceneData(characterSceneData, emotion, multiplyColor, scenePosition, sortingLayer, characterScale, parentLayer, parallaxLayerName);
             }
-            
 
             DisplayCharacter(characterSceneData, showInstantly);
         }
 
         private void UpdateCharacterOnSceneData(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion,
-            Color newMultiplyColor, Vector2 newScenePosition, int newSortingLayer, Vector2 newScale)
+            Color newMultiplyColor, Vector2 newScenePosition, int newSortingLayer, Vector2 newScale, Transform newParentLayer, string newParallaxName)
         {
-            if (NeedsUpdate(characterSceneData, newEmotion, newMultiplyColor, newScenePosition, newSortingLayer, newScale) == false) return;
+            if (NeedsUpdate(characterSceneData, newEmotion, newMultiplyColor, newScenePosition, newSortingLayer, newScale, newParentLayer) == false) return;
 
             characterSceneData.emotion = newEmotion;
             characterSceneData.multiplyColor = newMultiplyColor;
             characterSceneData.scenePosition = newScenePosition;
             characterSceneData.sortingLayer = newSortingLayer;
             characterSceneData.scale = newScale;
+            characterSceneData.parentLayer = newParentLayer;
+            characterSceneData.parallaxLayerName = newParallaxName;
         }
 
         private void DisplayCharacter(CharacterSceneData characterSceneData, bool showInstantly)
@@ -112,20 +116,22 @@ namespace VisualNovel.Environment
             characterSprite.transform.position = characterSceneData.scenePosition;
             characterSprite.sortingOrder = characterSceneData.sortingLayer;
             characterSprite.transform.localScale = characterSceneData.scale;
-            
+            var parent = characterSceneData.parentLayer != null ? characterSceneData.parentLayer : _currentScene.transform;
+            characterSprite.transform.SetParent(parent, false);
+
             // implement fade in
         }
         
         private bool NeedsUpdate(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion, Color newMultiplyColor,
-            Vector2 newScenePosition, int newSortingLayer, Vector2 newScale)
+            Vector2 newScenePosition, int newSortingLayer, Vector2 newScale, Transform newParentLayer)
         {
             return characterSceneData.emotion != newEmotion || characterSceneData.multiplyColor != newMultiplyColor ||
                    characterSceneData.scenePosition != newScenePosition || characterSceneData.sortingLayer != newSortingLayer ||
-                   characterSceneData.scale != newScale;
+                   characterSceneData.scale != newScale || characterSceneData.parentLayer != newParentLayer;
         }
         
         private CharacterSceneData RememberCharacter(CharacterSO character, CharacterSO.CharacterEmotion emotion, Color multiplyColor,
-            Vector2 scenePosition, int sceneLayer, Vector2 scale)
+            Vector2 scenePosition, int sceneLayer, Vector2 scale, Transform parentLayer, string parallaxLayerName)
         {
             var characterSceneData = new CharacterSceneData
             {
@@ -134,14 +140,36 @@ namespace VisualNovel.Environment
                 multiplyColor = multiplyColor,
                 scenePosition = scenePosition,
                 sortingLayer = sceneLayer,
-                scale = scale
+                scale = scale,
+                parentLayer = parentLayer,
+                parallaxLayerName = parallaxLayerName
             };
 
             var characterSprite = new GameObject(character.name).AddComponent<SpriteRenderer>();
             characterSceneData.characterSprite = characterSprite;
-            
+            var parent = parentLayer != null ? parentLayer : _currentScene.transform;
+            characterSprite.transform.SetParent(parent, false);
+
             _charactersOnSceneData.Add(characterSceneData);
             return characterSceneData;
+        }
+
+        private Transform GetParallaxLayerTransform(string layerName)
+        {
+            if (_currentScene == null)
+                return null;
+
+            var parallax = _currentScene.GetComponent<ParallaxController>();
+            if (parallax?.layers == null)
+                return null;
+
+            foreach (var layer in parallax.layers)
+            {
+                if (layer != null && layer.name == layerName)
+                    return layer;
+            }
+
+            return null;
         }
         
         private CharacterSceneData FindAssociatedCharacterSceneData(CharacterSO targetCharacter)

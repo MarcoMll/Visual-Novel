@@ -32,6 +32,7 @@ namespace VisualNovelEngine.Elements
             public CharacterSO Character;
             public string SelectedEmotion;
             public string SelectedPositionName;
+            public string SelectedParallaxLayer;
             public Vector2 Offset;
             public int Layer;
             public Color SpriteColor = Color.white;
@@ -40,6 +41,7 @@ namespace VisualNovelEngine.Elements
             [System.NonSerialized] public ObjectField characterField;
             [System.NonSerialized] public DropdownField emotionDropdown;
             [System.NonSerialized] public DropdownField positionDropdown;
+            [System.NonSerialized] public DropdownField parallaxLayerDropdown;
             [System.NonSerialized] public Vector2Field offsetField;
             [System.NonSerialized] public IntegerField layerField;
             [System.NonSerialized] public ColorField colorField;
@@ -58,6 +60,7 @@ namespace VisualNovelEngine.Elements
 
         // Position lookup
         private readonly Dictionary<string, PositionData> _positions = new();
+        private readonly List<string> _parallaxLayers = new();
 
         private class PositionData
         {
@@ -130,6 +133,7 @@ namespace VisualNovelEngine.Elements
             _previewImage.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
 
             RefreshPositions();
+            RefreshParallaxLayers();
             foreach (var entry in Characters.ToList())
                 CreateCharacterUI(entry);
             RebuildPreview();
@@ -142,8 +146,12 @@ namespace VisualNovelEngine.Elements
         {
             Scene = evt.newValue as SceneController;
             RefreshPositions();
+            RefreshParallaxLayers();
             foreach (var entry in Characters)
+            {
                 SetPositionChoices(entry);
+                SetParallaxLayerChoices(entry);
+            }
             RebuildPreview();
         }
 
@@ -214,6 +222,13 @@ namespace VisualNovelEngine.Elements
             });
             entry.optionsFoldout.Add(entry.layerField);
 
+            entry.parallaxLayerDropdown = new DropdownField("Parallax Layer");
+            entry.parallaxLayerDropdown.RegisterValueChangedCallback(evt =>
+            {
+                entry.SelectedParallaxLayer = evt.newValue;
+            });
+            entry.optionsFoldout.Add(entry.parallaxLayerDropdown);
+
             entry.colorField = new ColorField("Color") { value = entry.SpriteColor };
             entry.colorField.RegisterValueChangedCallback(evt =>
             {
@@ -236,6 +251,7 @@ namespace VisualNovelEngine.Elements
 
             RefreshEmotionDropdown(entry);
             SetPositionChoices(entry);
+            SetParallaxLayerChoices(entry);
         }
 
         private void RefreshEmotionDropdown(CharacterEntry entry)
@@ -264,6 +280,23 @@ namespace VisualNovelEngine.Elements
                 _positions[pos.name] = new PositionData { position = pos.position, layer = pos.layer, scale = pos.scale };
         }
 
+        private void RefreshParallaxLayers()
+        {
+            _parallaxLayers.Clear();
+            if (Scene == null)
+                return;
+
+            var parallax = Scene.GetComponent<ParallaxController>();
+            if (parallax?.layers == null)
+                return;
+
+            foreach (var layer in parallax.layers)
+            {
+                if (layer != null)
+                    _parallaxLayers.Add(layer.name);
+            }
+        }
+
         private void SetPositionChoices(CharacterEntry entry)
         {
             var options = _positions.Keys.ToList();
@@ -280,6 +313,20 @@ namespace VisualNovelEngine.Elements
                 entry.positionDropdown.SetValueWithoutNotify(options.FirstOrDefault() ?? string.Empty);
                 entry.SelectedPositionName = entry.positionDropdown.value;
                 UpdateFromPosition(entry);
+            }
+        }
+
+        private void SetParallaxLayerChoices(CharacterEntry entry)
+        {
+            entry.parallaxLayerDropdown.choices = _parallaxLayers;
+            if (!string.IsNullOrEmpty(entry.SelectedParallaxLayer) && _parallaxLayers.Contains(entry.SelectedParallaxLayer))
+            {
+                entry.parallaxLayerDropdown.SetValueWithoutNotify(entry.SelectedParallaxLayer);
+            }
+            else
+            {
+                entry.parallaxLayerDropdown.SetValueWithoutNotify(_parallaxLayers.FirstOrDefault() ?? string.Empty);
+                entry.SelectedParallaxLayer = entry.parallaxLayerDropdown.value;
             }
         }
 

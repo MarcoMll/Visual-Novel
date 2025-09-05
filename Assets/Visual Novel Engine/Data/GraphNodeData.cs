@@ -7,6 +7,7 @@ namespace VisualNovelEngine.Data
     [Serializable]
     public class GraphNodePropertyData
     {
+        // Stores serialized information about a node member (field or property).
         public string Name;
         public string Type;
         public string JsonValue;

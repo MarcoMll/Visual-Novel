@@ -14,7 +14,10 @@ namespace VisualNovel.GameFlow
     {
         [SerializeField] private DecisionCircle circle;
         [SerializeField] private DecisionOption[] options = new DecisionOption[4];
+        
         private readonly List<ChoiceData> currentChoices = new List<ChoiceData>();
+        private DecisionOption currentSelection;
+
 
         public static ChoiceHandler Instance { get; private set; }
 
@@ -93,12 +96,25 @@ namespace VisualNovel.GameFlow
                 if (opt == null) continue;
                 opt.gameObject.SetActive(false);
             }
+            
+            if (currentSelection != null)
+                currentSelection.ResetStyle();
+            
+            currentSelection = null;
             currentChoices.Clear();
             circle.Hide();
         }
 
         private void HandleHover(DecisionOption opt)
         {
+            if (currentSelection != opt)
+            {
+                if (currentSelection != null)
+                    currentSelection.ResetStyle();
+                
+                currentSelection = opt;
+            }
+            
             if (circle != null)
                 circle.PointAt(opt.AnchoredPosition);
         }
@@ -111,6 +127,8 @@ namespace VisualNovel.GameFlow
         {
             if (circle != null)
                 circle.Hide();
+            
+            currentSelection = null;
         }
     }
 }

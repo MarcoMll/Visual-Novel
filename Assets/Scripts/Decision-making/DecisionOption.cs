@@ -78,10 +78,10 @@ namespace VisualNovel.Decisions
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            ResetStyle();
+            // Do not reset styling on exit so that the option remains selected
+            // until another option is hovered.
             Exited?.Invoke(this);
         }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             Clicked?.Invoke(this);

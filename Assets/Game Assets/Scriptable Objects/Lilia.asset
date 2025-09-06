@@ -17,6 +17,6 @@ MonoBehaviour:
   - spriteName: Idle
     sprite: {fileID: 4951626002315693551, guid: 803b0e4e6abf8294abc2bcf70c1b5e9d, type: 3}
   - spriteName: Happy
-    sprite: {fileID: -6265806262996033366, guid: 120fa7244e77b4245b19e7fdd7bdeab0, type: 3}
+    sprite: {fileID: -594664152770485616, guid: 5604e259069605047b91018a59b8f6b7, type: 3}
   - spriteName: Distressed
     sprite: {fileID: 7062547734341193994, guid: 3fe70f05bbfa2ec4db7db7bc8dcfcfc0, type: 3}

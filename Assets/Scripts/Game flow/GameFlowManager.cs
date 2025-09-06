@@ -140,13 +140,11 @@ namespace VisualNovel.GameFlow
                 Debug.LogError("UIDialogueTextController is absent on the scene or was not initialized before usage!");
                 return;
             }
-
-            var text = textNode.Text;
-
+            
             if (textNode.IsDialogue)
             {
                 var speakerName = textNode.Speaker.characterName;
-                dialogueTextController.PlayText(text, speakerName);
+                dialogueTextController.PlayText(textNode.Text, speakerName);
             }
             else
             {
@@ -155,8 +153,13 @@ namespace VisualNovel.GameFlow
 
             // After displaying the text, immediately execute any connected ChoiceNodes to allow the player to make a choice
             var choiceHandler = ChoiceHandler.Instance;
-            if (choiceHandler != null)
-                choiceHandler.ClearChoices();
+            if (choiceHandler == null)
+            {
+                Debug.LogError("ChoiceHandler is absent on the scene or was not initialized before usage!");
+                return;
+            }
+
+            choiceHandler.ClearChoices();
             
             var linkedNodes = _graphTracer.GetConnectedNodes(textNode.GUID);
             var hasChoices = false;
@@ -174,7 +177,7 @@ namespace VisualNovel.GameFlow
             }
 
             if (hasChoices)
-                choiceHandler?.ShowChoices();
+                choiceHandler.ShowChoices();
         }
 
         private void ExecuteSceneNode(SceneControllerNode sceneNode)
@@ -182,7 +185,7 @@ namespace VisualNovel.GameFlow
             var sceneManager = SceneEnvironmentManager.Instance;
             if (sceneManager == null)
             {
-                Debug.LogError("SceneControllerNode is absent on the scene or was not initialized before usage!");
+                Debug.LogError("SceneEnvironmentManager is absent on the scene or was not initialized before usage!");
                 return;
             }
 
@@ -194,7 +197,7 @@ namespace VisualNovel.GameFlow
             var sceneManager = SceneEnvironmentManager.Instance;
             if (sceneManager == null)
             {
-                Debug.LogError("SceneControllerNode is absent on the scene or was not initialized before usage!");
+                Debug.LogError("SceneEnvironmentManager is absent on the scene or was not initialized before usage!");
                 return;
             }
 

@@ -55,8 +55,15 @@ namespace VisualNovel.GameFLow
         public void LaunchNextNodes()
         {
             var linkedNodes = _graphTracer.GetConnectedNodes(_currentNode.GUID);
+            if (linkedNodes.Count == 0) return;
+            
             foreach (var node in linkedNodes)
             {
+                //TO BE CHANGED LATER
+                var nodeType = _graphTracer.GetNodeType(node);
+                if (nodeType is TextNode)
+                    _currentNode = node;
+                
                 ExecuteNode(node);
             }
         }

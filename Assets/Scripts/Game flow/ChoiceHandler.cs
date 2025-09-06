@@ -80,6 +80,8 @@ namespace VisualNovel.GameFlow
                     options[i].gameObject.SetActive(false);
                 }
             }
+
+            circle?.Show();
         }
 
         /// <summary>Hides all options and the decision circle.</summary>

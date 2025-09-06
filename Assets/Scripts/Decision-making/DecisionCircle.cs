@@ -88,9 +88,24 @@ namespace VisualNovel.Decisions
             _targetGraphicAngle = baseAngle + rotationOffset;
         }
 
-        /// <summary>Hides the arrow indicator.</summary>
+        /// <summary>Hides the entire decision circle and all of its children.</summary>
         public void Hide()
         {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        /// <summary>Shows the decision circle and prepares the arrow for use.</summary>
+        public void Show()
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+
+            // Keep the arrow hidden until it is needed by PointAt
             if (arrowRect != null)
                 arrowRect.gameObject.SetActive(false);
         }

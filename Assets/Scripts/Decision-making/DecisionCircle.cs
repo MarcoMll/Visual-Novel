@@ -44,6 +44,8 @@ namespace VisualNovel.Decisions
                 timer.OnTimerComplete += HandleTimeout;
                 timer.StartTimer();
             }
+            
+            Hide();
         }
 
         private void Update()
@@ -95,9 +97,12 @@ namespace VisualNovel.Decisions
             {
                 child.gameObject.SetActive(false);
             }
+            
+            if (arrowRect != null)
+                arrowRect.gameObject.SetActive(false);
         }
 
-        /// <summary>Shows the decision circle and prepares the arrow for use.</summary>
+        /// <summary>Shows the decision circle</summary>
         public void Show()
         {
             foreach (Transform child in transform)
@@ -107,14 +112,7 @@ namespace VisualNovel.Decisions
 
             // Keep the arrow hidden until it is needed by PointAt
             if (arrowRect != null)
-                arrowRect.gameObject.SetActive(false);
-        }
-
-        /// <summary>Hides only the arrow indicator without disabling options.</summary>
-        public void HideArrow()
-        {
-            if (arrowRect != null)
-                arrowRect.gameObject.SetActive(false);
+                arrowRect.gameObject.SetActive(true);
         }
 
         private void HandleTimeout()

@@ -153,7 +153,7 @@ namespace VisualNovel.GameFlow
                 dialogueTextController.PlayText(textNode.Text);
             }
 
-            // After displaying the text, immediately execute any connected ChoiceNodes
+            // After displaying the text, immediately execute any connected ChoiceNodes to allow the player to make a choice
             var choiceHandler = ChoiceHandler.Instance;
             if (choiceHandler != null)
                 choiceHandler.ClearChoices();

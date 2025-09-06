@@ -81,7 +81,7 @@ namespace VisualNovel.GameFlow
                 }
             }
 
-            circle?.Show();
+            circle.Show();
         }
 
         /// <summary>Hides all options and the decision circle.</summary>
@@ -94,7 +94,7 @@ namespace VisualNovel.GameFlow
                 opt.gameObject.SetActive(false);
             }
             currentChoices.Clear();
-            circle?.Hide();
+            circle.Hide();
         }
 
         private void HandleHover(DecisionOption opt)
@@ -105,8 +105,6 @@ namespace VisualNovel.GameFlow
 
         private void HandleExit(DecisionOption opt)
         {
-            if (circle != null)
-                circle.HideArrow();
         }
 
         private void HandleClick(DecisionOption opt)

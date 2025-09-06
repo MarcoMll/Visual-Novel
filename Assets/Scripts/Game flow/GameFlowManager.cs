@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
 
-namespace VisualNovel.GameFLow
+namespace VisualNovel.GameFlow
 {
     using UI;
     using Environment;
@@ -78,6 +78,7 @@ namespace VisualNovel.GameFLow
                     ExecuteTextNode(textNode);
                     break;
                 case ChoiceNode choiceNode:
+                    ExecuteChoiceNode(choiceNode);
                     break;
                 case ConditionCheckNode conditionNode:
                     break;
@@ -97,6 +98,18 @@ namespace VisualNovel.GameFLow
                     Debug.LogError($"Unsupported node type detected: {nodeObject}");
                     break;
             }
+        }
+
+        private void ExecuteChoiceNode(ChoiceNode choiceNode)
+        {
+            var choiceHandler = ChoiceHandler.Instance;
+            if (choiceHandler == null)
+            {
+                Debug.LogError("ChoiceHandler is absent on the scene or was not initialized before usage!");
+                return;
+            }
+            
+            choiceHandler.AddChoice(choiceNode.Text, () => {}); // as an action for the choice node, should be executing all the nodes that come afterwards 
         }
 
         private void ExecuteTextNode(TextNode textNode)

@@ -1,4 +1,4 @@
-namespace VisualNovel.GameFLow
+namespace VisualNovel.GameFlow
 {
     public interface IInitializeOnAwake
     {

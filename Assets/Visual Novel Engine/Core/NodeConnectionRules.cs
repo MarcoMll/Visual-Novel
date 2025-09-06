@@ -61,6 +61,19 @@ namespace VisualNovelEngine.Core
 
         private static bool ChoiceNodeRule(Port output, Port input)
         {
+            var targetType = input.node.GetType();
+            
+            // Allow only one text node connection
+            bool connectedToText = output.connections
+                .Any(e => GetOtherPort(e, output).node is TextNode);
+            
+            if (targetType == typeof(TextNode))
+            {
+                // Allow only one text node connection
+                if (connectedToText)
+                    return false;
+            }
+            
             // A choice node cannot connect to another choice node.
             return input.node is not ChoiceNode;
         }

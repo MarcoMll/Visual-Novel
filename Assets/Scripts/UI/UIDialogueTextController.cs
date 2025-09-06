@@ -4,7 +4,7 @@ using TMPro;
 
 namespace VisualNovel.UI
 {
-    using GameFLow;
+    using GameFlow;
     
     public class UIDialogueTextController : MonoBehaviour, IInitializeOnAwake
     {

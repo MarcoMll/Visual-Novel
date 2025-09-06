@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using UnityEngine;
-using VisualNovel.GameFLow;
 
 namespace VisualNovel.Environment
 {
+    using GameFlow;
+    
     public class SceneEnvironmentManager : MonoBehaviour, IInitializeOnAwake
     {
         private SceneController _currentScene = null;

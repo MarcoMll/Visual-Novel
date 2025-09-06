@@ -66,7 +66,7 @@ namespace VisualNovel.Decisions
         {
             _text.color = idleColor;
             _targetPos = _basePos;
-            _rt.anchoredPosition = _basePos;
+            //_rt.anchoredPosition = _basePos;
         }
 
         public void OnPointerEnter(PointerEventData eventData)

@@ -48,8 +48,17 @@ namespace VisualNovel.GameFlow
 
         public void LaunchGraph()
         {
-            _currentNode = _graphTracer.LaunchFirstNode();
-            ExecuteNode(_currentNode);
+            var startingNodes = _graphTracer.LaunchStartNodes();
+            if (startingNodes.Count == 0) return;
+
+            foreach (var node in startingNodes)
+            {
+                var nodeType = _graphTracer.GetNodeType(node);
+                if (nodeType is TextNode)
+                    _currentNode = node;
+
+                ExecuteNode(node);
+            }
         }
 
         public void LaunchNextNodes()
@@ -109,7 +118,18 @@ namespace VisualNovel.GameFlow
                 return;
             }
             
-            choiceHandler.AddChoice(choiceNode.Text, () => {}); // as an action for the choice node, should be executing all the nodes that come afterwards 
+            choiceHandler.AddChoice(choiceNode.Text, () =>
+            {
+                var linkedNodes = _graphTracer.GetConnectedNodes(choiceNode.GUID);
+                foreach (var node in linkedNodes)
+                {
+                    var nodeType = _graphTracer.GetNodeType(node);
+                    if (nodeType is TextNode)
+                        _currentNode = node;
+
+                    ExecuteNode(node);
+                }
+            });
         }
 
         private void ExecuteTextNode(TextNode textNode)

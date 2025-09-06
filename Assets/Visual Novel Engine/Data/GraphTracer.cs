@@ -76,7 +76,7 @@ namespace VisualNovelEngine.Data
         /// Finds the special start node and returns all nodes linked from it.
         /// The first connected node becomes the active node.
         /// </summary>
-        public List<GraphNodeData> LaunchStartNodes()
+        public List<GraphNodeData> GetAdjacentNodesFromStart()
         {
             var startNode = _nodesByGuid.Values
                 .FirstOrDefault(n => n.Type != null && n.Type.Contains("StartNode"));

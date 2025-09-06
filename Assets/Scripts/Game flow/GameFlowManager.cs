@@ -48,7 +48,7 @@ namespace VisualNovel.GameFlow
 
         public void LaunchGraph()
         {
-            var startingNodes = _graphTracer.LaunchStartNodes();
+            var startingNodes = _graphTracer.GetAdjacentNodesFromStart();
             if (startingNodes.Count == 0) return;
 
             foreach (var node in startingNodes)

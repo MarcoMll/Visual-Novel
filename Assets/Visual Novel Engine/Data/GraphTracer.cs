@@ -116,6 +116,12 @@ namespace VisualNovelEngine.Data
 
             var instance = Activator.CreateInstance(type);
 
+            // Ensure instantiated nodes know their GUID so downstream systems
+            // can query graph connections using this identifier.
+            var guidProp = type.GetProperty("GUID");
+            if (guidProp != null && guidProp.CanWrite)
+                guidProp.SetValue(instance, node.GUID);
+
             foreach (var prop in node.Properties)
             {
                 var propInfo = type.GetProperty(prop.Name);

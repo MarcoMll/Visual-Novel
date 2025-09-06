@@ -106,7 +106,7 @@ namespace VisualNovel.GameFlow
         private void HandleExit(DecisionOption opt)
         {
             if (circle != null)
-                circle.Hide();
+                circle.HideArrow();
         }
 
         private void HandleClick(DecisionOption opt)

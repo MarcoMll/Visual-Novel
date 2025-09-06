@@ -73,19 +73,20 @@ namespace VisualNovelEngine.Data
             return targetNode == null ? new List<GraphNodeData>() : GetConnectedNodes(targetNode.GUID);
         }
 
-        /// Finds the special start node and selects the first node linked from it.
+        /// Finds the special start node and returns all nodes linked from it.
+        /// The first connected node becomes the active node.
         /// </summary>
-        public GraphNodeData LaunchFirstNode()
+        public List<GraphNodeData> LaunchStartNodes()
         {
             var startNode = _nodesByGuid.Values
                 .FirstOrDefault(n => n.Type != null && n.Type.Contains("StartNode"));
 
             if (startNode == null)
-                return null;
+                return new List<GraphNodeData>();
 
-            var firstNode = GetConnectedNodes(startNode.GUID).FirstOrDefault();
-            ActiveNode = firstNode;
-            return ActiveNode;
+            var connectedNodes = GetConnectedNodes(startNode.GUID);
+            ActiveNode = connectedNodes.FirstOrDefault();
+            return connectedNodes;
         }
 
         /// <summary>

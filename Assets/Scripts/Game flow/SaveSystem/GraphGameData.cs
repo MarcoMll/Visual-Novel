@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VisualNovel.GameFlow.SaveSystem
+namespace VisualNovel.Data
 {
     /// <summary>
     /// Stores graph progression data such as current node and flags.

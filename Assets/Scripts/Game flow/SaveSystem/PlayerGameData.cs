@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VisualNovel.GameFlow.SaveSystem
+namespace VisualNovel.Data
 {
     /// <summary>
     /// Stores player-specific information such as items, traits and relationships.

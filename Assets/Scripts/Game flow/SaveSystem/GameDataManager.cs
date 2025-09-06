@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisualNovel.GameFlow.SaveSystem
+namespace VisualNovel.Data
 {
     /// <summary>
     /// Manages saving and loading of the different game data sections.

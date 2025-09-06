@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace VisualNovel.GameFlow.SaveSystem
+namespace VisualNovel.Data
 {
     /// <summary>
     /// Base class for any game data section that can be saved or loaded.

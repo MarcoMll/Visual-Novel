@@ -5,7 +5,11 @@ using UnityEditor;
 
 namespace VisualNovel.Decisions
 {
-    [RequireComponent(typeof(AudioSource))]
+    /// <summary>
+    /// Purely visual component that handles the arrow indicator that rotates
+    /// around the decision circle and an optional timer. Logic for handling
+    /// choices is delegated elsewhere.
+    /// </summary>
     public class DecisionCircle : MonoBehaviour
     {
         [Header("Arrow Settings")]
@@ -16,34 +20,24 @@ namespace VisualNovel.Decisions
         [Header("Smoothing")]
         public float arrowMoveSpeed = 8f;
 
-        [Header("SFX")]
-        [Tooltip("Played when hovering a new choice")]
-        public AudioClip hoverSfx;
-        [Tooltip("Played when clicking a choice")]
-        public AudioClip confirmSfx;
-
         [Header("Timer (optional)")]
         public SimpleTimer timer;
 
-        private AudioSource _audio;
-        private DecisionOption _current;
         private float _currentCircleAngle, _targetCircleAngle;
         private float _currentGraphicAngle, _targetGraphicAngle;
 
-        void Awake()
-        {
-            _audio = GetComponent<AudioSource>();
-        }
-
         void Start()
         {
-            arrowRect.gameObject.SetActive(false);
+            if (arrowRect != null)
+            {
+                arrowRect.gameObject.SetActive(false);
 
-        // angles from initial arrow position
-        Vector2 initPos = arrowRect.anchoredPosition;
-        float initAngle = Mathf.Atan2(initPos.y, initPos.x) * Mathf.Rad2Deg;
-        _currentCircleAngle  = _targetCircleAngle  = initAngle;
-        _currentGraphicAngle = _targetGraphicAngle = initAngle + rotationOffset;
+                // angles from initial arrow position
+                Vector2 initPos = arrowRect.anchoredPosition;
+                float initAngle = Mathf.Atan2(initPos.y, initPos.x) * Mathf.Rad2Deg;
+                _currentCircleAngle = _targetCircleAngle = initAngle;
+                _currentGraphicAngle = _targetGraphicAngle = initAngle + rotationOffset;
+            }
 
             if (timer != null)
             {
@@ -54,67 +48,51 @@ namespace VisualNovel.Decisions
 
         void Update()
         {
-            if (!arrowRect.gameObject.activeSelf) return;
+            if (arrowRect == null || !arrowRect.gameObject.activeSelf)
+                return;
 
-        // lerp our circle‐angle
+            // lerp our circle-angle
             _currentCircleAngle = Mathf.LerpAngle(
                 _currentCircleAngle,
                 _targetCircleAngle,
                 arrowMoveSpeed * Time.deltaTime
             );
 
-        // lerp our graphic‐angle
+            // lerp our graphic-angle
             _currentGraphicAngle = Mathf.LerpAngle(
                 _currentGraphicAngle,
                 _targetGraphicAngle,
                 arrowMoveSpeed * Time.deltaTime
             );
 
-        // apply rotation
+            // apply rotation
             arrowRect.localEulerAngles = Vector3.forward * _currentGraphicAngle;
 
-        // compute position on circle
+            // compute position on circle
             float rad = _currentCircleAngle * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
             arrowRect.anchoredPosition = dir * arrowDistance;
         }
 
-    /// <summary>Called by each DecisionOption on hover.</summary>
-        public void SelectOption(DecisionOption opt)
+        /// <summary>Points the arrow towards the given anchored position.</summary>
+        public void PointAt(Vector2 anchoredPos)
         {
+            if (arrowRect == null) return;
             if (!arrowRect.gameObject.activeSelf)
                 arrowRect.gameObject.SetActive(true);
 
-            if (_current != null && _current != opt)
-            {
-                _current.Deselect();
-
-                // Play hover SFX
-                if (hoverSfx != null)
-                    _audio.PlayOneShot(hoverSfx);
-            }
-
-            _current = opt;
-            _current.Select();
-
-            // compute angles
-            Vector2 rawPos = opt.GetCurrentAnchoredPosition();
-            Vector2 dir    = rawPos.normalized;
+            Vector2 dir = anchoredPos.normalized;
             float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-            _targetCircleAngle  = baseAngle;
+            _targetCircleAngle = baseAngle;
             _targetGraphicAngle = baseAngle + rotationOffset;
         }
 
-    /// <summary>Called by DecisionOption when clicked.</summary>
-        public void ConfirmOption(DecisionOption opt)
+        /// <summary>Hides the arrow indicator.</summary>
+        public void Hide()
         {
-            // Play confirm SFX
-            if (confirmSfx != null)
-                _audio.PlayOneShot(confirmSfx);
-
-            Debug.Log($"✅ Choice confirmed: {opt.name}");
-            // TODO: invoke your actual choice logic here
+            if (arrowRect != null)
+                arrowRect.gameObject.SetActive(false);
         }
 
         private void HandleTimeout()
@@ -128,7 +106,7 @@ namespace VisualNovel.Decisions
                 timer.OnTimerComplete -= HandleTimeout;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {
             if (arrowRect == null) return;
@@ -141,6 +119,6 @@ namespace VisualNovel.Decisions
                 arrowDistance
             );
         }
-        #endif
+#endif
     }
 }

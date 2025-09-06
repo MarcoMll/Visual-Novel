@@ -46,7 +46,7 @@ namespace VisualNovel.GameFlow
             }
         }
 
-        public void LaunchGraph()
+        private void LaunchGraph()
         {
             var startingNodes = _graphTracer.GetAdjacentNodesFromStart();
             if (startingNodes.Count == 0) return;
@@ -54,14 +54,14 @@ namespace VisualNovel.GameFlow
             foreach (var node in startingNodes)
             {
                 var nodeType = _graphTracer.GetNodeType(node);
+                ExecuteNode(node);
+
                 if (nodeType is TextNode)
                     _currentNode = node;
-
-                ExecuteNode(node);
             }
         }
 
-        public void LaunchNextNodes()
+        private void LaunchNextNodes()
         {
             var linkedNodes = _graphTracer.GetConnectedNodes(_currentNode.GUID);
             if (linkedNodes.Count == 0) return;
@@ -157,16 +157,19 @@ namespace VisualNovel.GameFlow
             var choiceHandler = ChoiceHandler.Instance;
             if (choiceHandler != null)
                 choiceHandler.ClearChoices();
-
+            
             var linkedNodes = _graphTracer.GetConnectedNodes(textNode.GUID);
             var hasChoices = false;
+            
+            if (linkedNodes.Count == 0) return;
+            
             foreach (var node in linkedNodes)
             {
                 var nodeType = _graphTracer.GetNodeType(node);
                 if (nodeType is ChoiceNode choiceNode)
                 {
                     hasChoices = true;
-                    ExecuteNode(node);
+                    ExecuteChoiceNode(choiceNode);
                 }
             }
 

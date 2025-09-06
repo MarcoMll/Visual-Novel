@@ -53,36 +53,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
-  - GUID: a9f6a6b6-9e11-4067-8e94-dbbc92748194
-    Type: VisualNovelEngine.Elements.SceneControllerNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 269, y: 276}
-    Properties:
-    - Name: ScenePrefab
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: e4363ecffeb12364b94725e84c1ef606
-    - Name: Scene
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: e4363ecffeb12364b94725e84c1ef606
-    - Name: SelectedPresetName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Cloudy"}'
-    - Name: PreviewScale
-      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":1.5}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Scene node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":""}'
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
   - GUID: 74c1cf79-e3c6-4685-8548-19ce4d03e73f
     Type: VisualNovelEngine.Elements.ShowCharacterNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -302,6 +272,36 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
+  - GUID: 408fe274-61a2-41e3-a85f-d807107c91f8
+    Type: VisualNovelEngine.Elements.SceneControllerNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 269, y: 251}
+    Properties:
+    - Name: ScenePrefab
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: e4363ecffeb12364b94725e84c1ef606
+    - Name: Scene
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: e4363ecffeb12364b94725e84c1ef606
+    - Name: SelectedPresetName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Cloudy"}'
+    - Name: PreviewScale
+      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":1.5}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Scene node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":""}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
   Links:
   - BaseNodeGUID: 03fede64-b5e7-4f02-b191-2c6fb3ecc867
     PortName: Output Link
@@ -319,14 +319,6 @@ MonoBehaviour:
     PortName: Output Link
     OutputPortIndex: 0
     TargetNodeGUID: 118dc331-af04-43b6-87ec-3b70f52981c5
-  - BaseNodeGUID: 03fede64-b5e7-4f02-b191-2c6fb3ecc867
-    PortName: Output Link
-    OutputPortIndex: 0
-    TargetNodeGUID: a9f6a6b6-9e11-4067-8e94-dbbc92748194
-  - BaseNodeGUID: 03fede64-b5e7-4f02-b191-2c6fb3ecc867
-    PortName: Output Link
-    OutputPortIndex: 0
-    TargetNodeGUID: 74c1cf79-e3c6-4685-8548-19ce4d03e73f
   - BaseNodeGUID: 118dc331-af04-43b6-87ec-3b70f52981c5
     PortName: Output Link
     OutputPortIndex: 0
@@ -347,5 +339,13 @@ MonoBehaviour:
     PortName: Output Link
     OutputPortIndex: 0
     TargetNodeGUID: b089b416-06ef-4ea4-b53c-4b5f2eee1eda
+  - BaseNodeGUID: 03fede64-b5e7-4f02-b191-2c6fb3ecc867
+    PortName: Output Link
+    OutputPortIndex: 0
+    TargetNodeGUID: 408fe274-61a2-41e3-a85f-d807107c91f8
+  - BaseNodeGUID: 03fede64-b5e7-4f02-b191-2c6fb3ecc867
+    PortName: Output Link
+    OutputPortIndex: 0
+    TargetNodeGUID: 74c1cf79-e3c6-4685-8548-19ce4d03e73f
   Groups: []
   Flags: []

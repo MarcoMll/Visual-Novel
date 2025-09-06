@@ -26,7 +26,7 @@ namespace VisualNovel.Decisions
         private float _currentCircleAngle, _targetCircleAngle;
         private float _currentGraphicAngle, _targetGraphicAngle;
 
-        void Start()
+        private void Start()
         {
             if (arrowRect != null)
             {
@@ -46,7 +46,7 @@ namespace VisualNovel.Decisions
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (arrowRect == null || !arrowRect.gameObject.activeSelf)
                 return;

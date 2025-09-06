@@ -140,9 +140,9 @@ namespace VisualNovel.GameFlow
                 Debug.LogError("UIDialogueTextController is absent on the scene or was not initialized before usage!");
                 return;
             }
-            
+
             var text = textNode.Text;
-            
+
             if (textNode.IsDialogue)
             {
                 var speakerName = textNode.Speaker.characterName;
@@ -152,6 +152,26 @@ namespace VisualNovel.GameFlow
             {
                 dialogueTextController.PlayText(textNode.Text);
             }
+
+            // After displaying the text, immediately execute any connected ChoiceNodes
+            var choiceHandler = ChoiceHandler.Instance;
+            if (choiceHandler != null)
+                choiceHandler.ClearChoices();
+
+            var linkedNodes = _graphTracer.GetConnectedNodes(textNode.GUID);
+            var hasChoices = false;
+            foreach (var node in linkedNodes)
+            {
+                var nodeType = _graphTracer.GetNodeType(node);
+                if (nodeType is ChoiceNode choiceNode)
+                {
+                    hasChoices = true;
+                    ExecuteNode(node);
+                }
+            }
+
+            if (hasChoices)
+                choiceHandler?.ShowChoices();
         }
 
         private void ExecuteSceneNode(SceneControllerNode sceneNode)

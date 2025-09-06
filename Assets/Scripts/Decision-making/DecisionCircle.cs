@@ -110,13 +110,6 @@ namespace VisualNovel.Decisions
                 arrowRect.gameObject.SetActive(false);
         }
 
-        /// <summary>Hides only the arrow indicator without disabling options.</summary>
-        public void HideArrow()
-        {
-            if (arrowRect != null)
-                arrowRect.gameObject.SetActive(false);
-        }
-
         private void HandleTimeout()
         {
             Debug.Log("⏰ Decision time ran out!");

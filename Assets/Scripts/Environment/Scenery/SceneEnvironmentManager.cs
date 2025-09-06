@@ -6,14 +6,14 @@ using VisualNovel.GameFLow;
 
 namespace VisualNovel.Environment
 {
-    public class SceneryDirector : MonoBehaviour, IInitializeOnAwake
+    public class SceneEnvironmentManager : MonoBehaviour, IInitializeOnAwake
     {
         private SceneController _currentScene = null;
         private string _currentScenePreset = string.Empty;
 
         private List<CharacterSceneData> _charactersOnSceneData;
         
-        public static SceneryDirector Instance { get; private set; }
+        public static SceneEnvironmentManager Instance { get; private set; }
         
         private class CharacterSceneData
         {

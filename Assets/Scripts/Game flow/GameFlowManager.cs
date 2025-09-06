@@ -123,20 +123,20 @@ namespace VisualNovel.GameFLow
 
         private void ExecuteSceneNode(SceneControllerNode sceneNode)
         {
-            var sceneDirector = SceneryDirector.Instance;
-            if (sceneDirector == null)
+            var sceneManager = SceneEnvironmentManager.Instance;
+            if (sceneManager == null)
             {
                 Debug.LogError("SceneControllerNode is absent on the scene or was not initialized before usage!");
                 return;
             }
 
-            sceneDirector.ShowScene(sceneNode.ScenePrefab, sceneNode.SelectedPresetName);
+            sceneManager.ShowScene(sceneNode.ScenePrefab, sceneNode.SelectedPresetName);
         }
 
         private void ExecuteCharacterNode(ShowCharacterNode characterNode)
         {
-            var sceneDirector = SceneryDirector.Instance;
-            if (sceneDirector == null)
+            var sceneManager = SceneEnvironmentManager.Instance;
+            if (sceneManager == null)
             {
                 Debug.LogError("SceneControllerNode is absent on the scene or was not initialized before usage!");
                 return;
@@ -153,10 +153,10 @@ namespace VisualNovel.GameFLow
 
                 // Resolve final position: predefined character position + offset
                 Vector2 basePosition;
-                sceneDirector.TryGetCharacterPosition(characterEntry.SelectedPositionName, out basePosition);
+                sceneManager.TryGetCharacterPosition(characterEntry.SelectedPositionName, out basePosition);
                 var finalPosition = basePosition + characterEntry.Offset;
 
-                sceneDirector.ShowCharacter(characterEntry.Character, emotion, characterEntry.SpriteColor,
+                sceneManager.ShowCharacter(characterEntry.Character, emotion, characterEntry.SpriteColor,
                     finalPosition, characterEntry.Layer, characterEntry.CharacterScale, characterEntry.SelectedParallaxLayer);
             }
         }

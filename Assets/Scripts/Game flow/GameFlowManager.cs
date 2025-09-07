@@ -9,6 +9,7 @@ namespace VisualNovel.GameFlow
 {
     using UI;
     using Environment;
+    using Data;
     
     public class GameFlowManager : MonoBehaviour
     {
@@ -92,6 +93,7 @@ namespace VisualNovel.GameFlow
                 case ConditionCheckNode conditionNode:
                     break;
                 case ModifierNode modifierNode:
+                    ExecuteModifierNode(modifierNode);
                     break;
                 case SceneControllerNode sceneNode:
                     ExecuteSceneNode(sceneNode);
@@ -106,6 +108,89 @@ namespace VisualNovel.GameFlow
                 default:
                     Debug.LogError($"Unsupported node type detected: {nodeObject}");
                     break;
+            }
+        }
+
+        private bool ConditionNodeRequirementsMet(ConditionCheckNode conditionNode)
+        {
+            var gameDataManager = GameDataManager.Instance;
+            if (gameDataManager == null)
+            {
+                Debug.LogError("GameDataManager is absent on the scene or was not initialized before usage!");
+                return false;
+            }
+            
+            // ----- check item conditions -----
+            foreach (var itemData in conditionNode.Items)
+            {
+                if (gameDataManager.playerInventory.HasItem(itemData.Item) == false) return false;
+            }
+            
+            // ----- check trait conditions -----
+            foreach (var traitData in conditionNode.Traits)
+            {
+                if (gameDataManager.playerTraitCollection.HasTrait(traitData.Trait) == false) return false;
+            }
+            
+            // ----- check flag conditions -----
+            foreach (var flagData in conditionNode.Flags)
+            {
+                if (gameDataManager.flagCollection.GetFlag(flagData.FlagName) != flagData.BoolValue) return false;
+                // not implemented for integer flags yet
+            }
+
+            return true;
+        }
+        
+        private void ExecuteModifierNode(ModifierNode modifierNode)
+        {
+            var gameDataManager = GameDataManager.Instance;
+            if (gameDataManager == null)
+            {
+                Debug.LogError("GameDataManager is absent on the scene or was not initialized before usage!");
+                return;
+            }
+            
+            // ----- check relationship modifiers -----
+            foreach (var relationshipModifier in modifierNode.RelationshipModifiers)
+            {
+                var character = relationshipModifier.Character;
+                var amount = relationshipModifier.Amount;
+                
+                gameDataManager.characterCollection.ModifyRelationship(character, amount);
+            }
+            
+            // ----- check trait modifiers ------
+            foreach (var traitData in modifierNode.TraitsToAdd)
+            {
+                gameDataManager.playerTraitCollection.AddTrait(traitData.Trait);
+            }
+            
+            // ----- check item modifiers -----
+            // items to add
+            foreach (var itemData in modifierNode.ItemsToAdd)
+            {
+                gameDataManager.playerInventory.AddItem(itemData.Item);
+            }
+            
+            // items to remove
+            foreach (var itemData in modifierNode.ItemsToRemove)
+            {
+                gameDataManager.playerInventory.RemoveItem(itemData.Item);
+            }
+            
+            // ----- check flag modifiers -----
+            // boolean flags
+            foreach (var flagData in modifierNode.FlagsToTrigger)
+            {
+                gameDataManager.flagCollection.SetFlag(flagData.FlagName, true);
+            }
+            
+            // integer flags
+            foreach (var flagData in modifierNode.FlagsToModify)
+            {
+                // not implemented yet
+                //gameDataManager.flagCollection.SetFlag(flagData.FlagName, flagData.IntValue);
             }
         }
 

@@ -9,7 +9,7 @@ namespace VisualNovel.Data
     /// Tracks known characters and the player's relationship values with them.
     /// </summary>
     [Serializable]
-    public class CharacterDatabase : BaseGameData
+    public class CharacterCollection : BaseGameData
     {
         [SerializeField] private List<string> characterGuids = new();
         [SerializeField] private List<int> relationshipValues = new();
@@ -46,6 +46,12 @@ namespace VisualNovel.Data
         public void ModifyRelationship(CharacterSO character, int delta)
         {
             if (character == null) return;
+
+            if (relationships.ContainsKey(character) == false)
+            {
+                RegisterCharacter(character);
+            }
+            
             var current = GetRelationship(character);
             relationships[character] = current + delta;
         }

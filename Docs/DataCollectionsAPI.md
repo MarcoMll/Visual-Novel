@@ -1,14 +1,14 @@
 # Runtime Data Collections API
 
 This guide explains how to work with the runtime data containers that keep track of the player's state during the game.
-Each container updates in real time but only writes to disk when you call its `Save` method (or when the `GameDataManager` tells it to).
+Each container updates in real time but only writes to disk when `Save` method is called (or when the `GameDataManager` tells it to).
 
 The system uses `BaseSO` assets with GUIDs so saved data can be turned back into references after loading.
 
 ## BaseSO Assets
 
 `ItemSO`, `CharacterSO`, and `TraitSO` inherit from `BaseSO`.
-A GUID is assigned automatically and registered at runtime.
+A GUID is assigned automatically and registered at [SaveSystemIntegration.md](SaveSystemIntegration.md)runtime.
 You can look up an asset by ID:
 
 ```csharp

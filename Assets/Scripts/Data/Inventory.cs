@@ -31,6 +31,12 @@ namespace VisualNovel.Data
         public void RemoveItem(ItemSO item)
         {
             if (item == null) return;
+            if (items.Contains(item) == false)
+            {
+                Debug.Log($"Item {item.itemName} is not present in the player's inventory.");
+                return;
+            }
+            
             items.Remove(item);
         }
 

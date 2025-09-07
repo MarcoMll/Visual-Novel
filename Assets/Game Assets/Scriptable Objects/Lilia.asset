@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6670b220bfff74d409a0ffc57b027078, type: 3}
   m_Name: Lilia
   m_EditorClassIdentifier: 
+  guid: 2e0c212c-4d83-4dac-8bd0-f24cbe772619
   characterName: Lilia
   characterEmotionSpriteSheet:
   - spriteName: Idle

@@ -21,6 +21,7 @@ namespace VisualNovelEngine.Core
         private NodeEditorWindow _editorWindow;
         private NodeSearchWindow _searchWindowProvider;
         private GraphNodeBlackboard _blackboardProvider;
+        private GraphEditUtility _editUtility;
         public List<GraphFlag> Flags => _blackboardProvider.Flags;
 
         public NodeGraphView(NodeEditorWindow nodeEditorWindow)
@@ -31,6 +32,8 @@ namespace VisualNovelEngine.Core
             AddManipulators();
             SetupBlackboard();
             SetupSearchWindow();
+            _editUtility = new GraphEditUtility(this);
+            _editUtility.RegisterCallbacks();
             LoadStyles();
             InitializeStartNode();
         }
@@ -108,7 +111,12 @@ namespace VisualNovelEngine.Core
         private IManipulator CreateGroupContextualMenu()
         {
             var contextualMenuManipulator = new ContextualMenuManipulator(
-                menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent => AddElement(CreateGroup("Nodes Group", GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)))));
+                menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent =>
+                {
+                    var group = CreateGroup("Nodes Group", GetLocalMousePosition(actionEvent.eventInfo.localMousePosition));
+                    AddElement(group);
+                    _editUtility.PushUndo(() => RemoveElement(group));
+                }));
             return contextualMenuManipulator;
         }
 
@@ -135,7 +143,7 @@ namespace VisualNovelEngine.Core
             Add(_blackboardProvider.Blackboard);
         }
 
-        private Group CreateGroup(string groupTitle, Vector2 gridPosition)
+        internal Group CreateGroup(string groupTitle, Vector2 gridPosition)
         {
             var group = new Group()
             {
@@ -181,7 +189,7 @@ namespace VisualNovelEngine.Core
                     var memberType = Type.GetType(prop.Type);
                     if (memberType == null) continue;
 
-                    var value = DeserializeValue(prop.JsonValue, memberType);
+                    var value = GraphEditUtility.DeserializeValue(prop.JsonValue, memberType);
 
                     var propertyInfo = nodeClass.GetProperty(prop.Name,
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
@@ -207,40 +215,10 @@ namespace VisualNovelEngine.Core
 
             node.Draw();
             AddElement(node);
+            _editUtility.PushUndo(() => RemoveElement(node));
             return node;
         }
 
-        private static object DeserializeValue(string json, Type type)
-        {
-            if (typeof(UnityEngine.Object).IsAssignableFrom(type))
-            {
-                if (string.IsNullOrEmpty(json)) return null;
-
-                var path = AssetDatabase.GUIDToAssetPath(json);
-                return AssetDatabase.LoadAssetAtPath(path, type);
-            }
-
-            var wrapperType = typeof(ValueWrapper<>).MakeGenericType(type);
-            var wrapper = Activator.CreateInstance(wrapperType);
-
-            try
-            {
-                JsonUtility.FromJsonOverwrite(json, wrapper);
-            }
-            catch
-            {
-                // ignore - wrapper will retain default value
-            }
-
-            return wrapperType.GetField("Value").GetValue(wrapper);
-        }
-
-        [Serializable]
-        private class ValueWrapper<T>
-        {
-            public T Value;
-        }
-        
         private void DrawGridBackground()
         {
             var gridBackground = new GridBackground();
@@ -260,6 +238,11 @@ namespace VisualNovelEngine.Core
             
             var localMousePosition = contentViewContainer.WorldToLocal(worldMousePosition);
             return localMousePosition;
+        }
+
+        internal GraphNode GetNodeByGuid(string guid)
+        {
+            return nodes.OfType<GraphNode>().FirstOrDefault(n => n.GUID == guid);
         }
     }
 }

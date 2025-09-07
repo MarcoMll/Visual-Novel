@@ -49,6 +49,10 @@ namespace VisualNovelEngine.Elements
             var valueContainer = new VisualElement();
 
             var defaultIndex = Mathf.Max(0, flagNames.IndexOf(Data.FlagName));
+            if (string.IsNullOrEmpty(Data.FlagName))
+            {
+                Data.FlagName = flagNames[defaultIndex];
+            }
             var dropdown = new PopupField<string>(flagNames, defaultIndex);
             dropdown.style.flexGrow = 1;
             dropdown.style.flexShrink = 1;
@@ -118,6 +122,10 @@ namespace VisualNovelEngine.Elements
                     if (drawValue && requiredType == null)
                     {
                         valueContainer.Add(CreateValueField(flag));
+                    }
+                    else if (requiredType == null && !drawValue && flag.Type == typeof(bool))
+                    {
+                        Data.BoolValue = true;
                     }
                 }
             }

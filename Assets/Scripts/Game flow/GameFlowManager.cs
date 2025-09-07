@@ -66,14 +66,93 @@ namespace VisualNovel.GameFlow
         {
             var linkedNodes = _graphTracer.GetConnectedNodes(_currentNode.GUID);
             if (linkedNodes.Count == 0) return;
-            
+
+            GraphNodeData textNodeToExecute = null;
+            var nodesToExecute = new System.Collections.Generic.List<GraphNodeData>();
+
+            // ----- first pass: determine if any condition-linked text node should be prioritized -----
             foreach (var node in linkedNodes)
             {
-                //TO BE CHANGED LATER
                 var nodeType = _graphTracer.GetNodeType(node);
-                if (nodeType is TextNode)
-                    _currentNode = node;
-                
+                if (nodeType is ConditionCheckNode conditionNode)
+                {
+                    if (ConditionNodeRequirementsMet(conditionNode) == false)
+                        continue;
+
+                    var conditionLinkedNodes = _graphTracer.GetConnectedNodes(conditionNode.GUID);
+                    foreach (var condNode in conditionLinkedNodes)
+                    {
+                        var condType = _graphTracer.GetNodeType(condNode);
+                        if (condType is TextNode)
+                        {
+                            textNodeToExecute = condNode;
+                            break;
+                        }
+                    }
+
+                    if (textNodeToExecute != null)
+                        break;
+                }
+            }
+
+            // if no condition text nodes found, look for direct text nodes
+            if (textNodeToExecute == null)
+            {
+                foreach (var node in linkedNodes)
+                {
+                    var nodeType = _graphTracer.GetNodeType(node);
+                    if (nodeType is TextNode)
+                    {
+                        textNodeToExecute = node;
+                        break;
+                    }
+                }
+            }
+
+            // ----- second pass: collect nodes to execute -----
+            foreach (var node in linkedNodes)
+            {
+                var nodeType = _graphTracer.GetNodeType(node);
+
+                if (nodeType is ConditionCheckNode conditionNode)
+                {
+                    if (ConditionNodeRequirementsMet(conditionNode) == false)
+                        continue;
+
+                    var conditionLinkedNodes = _graphTracer.GetConnectedNodes(conditionNode.GUID);
+                    foreach (var condNode in conditionLinkedNodes)
+                    {
+                        var condType = _graphTracer.GetNodeType(condNode);
+                        if (condType is TextNode)
+                        {
+                            if (condNode == textNodeToExecute)
+                                nodesToExecute.Add(condNode);
+                        }
+                        else
+                        {
+                            nodesToExecute.Add(condNode);
+                        }
+                    }
+                }
+                else
+                {
+                    if (nodeType is TextNode)
+                    {
+                        if (node == textNodeToExecute)
+                            nodesToExecute.Add(node);
+                    }
+                    else
+                    {
+                        nodesToExecute.Add(node);
+                    }
+                }
+            }
+
+            if (textNodeToExecute != null)
+                _currentNode = textNodeToExecute;
+
+            foreach (var node in nodesToExecute)
+            {
                 ExecuteNode(node);
             }
         }
@@ -91,6 +170,7 @@ namespace VisualNovel.GameFlow
                     ExecuteChoiceNode(choiceNode);
                     break;
                 case ConditionCheckNode conditionNode:
+                    ExecuteConditionNode(conditionNode);
                     break;
                 case ModifierNode modifierNode:
                     ExecuteModifierNode(modifierNode);
@@ -108,6 +188,24 @@ namespace VisualNovel.GameFlow
                 default:
                     Debug.LogError($"Unsupported node type detected: {nodeObject}");
                     break;
+            }
+        }
+
+        private void ExecuteConditionNode(ConditionCheckNode conditionNode)
+        {
+            if (ConditionNodeRequirementsMet(conditionNode) == false)
+                return;
+
+            var linkedNodes = _graphTracer.GetConnectedNodes(conditionNode.GUID);
+            if (linkedNodes.Count == 0) return;
+
+            foreach (var node in linkedNodes)
+            {
+                var nodeType = _graphTracer.GetNodeType(node);
+                if (nodeType is TextNode)
+                    _currentNode = node;
+
+                ExecuteNode(node);
             }
         }
 
@@ -245,7 +343,7 @@ namespace VisualNovel.GameFlow
             }
 
             choiceHandler.ClearChoices();
-            
+
             var linkedNodes = _graphTracer.GetConnectedNodes(textNode.GUID);
             var hasChoices = false;
             
@@ -258,6 +356,22 @@ namespace VisualNovel.GameFlow
                 {
                     hasChoices = true;
                     ExecuteChoiceNode(choiceNode);
+                }
+                else if (nodeType is ConditionCheckNode conditionNode)
+                {
+                    if (ConditionNodeRequirementsMet(conditionNode) == false)
+                        continue;
+
+                    var conditionLinkedNodes = _graphTracer.GetConnectedNodes(conditionNode.GUID);
+                    foreach (var condNode in conditionLinkedNodes)
+                    {
+                        var condType = _graphTracer.GetNodeType(condNode);
+                        if (condType is ChoiceNode conditionChoice)
+                        {
+                            hasChoices = true;
+                            ExecuteChoiceNode(conditionChoice);
+                        }
+                    }
                 }
             }
 

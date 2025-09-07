@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameAssets.ScriptableObjects.Core
 {
     [CreateAssetMenu(menuName = "VNE/New character")]
-    public class CharacterSO : ScriptableObject
+    public class CharacterSO : BaseSO
     {
         [Serializable]
         public class CharacterEmotion

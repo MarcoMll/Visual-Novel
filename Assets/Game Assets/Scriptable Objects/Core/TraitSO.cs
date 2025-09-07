@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameAssets.ScriptableObjects.Core
 {
-    public class TraitSO : ScriptableObject
+    public class TraitSO : BaseSO
     {
         public string characteristicName;
     }

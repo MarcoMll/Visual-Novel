@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace VisualNovelEngine.Data
 {
@@ -209,8 +212,8 @@ namespace VisualNovelEngine.Data
 #if UNITY_EDITOR
                 if (!string.IsNullOrEmpty(json))
                 {
-                    var path = UnityEditor.AssetDatabase.GUIDToAssetPath(json);
-                    return UnityEditor.AssetDatabase.LoadAssetAtPath(path, type);
+                    var path = AssetDatabase.GUIDToAssetPath(json);
+                    return AssetDatabase.LoadAssetAtPath(path, type);
                 }
 #endif
                 return null;
@@ -218,7 +221,23 @@ namespace VisualNovelEngine.Data
 
             var wrapperType = typeof(ValueWrapper<>).MakeGenericType(type);
             var wrapper = Activator.CreateInstance(wrapperType);
+
+#if UNITY_EDITOR
+            // Use EditorJsonUtility so nested UnityEngine.Object references
+            // (e.g., ScriptableObjects within lists) are correctly restored.
+            try
+            {
+                EditorJsonUtility.FromJsonOverwrite(json, wrapper);
+            }
+            catch
+            {
+                // Fallback to JsonUtility if EditorJsonUtility fails.
+                JsonUtility.FromJsonOverwrite(json, wrapper);
+            }
+#else
             JsonUtility.FromJsonOverwrite(json, wrapper);
+#endif
+
             return wrapperType.GetField("Value").GetValue(wrapper);
         }
 

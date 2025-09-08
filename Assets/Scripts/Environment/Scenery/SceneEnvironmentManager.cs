@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using UnityEngine;
+using DG.Tweening;
 
 namespace VisualNovel.Environment
 {
@@ -13,6 +14,7 @@ namespace VisualNovel.Environment
         private string _currentScenePreset = string.Empty;
 
         private List<CharacterSceneData> _charactersOnSceneData;
+        private const float FadeDuration = 0.25f;
         
         public static SceneEnvironmentManager Instance { get; private set; }
         
@@ -108,20 +110,37 @@ namespace VisualNovel.Environment
 
         private void DisplayCharacter(CharacterSceneData characterSceneData, bool showInstantly)
         {
-            // implement fade out
-            // fade out animation should be applied if and only if the character is currently shown on scene, otherwise instantly display it
-            // wait till the sprite has completely faded out then apply changes
-            
             var characterSprite = characterSceneData.characterSprite;
-            characterSprite.sprite = characterSceneData.emotion.sprite;
-            characterSprite.color = characterSceneData.multiplyColor;
-            characterSprite.transform.position = characterSceneData.scenePosition;
-            characterSprite.sortingOrder = characterSceneData.sortingLayer;
-            characterSprite.transform.localScale = characterSceneData.scale;
-            var parent = characterSceneData.parentLayer != null ? characterSceneData.parentLayer : _currentScene.transform;
-            characterSprite.transform.SetParent(parent, false);
 
-            // implement fade in
+            characterSprite.DOKill();
+
+            if (showInstantly)
+            {
+                characterSprite.sprite = characterSceneData.emotion.sprite;
+                characterSprite.transform.position = characterSceneData.scenePosition;
+                characterSprite.sortingOrder = characterSceneData.sortingLayer;
+                characterSprite.transform.localScale = characterSceneData.scale;
+                var instantParent = characterSceneData.parentLayer != null ? characterSceneData.parentLayer : _currentScene.transform;
+                characterSprite.transform.SetParent(instantParent, false);
+                characterSprite.color = characterSceneData.multiplyColor;
+                return;
+            }
+
+            Sequence seq = DOTween.Sequence();
+            seq.Append(characterSprite.DOFade(0f, FadeDuration));
+            seq.AppendCallback(() =>
+            {
+                characterSprite.sprite = characterSceneData.emotion.sprite;
+                characterSprite.transform.position = characterSceneData.scenePosition;
+                characterSprite.sortingOrder = characterSceneData.sortingLayer;
+                characterSprite.transform.localScale = characterSceneData.scale;
+                var parent = characterSceneData.parentLayer != null ? characterSceneData.parentLayer : _currentScene.transform;
+                characterSprite.transform.SetParent(parent, false);
+                var color = characterSceneData.multiplyColor;
+                color.a = 0f;
+                characterSprite.color = color;
+            });
+            seq.Append(characterSprite.DOFade(characterSceneData.multiplyColor.a, FadeDuration));
         }
         
         private bool NeedsUpdate(CharacterSceneData characterSceneData, CharacterSO.CharacterEmotion newEmotion, Color newMultiplyColor,

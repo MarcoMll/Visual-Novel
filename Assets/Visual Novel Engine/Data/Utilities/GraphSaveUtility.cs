@@ -228,7 +228,9 @@ namespace VisualNovelEngine.Data.Utilities
             var wrapperType = typeof(ValueWrapper<>).MakeGenericType(type);
             var wrapper = Activator.CreateInstance(wrapperType);
             wrapperType.GetField("Value").SetValue(wrapper, value);
-            return JsonUtility.ToJson(wrapper);
+            // Use EditorJsonUtility so nested UnityEngine.Object references (e.g., ScriptableObjects)
+            // are properly serialized with GUID information. JsonUtility would lose these references.
+            return EditorJsonUtility.ToJson(wrapper);
         }
 
         private static object DeserializeValue(string json, Type type)
@@ -246,7 +248,9 @@ namespace VisualNovelEngine.Data.Utilities
 
             try
             {
-                JsonUtility.FromJsonOverwrite(json, wrapper);
+                // EditorJsonUtility correctly restores UnityEngine.Object references stored inside
+                // nested objects/lists. JsonUtility would null out such fields on reload.
+                EditorJsonUtility.FromJsonOverwrite(json, wrapper);
             }
             catch
             {

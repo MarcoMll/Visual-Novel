@@ -182,11 +182,42 @@ namespace VisualNovel.GameFlow
                     ExecuteCharacterNode(characterNode);
                     break;
                 case AudioNode audioNode:
+                    ExecuteAudioNode(audioNode);
                     break;
                 case DelayNode delayNode:
                     break;
                 default:
                     Debug.LogError($"Unsupported node type detected: {nodeObject}");
+                    break;
+            }
+        }
+
+        private void ExecuteAudioNode(AudioNode audioNode)
+        {
+            var audioController = AudioHandler.Instance;
+
+            if (audioController == null)
+            {
+                Debug.LogError("AudioHandler is absent on the scene or was not initialized before usage!");
+                return;
+            }
+            
+            var audioKind = audioNode.Kind;
+            var audioClip = audioNode.AudioClip;
+            
+            switch (audioKind)
+            {
+                case AudioNode.AudioKind.Music:
+                    audioController.SetMusicClip(audioClip);
+                    break;
+                case AudioNode.AudioKind.Ambience:
+                    audioController.SetAmbienceClip(audioClip);
+                    break;
+                case AudioNode.AudioKind.Audio:
+                    audioController.PlaySfx(audioClip);
+                    break;
+                case AudioNode.AudioKind.None:
+                    Debug.Log($"AudioKind not defined in node. Node guid: {audioNode.GUID}");
                     break;
             }
         }

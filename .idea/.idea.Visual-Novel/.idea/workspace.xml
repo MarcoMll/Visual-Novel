@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Good old days.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Good old days.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game flow/GameFlowManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game flow/GameFlowManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,9 +19,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Scenery/SceneryDirector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Core/BaseSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game flow/AudioHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game flow/Interfaces/IInitializeOnAwake.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIDialogueTextController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -100,6 +106,8 @@
       <workItem from="1756917199483" duration="30000" />
       <workItem from="1757086940218" duration="11923000" />
       <workItem from="1757115697604" duration="5326000" />
+      <workItem from="1757255546787" duration="7708000" />
+      <workItem from="1757265553223" duration="3515000" />
     </task>
     <servers />
   </component>

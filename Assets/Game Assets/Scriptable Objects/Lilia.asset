@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lilia
   m_EditorClassIdentifier: 
   guid: 2e0c212c-4d83-4dac-8bd0-f24cbe772619
-  characterName: Lilia
+  characterName: "\u041B\u0438\u043B\u0438\u044F"
   characterEmotionSpriteSheet:
   - spriteName: Idle
     sprite: {fileID: 4951626002315693551, guid: 803b0e4e6abf8294abc2bcf70c1b5e9d, type: 3}

@@ -110,6 +110,7 @@ namespace VisualNovel.Environment
         {
             // implement fade out
             // fade out animation should be applied if and only if the character is currently shown on scene, otherwise instantly display it
+            // wait till the sprite has completely faded out then apply changes
             
             var characterSprite = characterSceneData.characterSprite;
             characterSprite.sprite = characterSceneData.emotion.sprite;

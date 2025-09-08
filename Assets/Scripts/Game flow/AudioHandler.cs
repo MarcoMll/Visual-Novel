@@ -86,7 +86,7 @@ namespace VisualNovel.GameFlow
             {
                 if (audioDataName == audioData.name)
                 {
-                    audioData.PlayClip(audioClip, loop);
+                    audioData.PlayClip(audioClip, loop, playOneShot);
                     return;
                 }
             }
@@ -94,7 +94,7 @@ namespace VisualNovel.GameFlow
         
         public void SetMusicClip(AudioClip musicClip, bool loop = true)
         {
-            SetAudioClip(musicClip, "Music Player");
+            SetAudioClip(musicClip, "Music Player", loop);
         }
 
         public void SetAmbienceClip(AudioClip ambienceClip, bool loop = true)

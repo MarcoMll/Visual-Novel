@@ -5409,6 +5409,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2727218484027838773}
+  - component: {fileID: 4831718888294858715}
+  - component: {fileID: 6028528687648336442}
+  - component: {fileID: 3448486243903004663}
   m_Layer: 0
   m_Name: Courtyard
   m_TagString: Untagged
@@ -5438,6 +5441,82 @@ Transform:
   - {fileID: 2339088576447233214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4831718888294858715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530566275911629896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6c7b709eb73fc4ba98830255cb23bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+  - {fileID: 638467366665059824}
+  - {fileID: 1700557933756780887}
+  - {fileID: 9178683273315679576}
+  - {fileID: 2339088576447233214}
+  parallaxFactors:
+  - 0.2
+  - 0.1
+  - 0.05
+  - 0.08
+  maxOffset: {x: 1, y: 1}
+  smoothing: 0.1
+--- !u!114 &6028528687648336442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530566275911629896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5a99c858c41cd41beeedaf0a0c2ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPlayer: {fileID: 1936000953565732706}
+--- !u!114 &3448486243903004663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530566275911629896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e101886450328245a87bb4b6c0c75be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenePresets:
+  - presetName: Night
+    globalLight:
+      light: {fileID: 3499496743225237081}
+      color: {r: 0.5568628, g: 0.5137255, b: 0.98039216, a: 1}
+      intensity: 0.005
+    skyColor: {r: 0.16862746, g: 0.18431373, b: 0.25490198, a: 1}
+    backgroundColor: {r: 0.16862746, g: 0.18431373, b: 0.25490198, a: 1}
+    sceneLightSources:
+    - light: {fileID: 8738435373799453582}
+      color: {r: 0.38039216, g: 0.5686275, b: 1, a: 1}
+      intensity: 0.002
+    - light: {fileID: 1505371932077716324}
+      color: {r: 0.38039216, g: 0.5686275, b: 1, a: 1}
+      intensity: 0.002
+    - light: {fileID: 0}
+      color: {r: 0, g: 0.4, b: 1, a: 1}
+      intensity: 0.002
+    sceneParticles:
+    - {fileID: 0}
+    additionalSceneObjects:
+    - {fileID: 0}
+    ambienceClips: []
+  characterPositions: []
+  backgroundRenderer: {fileID: 3622921946873882513}
+  skyboxRenderer: {fileID: 2763970325804892406}
+  ambiencePlayerPrefab: {fileID: 5806101456483584162}
 --- !u!1 &3965035521955462874
 GameObject:
   m_ObjectHideFlags: 0
@@ -6706,9 +6785,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2747006568600366180}
-  - component: {fileID: 11229063788507156}
-  - component: {fileID: 8834583886414809543}
-  - component: {fileID: 1088686736500493750}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -6731,81 +6807,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2727218484027838773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11229063788507156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5608691602196118341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6c7b709eb73fc4ba98830255cb23bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layers:
-  - {fileID: 638467366665059824}
-  - {fileID: 1700557933756780887}
-  - {fileID: 9178683273315679576}
-  - {fileID: 2339088576447233214}
-  parallaxFactors:
-  - 0.2
-  - 0.1
-  - 0.05
-  - 0.08
-  maxOffset: {x: 1, y: 1}
-  smoothing: 0.1
---- !u!114 &8834583886414809543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5608691602196118341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5a99c858c41cd41beeedaf0a0c2ac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxPlayer: {fileID: 0}
---- !u!114 &1088686736500493750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5608691602196118341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e101886450328245a87bb4b6c0c75be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scenePresets:
-  - presetName: Night
-    globalLight:
-      light: {fileID: 3499496743225237081}
-      color: {r: 0.5568628, g: 0.5137255, b: 0.98039216, a: 1}
-      intensity: 0.005
-    skyColor: {r: 0.16862746, g: 0.18431373, b: 0.25490198, a: 1}
-    backgroundColor: {r: 0.16862746, g: 0.18431373, b: 0.25490198, a: 1}
-    sceneLightSources:
-    - light: {fileID: 8738435373799453582}
-      color: {r: 0.38039216, g: 0.5686275, b: 1, a: 1}
-      intensity: 0.002
-    - light: {fileID: 1505371932077716324}
-      color: {r: 0.38039216, g: 0.5686275, b: 1, a: 1}
-      intensity: 0.002
-    - light: {fileID: 0}
-      color: {r: 0, g: 0.4, b: 1, a: 1}
-      intensity: 0.002
-    sceneParticles:
-    - {fileID: 0}
-    additionalSceneObjects:
-    - {fileID: 0}
-    ambienceClips: []
-  backgroundRenderer: {fileID: 3622921946873882513}
-  skyboxRenderer: {fileID: 2763970325804892406}
-  ambiencePlayerPrefab: {fileID: 5806101456483584162}
 --- !u!1 &5816501875070085366
 GameObject:
   m_ObjectHideFlags: 0

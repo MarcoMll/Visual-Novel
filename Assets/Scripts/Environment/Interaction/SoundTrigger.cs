@@ -1,10 +1,10 @@
 using UnityEngine;
 using VisualNovel.UI;
 
-namespace VisualNovel.Interaction
+namespace VisualNovel.Environment.Interaction
 {
     [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
-    public class SoundTrigger : MonoBehaviour, IInteractable
+    public class SoundTrigger : MonoBehaviour, ISceneInteractable
     {
         [SerializeField] private AudioClip audioClipToPlay;
         [SerializeField] private bool random;
@@ -24,8 +24,8 @@ namespace VisualNovel.Interaction
         private void OnMouseExit()
         {
             isHovering = false;
-            UIManager.Instance.ToggleSoundPanel(false);
-            PlayerInteractionController.Instance.ResetInteractable(this);
+            DynamicUIManager.Instance.ToggleSoundPanel(false);
+            PlayerSceneInteractionHandler.Instance.ResetInteractable(this);
         }
 
     // This is called every frame while the mouse stays over the Collider2D
@@ -40,19 +40,19 @@ namespace VisualNovel.Interaction
     // Your “hover action” goes here. Called once when entering
         private void DoSomething()
         {
-            UIManager.Instance.ToggleSoundPanel(true);
-            PlayerInteractionController.Instance.SelectInteractable(this);
+            DynamicUIManager.Instance.ToggleSoundPanel(true);
+            PlayerSceneInteractionHandler.Instance.SelectInteractable(this);
         }
 
-        public void Interact(PlayerInteractionController interactionController)
+        public void Interact(PlayerSceneInteractionHandler sceneInteractionHandler)
         {
             if (random && audioClipsToPlay.Length > 0)
             {
-                interactionController.PlaySoundEffect(audioClipsToPlay[Random.Range(0, audioClipsToPlay.Length)]);
+                sceneInteractionHandler.PlaySoundEffect(audioClipsToPlay[Random.Range(0, audioClipsToPlay.Length)]);
             }
             else
             {
-                interactionController.PlaySoundEffect(audioClipToPlay);
+                sceneInteractionHandler.PlaySoundEffect(audioClipToPlay);
             }
         }
     }

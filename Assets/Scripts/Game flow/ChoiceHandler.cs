@@ -15,6 +15,10 @@ namespace VisualNovel.GameFlow
         [SerializeField] private DecisionCircle circle;
         [SerializeField] private DecisionOption[] options = new DecisionOption[4];
         
+        [Header("Sound effects")] 
+        [SerializeField] private AudioClip selectionSound;
+        [SerializeField] private AudioClip clickSound;
+        
         private readonly List<ChoiceData> currentChoices = new List<ChoiceData>();
         private DecisionOption currentSelection;
 
@@ -90,7 +94,6 @@ namespace VisualNovel.GameFlow
         /// <summary>Hides all options and the decision circle.</summary>
         public void ClearChoices()
         {
-            
             foreach (var opt in options)
             {
                 if (opt == null) continue;
@@ -117,6 +120,8 @@ namespace VisualNovel.GameFlow
             
             if (circle != null)
                 circle.PointAt(opt.AnchoredPosition);
+            
+            AudioHandler.Instance.PlaySfx(selectionSound);
         }
 
         private void HandleExit(DecisionOption opt)
@@ -129,6 +134,7 @@ namespace VisualNovel.GameFlow
                 circle.Hide();
             
             currentSelection = null;
+            AudioHandler.Instance.PlaySfx(clickSound);
         }
     }
 }

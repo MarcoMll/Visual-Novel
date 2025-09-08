@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5243528821568534640}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: ChangePreset
         m_Mode: 5
@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5243528821568534640}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: ChangePreset
         m_Mode: 5
@@ -2036,9 +2036,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3543318387229854366}
-  - component: {fileID: 6418578895368997484}
-  - component: {fileID: 6853872306082520843}
-  - component: {fileID: 5243528821568534640}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -2061,102 +2058,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5972126744788218061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6418578895368997484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3419992773188589601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6c7b709eb73fc4ba98830255cb23bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layers:
-  - {fileID: 6465618144700591673}
-  - {fileID: 1382805958350578441}
-  - {fileID: 5317280083665371049}
-  parallaxFactors:
-  - 0.4
-  - 0.2
-  - 0.1
-  maxOffset: {x: 0.7, y: 0.3}
-  smoothing: 0.1
---- !u!114 &6853872306082520843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3419992773188589601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5a99c858c41cd41beeedaf0a0c2ac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxPlayer: {fileID: 2465230854436610410}
---- !u!114 &5243528821568534640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3419992773188589601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e101886450328245a87bb4b6c0c75be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scenePresets:
-  - presetName: Night
-    globalLight:
-      light: {fileID: 8398222180350599541}
-      color: {r: 0.3647059, g: 0.48235294, b: 1, a: 1}
-      intensity: 0.18
-    skyColor: {r: 0.30588236, g: 0.3764706, b: 0.6039216, a: 1}
-    backgroundColor: {r: 0.30588236, g: 0.3764706, b: 0.6039216, a: 1}
-    sceneLightSources:
-    - light: {fileID: 2875197299486230540}
-      color: {r: 0, g: 0.74509805, b: 1, a: 1}
-      intensity: 0.001
-    - light: {fileID: 1836397840191677577}
-      color: {r: 0.16470589, g: 0.654902, b: 1, a: 1}
-      intensity: 0.005
-    - light: {fileID: 6390709657136946672}
-      color: {r: 0, g: 0.7411765, b: 1, a: 1}
-      intensity: 0.06
-    sceneParticles: []
-    additionalSceneObjects: []
-    ambienceClips:
-    - clip: {fileID: 8300000, guid: 99db5cd348833c742a346aea27d93a7e, type: 3}
-      volume: 0.2
-  - presetName: Cloudy
-    globalLight:
-      light: {fileID: 8398222180350599541}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      intensity: 1
-    skyColor: {r: 1, g: 1, b: 1, a: 1}
-    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-    sceneLightSources:
-    - light: {fileID: 2875197299486230540}
-      color: {r: 0.9843137, g: 1, b: 0.8901961, a: 1}
-      intensity: 0.025
-    - light: {fileID: 1836397840191677577}
-      color: {r: 0.9843137, g: 1, b: 0.8901961, a: 1}
-      intensity: 0.015
-    - light: {fileID: 6390709657136946672}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      intensity: 0.67
-    sceneParticles: []
-    additionalSceneObjects: []
-    ambienceClips:
-    - clip: {fileID: 8300000, guid: 726d8cce43974bd4592dbb13dfff8d04, type: 3}
-      volume: 0.2
-  characterPositions: []
-  backgroundRenderer: {fileID: 2770861520521749693}
-  skyboxRenderer: {fileID: 0}
-  ambiencePlayerPrefab: {fileID: 8160628037755925294}
 --- !u!1 &3500264187544224408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,6 +2676,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5972126744788218061}
+  - component: {fileID: 8233558505078717922}
+  - component: {fileID: 2092829383332571838}
+  - component: {fileID: 3297600007719669488}
   m_Layer: 0
   m_Name: Rustic kitchen
   m_TagString: Untagged
@@ -2805,6 +2709,102 @@ Transform:
   - {fileID: 6859255841954017842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8233558505078717922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584191421572809655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6c7b709eb73fc4ba98830255cb23bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+  - {fileID: 6465618144700591673}
+  - {fileID: 1382805958350578441}
+  - {fileID: 5317280083665371049}
+  parallaxFactors:
+  - 0.4
+  - 0.2
+  - 0.1
+  maxOffset: {x: 0.7, y: 0.3}
+  smoothing: 0.1
+--- !u!114 &2092829383332571838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584191421572809655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5a99c858c41cd41beeedaf0a0c2ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPlayer: {fileID: 2465230854436610410}
+--- !u!114 &3297600007719669488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584191421572809655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e101886450328245a87bb4b6c0c75be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenePresets:
+  - presetName: Night
+    globalLight:
+      light: {fileID: 8398222180350599541}
+      color: {r: 0.3647059, g: 0.48235294, b: 1, a: 1}
+      intensity: 0.18
+    skyColor: {r: 0.30588236, g: 0.3764706, b: 0.6039216, a: 1}
+    backgroundColor: {r: 0.30588236, g: 0.3764706, b: 0.6039216, a: 1}
+    sceneLightSources:
+    - light: {fileID: 2875197299486230540}
+      color: {r: 0, g: 0.74509805, b: 1, a: 1}
+      intensity: 0.001
+    - light: {fileID: 1836397840191677577}
+      color: {r: 0.16470589, g: 0.654902, b: 1, a: 1}
+      intensity: 0.005
+    - light: {fileID: 6390709657136946672}
+      color: {r: 0, g: 0.7411765, b: 1, a: 1}
+      intensity: 0.06
+    sceneParticles: []
+    additionalSceneObjects: []
+    ambienceClips:
+    - clip: {fileID: 8300000, guid: 99db5cd348833c742a346aea27d93a7e, type: 3}
+      volume: 0.2
+  - presetName: Cloudy
+    globalLight:
+      light: {fileID: 8398222180350599541}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      intensity: 1
+    skyColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    sceneLightSources:
+    - light: {fileID: 2875197299486230540}
+      color: {r: 0.9843137, g: 1, b: 0.8901961, a: 1}
+      intensity: 0.025
+    - light: {fileID: 1836397840191677577}
+      color: {r: 0.9843137, g: 1, b: 0.8901961, a: 1}
+      intensity: 0.015
+    - light: {fileID: 6390709657136946672}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      intensity: 0.67
+    sceneParticles: []
+    additionalSceneObjects: []
+    ambienceClips:
+    - clip: {fileID: 8300000, guid: 726d8cce43974bd4592dbb13dfff8d04, type: 3}
+      volume: 0.2
+  characterPositions: []
+  backgroundRenderer: {fileID: 2770861520521749693}
+  skyboxRenderer: {fileID: 0}
+  ambiencePlayerPrefab: {fileID: 8160628037755925294}
 --- !u!1 &4859825967673518359
 GameObject:
   m_ObjectHideFlags: 0

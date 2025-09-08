@@ -6,9 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Good old days.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Good old days.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game flow/GameFlowManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game flow/GameFlowManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Bedroom scene.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Bedroom scene.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Courtyard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Courtyard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Rustic kitchen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Rustic kitchen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/IInteractable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/IInteractable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/PlayerInteractionController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/PlayerInteractionController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/SoundTrigger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/SoundTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DynamicUIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DynamicUIManager.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +116,7 @@
       <workItem from="1757086940218" duration="11923000" />
       <workItem from="1757115697604" duration="5326000" />
       <workItem from="1757255546787" duration="7708000" />
-      <workItem from="1757265553223" duration="3515000" />
+      <workItem from="1757265553223" duration="6632000" />
     </task>
     <servers />
   </component>

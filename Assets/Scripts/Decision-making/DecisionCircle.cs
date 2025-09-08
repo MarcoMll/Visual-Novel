@@ -112,8 +112,9 @@ namespace VisualNovel.Decisions
                 child.gameObject.SetActive(true);
             }
 
+            // disabling the arrow until PointAt needs it
             if (arrowRect != null)
-                arrowRect.gameObject.SetActive(true);
+                arrowRect.gameObject.SetActive(false);
             
             if (timer != null)
                 timer.StartTimer();

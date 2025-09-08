@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace VisualNovel.UI
 {
-    public class UIManager : MonoBehaviour
+    public class DynamicUIManager : MonoBehaviour
     {
         [SerializeField] private GameObject soundPanel;
         [SerializeField] private Vector3 panelOffset;
 
         private bool _updateSoundPanelPosition;
 
-        public static UIManager Instance { private set; get; }
+        public static DynamicUIManager Instance { private set; get; }
 
         private void Awake()
         {

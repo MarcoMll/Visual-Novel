@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,6 +10,9 @@ namespace VisualNovel.GameFlow
     {
         [SerializeField] private AudioData[] audioDatas;
         public static AudioHandler Instance { get; private set; }
+
+        private readonly Dictionary<AudioClip, AudioSource> _ambienceSources = new();
+        private AudioMixerGroup _ambienceMixerGroup;
 
         [Serializable]
         public class AudioData
@@ -67,6 +72,11 @@ namespace VisualNovel.GameFlow
             foreach (var audioData in audioDatas)
             {
                 audioData.InitializeAudioSource();
+
+                if (audioData.name == "Ambience Player")
+                {
+                    _ambienceMixerGroup = audioData.audioMixerGroup;
+                }
             }
         }
 
@@ -89,7 +99,69 @@ namespace VisualNovel.GameFlow
 
         public void SetAmbienceClip(AudioClip ambienceClip, bool loop = true)
         {
-            SetAudioClip(ambienceClip, "Ambience Player");
+            SetAmbienceClips(loop, ambienceClip);
+        }
+
+        public void SetAmbienceClips(bool loop = true, params AudioClip[] ambienceClips)
+        {
+            foreach (var clip in ambienceClips)
+            {
+                PlayAmbienceClip(clip, loop);
+            }
+        }
+
+        private void PlayAmbienceClip(AudioClip ambienceClip, bool loop)
+        {
+            if (_ambienceMixerGroup == null)
+            {
+                Debug.LogWarning("Ambience mixer group is not defined!");
+                return;
+            }
+
+            if (_ambienceSources.TryGetValue(ambienceClip, out var existingSource))
+            {
+                StopAmbience(ambienceClip);
+            }
+
+            var go = new GameObject($"Ambience: {ambienceClip.name}");
+            go.transform.SetParent(transform);
+
+            var source = go.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = _ambienceMixerGroup;
+            source.loop = loop;
+            source.clip = ambienceClip;
+            source.Play();
+
+            _ambienceSources[ambienceClip] = source;
+
+            if (!loop)
+            {
+                StartCoroutine(RemoveWhenFinished(ambienceClip, source));
+            }
+        }
+
+        private IEnumerator RemoveWhenFinished(AudioClip clip, AudioSource source)
+        {
+            yield return new WaitWhile(() => source != null && source.isPlaying);
+            StopAmbience(clip);
+        }
+
+        public void StopAmbience(AudioClip ambienceClip)
+        {
+            if (_ambienceSources.TryGetValue(ambienceClip, out var source))
+            {
+                source.Stop();
+                Destroy(source.gameObject);
+                _ambienceSources.Remove(ambienceClip);
+            }
+        }
+
+        public void StopAllAmbience()
+        {
+            foreach (var kvp in new Dictionary<AudioClip, AudioSource>(_ambienceSources))
+            {
+                StopAmbience(kvp.Key);
+            }
         }
 
         public void PlaySfx(AudioClip soundEffectClip)

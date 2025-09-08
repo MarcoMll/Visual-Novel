@@ -49,9 +49,6 @@ namespace VisualNovel.Editor
 
                     sb.AppendLine("    Additional Scene Objects:");
                     AppendGameObjects(sb, preset.AdditionalSceneObjects);
-
-                    sb.AppendLine("    Ambience Clips:");
-                    AppendAmbienceClips(sb, preset.AmbienceClips);
                 }
 
                 sb.AppendLine();
@@ -101,21 +98,6 @@ namespace VisualNovel.Editor
             {
                 var name = obj != null ? obj.name : "None";
                 sb.AppendLine($"      - {name}");
-            }
-        }
-
-        private static void AppendAmbienceClips(StringBuilder sb, SceneController.AmbienceClip[] clips)
-        {
-            if (clips == null || clips.Length == 0)
-            {
-                sb.AppendLine("      (none)");
-                return;
-            }
-
-            foreach (var clip in clips)
-            {
-                var name = clip.Clip != null ? clip.Clip.name : "None";
-                sb.AppendLine($"      - {name} (volume: {clip.Volume})");
             }
         }
 

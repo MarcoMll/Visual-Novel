@@ -5,418 +5,257 @@ using UnityEngine.Rendering.Universal;
 
 namespace VisualNovel.Environment
 {
+    /// <summary>
+    /// Controls visual scene presets: lights, particles, additional objects and colors.
+    /// </summary>
     public class SceneController : MonoBehaviour
     {
-    [SerializeField] private ScenePreset[] scenePresets;
-    [SerializeField] private CharacterPosition[] characterPositions;
+        [SerializeField] private ScenePreset[] scenePresets;
+        [SerializeField] private CharacterPosition[] characterPositions;
 
-    // Assign these once in the Inspector to the SpriteRenderers you want to tint.
-    [SerializeField] private SpriteRenderer backgroundRenderer;
-    [SerializeField] private SpriteRenderer skyboxRenderer;
+        [SerializeField] private SpriteRenderer backgroundRenderer;
+        [SerializeField] private SpriteRenderer skyboxRenderer;
 
-    // Assign a prefab or configured AudioSource here.
-    // This AudioSource will be instantiated (cloned) for each ambience clip in a preset.
-    [SerializeField] private AudioSource ambiencePlayerPrefab;
+        private ScenePreset currentPreset = null;
 
-    // Keeps track of which preset is currently active
-    private ScenePreset currentPreset = null;
+        public ScenePreset[] ScenePresets => scenePresets;
 
-    // Map from AudioClip → its instantiated AudioSource so we can stop/destroy when needed
-    private readonly Dictionary<AudioClip, AudioSource> activeAmbienceSources = new Dictionary<AudioClip, AudioSource>();
+        #region Nested types
 
-    public ScenePreset[] ScenePresets => scenePresets;
-    
-    [Serializable]
-    public class LightSource
-    {
-        [SerializeField] private Light2D light;
-        [SerializeField] private Color color;
-        [SerializeField] private float intensity;
+        [Serializable]
+        public class LightSource
+        {
+            [SerializeField] private Light2D light;
+            [SerializeField] private Color color;
+            [SerializeField] private float intensity;
 
-        public Light2D Light => light;
-        public Color Color => color;
-        public float Intensity => intensity;
-    }
+            public Light2D Light => light;
+            public Color Color => color;
+            public float Intensity => intensity;
+        }
 
-    [Serializable]
-    public class AmbienceClip
-    {
-        [SerializeField] private AudioClip clip;
-        [SerializeField, Range(0f, 1f)] private float volume = 1f;
+        [Serializable]
+        public class ScenePreset
+        {
+            [Header("Preset name")]
+            [SerializeField] private string presetName;
 
-        public AudioClip Clip => clip;
-        public float Volume => volume;
-    }
+            [Header("Main setup")]
+            [SerializeField] private LightSource globalLight;
+            [SerializeField] private Color skyColor;
+            [SerializeField] private Color backgroundColor;
 
-    [Serializable]
-    public class ScenePreset
-    {
-        [Header("Preset name")]
-        [SerializeField] private string presetName;
+            [Header("Other settings")]
+            [SerializeField] private LightSource[] sceneLightSources;
+            [SerializeField] private ParticleSystem[] sceneParticles;
+            [SerializeField] private GameObject[] additionalSceneObjects;
 
-        [Header("Main setup")]
-        [SerializeField] private LightSource globalLight;
-        [SerializeField] private Color skyColor;
-        [SerializeField] private Color backgroundColor;
+            public string PresetName => presetName;
+            public LightSource GlobalLight => globalLight;
+            public Color SkyColor => skyColor;
+            public Color BackgroundColor => backgroundColor;
+            public LightSource[] SceneLightSources => sceneLightSources;
+            public ParticleSystem[] SceneParticles => sceneParticles;
+            public GameObject[] AdditionalSceneObjects => additionalSceneObjects;
+        }
 
-        [Header("Other settings")]
-        [SerializeField] private LightSource[] sceneLightSources;
-        [SerializeField] private ParticleSystem[] sceneParticles;
-        [SerializeField] private GameObject[] additionalSceneObjects;
-
-        [Header("Audio ambience")]
-        [Tooltip("List of ambience clips (with per-clip volume). If absent, no ambience plays.")]
-        [SerializeField] private AmbienceClip[] ambienceClips;
-
-        #region Public getters
-
-        public string PresetName => presetName;
-        public LightSource GlobalLight => globalLight;
-        public Color SkyColor => skyColor;
-        public Color BackgroundColor => backgroundColor;
-        public LightSource[] SceneLightSources => sceneLightSources;
-        public ParticleSystem[] SceneParticles => sceneParticles;
-        public GameObject[] AdditionalSceneObjects => additionalSceneObjects;
-        public AmbienceClip[] AmbienceClips => ambienceClips;
+        [Serializable]
+        public class CharacterPosition
+        {
+            public string positionName;
+            public Vector2 position;
+            public int layer;
+            public Vector2 size;
+            public Vector2 defaultCharacterScale;
+        }
 
         #endregion
-    }
 
-    [Serializable]
-    public class CharacterPosition
-    {
-        public string positionName;
-        public Vector2 position;
-        public int layer;
-        public Vector2 size;
-        public Vector2 defaultCharacterScale;
-    }
+        #region Character positions
 
-    public bool TryGetCharacterPosition(string positionName, out Vector2 position)
-    {
-        position = Vector2.zero;
-        foreach (var characterPosition in characterPositions)
+        public bool TryGetCharacterPosition(string positionName, out Vector2 position)
         {
-            if (characterPosition.positionName == positionName)
+            position = Vector2.zero;
+            foreach (var characterPosition in characterPositions)
             {
-                position = characterPosition.position;
-                return true;
+                if (characterPosition.positionName == positionName)
+                {
+                    position = characterPosition.position;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region Preset management
+
+        /// <summary>
+        /// Switches the active preset to the one with the specified name.
+        /// </summary>
+        public void ChangePreset(string presetName)
+        {
+            var newPreset = FindPreset(presetName);
+            if (newPreset == null)
+            {
+                Debug.LogWarning($"[SceneController] No preset found with name \"{presetName}\".");
+                return;
+            }
+
+            if (currentPreset == newPreset)
+                return;
+
+            ApplyPreset(currentPreset, newPreset);
+            currentPreset = newPreset;
+        }
+
+        private ScenePreset FindPreset(string presetName)
+        {
+            if (scenePresets == null)
+                return null;
+
+            foreach (var preset in scenePresets)
+            {
+                if (preset.PresetName == presetName)
+                    return preset;
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region Preset application helpers
+
+        private void ApplyPreset(ScenePreset oldPreset, ScenePreset newPreset)
+        {
+            ApplyGlobalLight(oldPreset?.GlobalLight, newPreset.GlobalLight);
+            ApplyLightSources(oldPreset?.SceneLightSources, newPreset.SceneLightSources);
+            ApplyParticles(oldPreset?.SceneParticles, newPreset.SceneParticles);
+            ApplyObjects(oldPreset?.AdditionalSceneObjects, newPreset.AdditionalSceneObjects);
+            ApplyColors(newPreset);
+        }
+
+        private static void ApplyGlobalLight(LightSource oldLight, LightSource newLight)
+        {
+            if (oldLight != null && oldLight.Light != null && oldLight.Light != newLight.Light)
+            {
+                oldLight.Light.enabled = false;
+            }
+
+            if (newLight.Light != null)
+            {
+                var light = newLight.Light;
+                light.enabled = true;
+                light.color = newLight.Color;
+                light.intensity = newLight.Intensity;
             }
         }
 
-        return false;
-    }
-    
-    /// <summary>
-    /// Switches from the current preset (if any) into the one matching "presetName."
-    /// </summary>
-    public void ChangePreset(string presetName)
-    {
-        ScenePreset newPreset = FindPreset(presetName);
-        if (newPreset == null)
+        private static void ApplyLightSources(LightSource[] oldSources, LightSource[] newSources)
         {
-            Debug.LogWarning($"[SceneController] No preset found with name \"{presetName}\".");
-            return;
-        }
-
-        // If it's already active, do nothing.
-        if (currentPreset == newPreset)
-            return;
-
-        InitializeScenePreset(currentPreset, newPreset);
-        currentPreset = newPreset;
-    }
-    
-    private void InitializeScenePreset(ScenePreset oldPreset, ScenePreset newPreset)
-    {
-        // 1) GLOBAL LIGHT
-        if (oldPreset != null)
-        {
-            var oldGL = oldPreset.GlobalLight;
-            var newGL = newPreset.GlobalLight;
-
-            if (oldGL.Light != newGL.Light)
+            var newSet = new HashSet<Light2D>();
+            if (newSources != null)
             {
-                if (oldGL.Light != null)
-                    oldGL.Light.enabled = false;
-
-                if (newGL.Light != null)
+                foreach (var ls in newSources)
                 {
-                    newGL.Light.enabled = true;
-                    newGL.Light.color = newGL.Color;
-                    newGL.Light.intensity = newGL.Intensity;
-                }
-            }
-            else
-            {
-                if (newGL.Light != null)
-                {
-                    newGL.Light.enabled = true;
-                    newGL.Light.color = newGL.Color;
-                    newGL.Light.intensity = newGL.Intensity;
-                }
-            }
-        }
-        else
-        {
-            var newGL = newPreset.GlobalLight;
-            if (newGL.Light != null)
-            {
-                newGL.Light.enabled = true;
-                newGL.Light.color = newGL.Color;
-                newGL.Light.intensity = newGL.Intensity;
-            }
-        }
-
-        // 2) OTHER LIGHT SOURCES
-        if (oldPreset != null)
-        {
-            foreach (var oldLS in oldPreset.SceneLightSources)
-            {
-                bool foundInNew = false;
-                foreach (var newLS in newPreset.SceneLightSources)
-                {
-                    if (oldLS.Light == newLS.Light)
-                    {
-                        foundInNew = true;
-                        break;
-                    }
-                }
-
-                if (!foundInNew && oldLS.Light != null)
-                    oldLS.Light.enabled = false;
-            }
-        }
-
-        foreach (var newLS in newPreset.SceneLightSources)
-        {
-            bool foundInOld = false;
-            if (oldPreset != null)
-            {
-                foreach (var oldLS in oldPreset.SceneLightSources)
-                {
-                    if (newLS.Light == oldLS.Light)
-                    {
-                        foundInOld = true;
-                        break;
-                    }
+                    if (ls.Light != null)
+                        newSet.Add(ls.Light);
                 }
             }
 
-            if (foundInOld)
+            if (oldSources != null)
             {
-                if (newLS.Light != null)
+                foreach (var ls in oldSources)
                 {
-                    newLS.Light.enabled = true;
-                    newLS.Light.color = newLS.Color;
-                    newLS.Light.intensity = newLS.Intensity;
+                    if (ls.Light != null && !newSet.Contains(ls.Light))
+                        ls.Light.enabled = false;
                 }
             }
-            else
+
+            if (newSources != null)
             {
-                if (newLS.Light != null)
+                foreach (var ls in newSources)
                 {
-                    newLS.Light.enabled = true;
-                    newLS.Light.color = newLS.Color;
-                    newLS.Light.intensity = newLS.Intensity;
+                    if (ls.Light == null)
+                        continue;
+
+                    var light = ls.Light;
+                    light.enabled = true;
+                    light.color = ls.Color;
+                    light.intensity = ls.Intensity;
                 }
             }
         }
 
-        // 3) PARTICLE SYSTEMS
-        if (oldPreset != null)
+        private static void ApplyParticles(ParticleSystem[] oldParticles, ParticleSystem[] newParticles)
         {
-            foreach (var oldPS in oldPreset.SceneParticles)
-            {
-                bool foundInNew = false;
-                foreach (var newPS in newPreset.SceneParticles)
-                {
-                    if (oldPS == newPS)
-                    {
-                        foundInNew = true;
-                        break;
-                    }
-                }
+            var newSet = new HashSet<ParticleSystem>(newParticles ?? Array.Empty<ParticleSystem>());
 
-                if (!foundInNew && oldPS != null)
-                    oldPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            }
-        }
-
-        foreach (var newPS in newPreset.SceneParticles)
-        {
-            bool foundInOld = false;
-            if (oldPreset != null)
+            if (oldParticles != null)
             {
-                foreach (var oldPS in oldPreset.SceneParticles)
+                foreach (var ps in oldParticles)
                 {
-                    if (newPS == oldPS)
-                    {
-                        foundInOld = true;
-                        break;
-                    }
+                    if (ps != null && !newSet.Contains(ps))
+                        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 }
             }
 
-            if (!foundInOld && newPS != null)
-                newPS.Play();
-        }
-
-        // 4) ADDITIONAL SCENE OBJECTS
-        if (oldPreset != null)
-        {
-            foreach (var oldGO in oldPreset.AdditionalSceneObjects)
+            if (newParticles != null)
             {
-                bool foundInNew = false;
-                foreach (var newGO in newPreset.AdditionalSceneObjects)
+                foreach (var ps in newParticles)
                 {
-                    if (oldGO == newGO)
-                    {
-                        foundInNew = true;
-                        break;
-                    }
+                    if (ps != null)
+                        ps.Play();
                 }
-
-                if (!foundInNew && oldGO != null)
-                    oldGO.SetActive(false);
             }
         }
 
-        foreach (var newGO in newPreset.AdditionalSceneObjects)
+        private static void ApplyObjects(GameObject[] oldObjects, GameObject[] newObjects)
         {
-            bool foundInOld = false;
-            if (oldPreset != null)
+            var newSet = new HashSet<GameObject>(newObjects ?? Array.Empty<GameObject>());
+
+            if (oldObjects != null)
             {
-                foreach (var oldGO in oldPreset.AdditionalSceneObjects)
+                foreach (var go in oldObjects)
                 {
-                    if (newGO == oldGO)
-                    {
-                        foundInOld = true;
-                        break;
-                    }
+                    if (go != null && !newSet.Contains(go))
+                        go.SetActive(false);
                 }
             }
 
-            if (!foundInOld && newGO != null)
-                newGO.SetActive(true);
+            if (newObjects != null)
+            {
+                foreach (var go in newObjects)
+                {
+                    if (go != null)
+                        go.SetActive(true);
+                }
+            }
         }
 
-        // 5) SKYBOX & BACKGROUND
-        if (oldPreset == null || newPreset.SkyColor != oldPreset.SkyColor)
+        private void ApplyColors(ScenePreset preset)
         {
             if (skyboxRenderer != null)
-                skyboxRenderer.color = newPreset.SkyColor;
-        }
+                skyboxRenderer.color = preset.SkyColor;
 
-        if (oldPreset == null || newPreset.BackgroundColor != oldPreset.BackgroundColor)
-        {
             if (backgroundRenderer != null)
-                backgroundRenderer.color = newPreset.BackgroundColor;
+                backgroundRenderer.color = preset.BackgroundColor;
         }
 
-        // 6) AUDIO AMBIENCE
-        // --- Stop any old ambience clips not in the new preset
-        if (oldPreset != null)
-        {
-            foreach (var oldAmb in oldPreset.AmbienceClips)
-            {
-                bool foundInNew = false;
-                foreach (var newAmb in newPreset.AmbienceClips)
-                {
-                    if (oldAmb.Clip == newAmb.Clip)
-                    {
-                        foundInNew = true;
-                        break;
-                    }
-                }
+        #endregion
 
-                if (!foundInNew && oldAmb.Clip != null)
-                {
-                    if (activeAmbienceSources.TryGetValue(oldAmb.Clip, out var src))
-                    {
-                        src.Stop();
-                        Destroy(src.gameObject);
-                        activeAmbienceSources.Remove(oldAmb.Clip);
-                    }
-                }
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            if (characterPositions == null || characterPositions.Length == 0)
+                return;
+
+            foreach (var characterPosition in characterPositions)
+            {
+                Gizmos.DrawWireCube(characterPosition.position, characterPosition.size);
             }
         }
-
-        // --- Play or update any new ambience clips
-        foreach (var newAmb in newPreset.AmbienceClips)
-        {
-            if (newAmb.Clip == null)
-                continue;
-
-            bool foundInOld = false;
-            if (oldPreset != null)
-            {
-                foreach (var oldAmb in oldPreset.AmbienceClips)
-                {
-                    if (newAmb.Clip == oldAmb.Clip)
-                    {
-                        foundInOld = true;
-                        break;
-                    }
-                }
-            }
-
-            if (foundInOld)
-            {
-                // Shared: just update volume if changed
-                if (activeAmbienceSources.TryGetValue(newAmb.Clip, out var existingSrc))
-                {
-                    existingSrc.volume = newAmb.Volume;
-                    if (!existingSrc.isPlaying)
-                        existingSrc.Play();
-                }
-            }
-            else
-            {
-                // Brand-new ambience clip: instantiate from the prefab and play
-                if (ambiencePlayerPrefab != null)
-                {
-                    AudioSource srcInstance = Instantiate(ambiencePlayerPrefab, transform);
-                    srcInstance.clip = newAmb.Clip;
-                    srcInstance.volume = newAmb.Volume;
-                    srcInstance.loop = true;
-                    srcInstance.Play();
-                    activeAmbienceSources.Add(newAmb.Clip, srcInstance);
-                }
-                else
-                {
-                    Debug.LogWarning("[SceneController] AmbiencePlayerPrefab is not assigned in the Inspector.");
-                }
-            }
-        }
-    }
-    
-    /// <summary>
-    /// Returns the ScenePreset whose PresetName matches, or null if none.
-    /// </summary>
-    private ScenePreset FindPreset(string presetName)
-    {
-        if (scenePresets == null)
-            return null;
-
-        foreach (var preset in scenePresets)
-        {
-            if (preset.PresetName == presetName)
-                return preset;
-        }
-
-        return null;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        if (characterPositions.Length == 0) return;
-
-        foreach (var characterPosition in characterPositions)
-        {
-            Gizmos.DrawWireCube(characterPosition.position, characterPosition.size);
-        }
-    }
     }
 }
+

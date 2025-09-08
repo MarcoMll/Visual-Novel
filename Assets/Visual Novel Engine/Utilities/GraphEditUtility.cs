@@ -244,7 +244,9 @@ namespace VisualNovelEngine.Utilities
 
             try
             {
-                JsonUtility.FromJsonOverwrite(json, wrapper);
+                // Use EditorJsonUtility to correctly restore nested Unity object references
+                // that JsonUtility would otherwise drop (e.g., ScriptableObjects in lists).
+                EditorJsonUtility.FromJsonOverwrite(json, wrapper);
             }
             catch
             {
@@ -268,7 +270,9 @@ namespace VisualNovelEngine.Utilities
             var wrapperType = typeof(ValueWrapper<>).MakeGenericType(type);
             var wrapper = Activator.CreateInstance(wrapperType);
             wrapperType.GetField("Value").SetValue(wrapper, value);
-            return JsonUtility.ToJson(wrapper);
+            // EditorJsonUtility ensures nested UnityEngine.Object references are serialized
+            // with GUID data so they survive copy/paste and undo operations.
+            return EditorJsonUtility.ToJson(wrapper);
         }
 
         [Serializable]

@@ -44,25 +44,31 @@ namespace VisualNovel.Environment
         
         public void ShowScene(SceneController newScene, string newPreset)
         {
+            // If nothing changes, simply exit
             if (_currentScene == newScene && _currentScenePreset == newPreset)
             {
                 return;
             }
 
+            // Scene stays the same but preset changes
             if (_currentScene == newScene && _currentScenePreset != newPreset)
             {
                 _currentScene.ChangePreset(newPreset);
+                _currentScenePreset = newPreset;
                 return;
             }
 
+            // We're switching scenes – remove the previous scene before creating a new one
             if (_currentScene != null)
             {
-                Destroy(_currentScene);
+                var oldScene = _currentScene;
                 _currentScene = null;
+                Destroy(oldScene.gameObject);
             }
-            
+
             _currentScene = Instantiate(newScene);
             _currentScene.ChangePreset(newPreset);
+            _currentScenePreset = newPreset;
         }
 
         public bool TryGetCharacterPosition(string positionName, out Vector2 position)

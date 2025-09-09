@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670b220bfff74d409a0ffc57b027078, type: 3}
+  m_Name: Leif
+  m_EditorClassIdentifier: 
+  guid: 358c397a-e73b-43c0-b2f0-dec533fe879f
+  characterName: "\u041B\u0435\u0439\u0444"
+  characterEmotionSpriteSheet:
+  - spriteName: Idle
+    sprite: {fileID: -7223533898722505132, guid: 78c4b73b11681e744a765eb511ef1311, type: 3}
+  - spriteName: Angry
+    sprite: {fileID: 5848098946603641242, guid: 3be53f58d93b6134a9a570574cca67c7, type: 3}

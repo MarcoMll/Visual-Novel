@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using VisualNovel.Environment;
 using VisualNovel.UI.Dynamic;
 
 namespace VisualNovel.Minigames.Combat
@@ -11,16 +12,19 @@ namespace VisualNovel.Minigames.Combat
     public class CombatMinigame : MinigameBase
     {
         [SerializeField] private UIHealthBar enemyHealthBar;
-        [SerializeField] private Transform enemySpriteRoot;
 
         public List<FighterData> Fighters { get; private set; } = new();
 
         private FighterData _player;
         private FighterData _enemy;
+        private string _parallaxLayer;
+        private Vector2 _characterOffset;
 
-        public void Initialize(List<FighterData> fighters)
+        public void Initialize(List<FighterData> fighters, string parallaxLayer, Vector2 characterOffset)
         {
             Fighters = fighters ?? new List<FighterData>();
+            _parallaxLayer = parallaxLayer;
+            _characterOffset = characterOffset;
         }
 
         protected override void OnStart()
@@ -38,19 +42,18 @@ namespace VisualNovel.Minigames.Combat
 
         private void SpawnEnemy(FighterData data)
         {
-            if (data == null) return;
+            if (data?.characterReference == null || data.characterEmotion == null)
+                return;
 
-            var sprite = data.characterEmotion?.sprite;
-            if (sprite == null && data.characterReference != null && !string.IsNullOrEmpty(data.characterEmotion?.spriteName))
-                sprite = data.characterReference.GetEmotionSpriteByName(data.characterEmotion.spriteName);
-
-            if (sprite != null && enemySpriteRoot != null)
+            var sceneManager = SceneEnvironmentManager.Instance;
+            if (sceneManager == null)
             {
-                var go = new GameObject("Enemy");
-                var sr = go.AddComponent<SpriteRenderer>();
-                sr.sprite = sprite;
-                go.transform.SetParent(enemySpriteRoot, false);
+                Debug.LogError("SceneEnvironmentManager is absent on the scene or was not initialized before usage!");
+                return;
             }
+
+            sceneManager.ShowCharacter(data.characterReference, data.characterEmotion, Color.white,
+                _characterOffset, 0, Vector2.one, _parallaxLayer);
 
             if (enemyHealthBar != null)
                 enemyHealthBar.Initialize(data.baseHealthPoints, data.baseHealthPoints);

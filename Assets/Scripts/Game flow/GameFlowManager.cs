@@ -236,11 +236,21 @@ namespace VisualNovel.GameFlow
                 return;
             }
 
+            var sceneManager = SceneEnvironmentManager.Instance;
+            if (sceneManager == null)
+            {
+                Debug.LogError("SceneEnvironmentManager is absent on the scene or was not initialized before usage!");
+                return;
+            }
+
+            sceneManager.ShowScene(minigameNode.Scene, string.Empty);
+
             manager.StartMinigame(minigameNode.MinigamePrefab, mg =>
             {
                 if (mg is CombatMinigame combat)
                 {
-                    combat.Initialize(minigameNode.Fighters.Cast<FighterData>().ToList());
+                    combat.Initialize(minigameNode.Fighters.Cast<FighterData>().ToList(),
+                        minigameNode.SelectedParallaxLayer, minigameNode.CharacterOffset);
                 }
             }, success =>
             {

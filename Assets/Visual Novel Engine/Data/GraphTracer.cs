@@ -68,6 +68,30 @@ namespace VisualNovelEngine.Data
         }
 
         /// <summary>
+        /// Returns nodes connected to a specific output port of the given node.
+        /// </summary>
+        /// <param name="nodeGuid">GUID of the source node.</param>
+        /// <param name="portName">Name of the output port.</param>
+        public List<GraphNodeData> GetConnectedNodes(string nodeGuid, string portName)
+        {
+            if (!_linksBySource.TryGetValue(nodeGuid, out var links))
+                return new List<GraphNodeData>();
+
+            var result = new List<GraphNodeData>();
+            foreach (var link in links)
+            {
+                if (link.PortName != portName)
+                    continue;
+
+                if (_nodesByGuid.TryGetValue(link.TargetNodeGUID, out var node))
+                {
+                    result.Add(node);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Returns all nodes connected to the output ports of the given node.
         /// </summary>
         /// <param name="targetNode">The node whose outputs will be inspected.</param>

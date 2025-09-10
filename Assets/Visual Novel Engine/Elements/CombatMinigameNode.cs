@@ -35,6 +35,8 @@ namespace VisualNovelEngine.Elements
             [NonSerialized] public IntegerField healthField;
             [NonSerialized] public IntegerField actionField;
             [NonSerialized] public IntegerField damageField;
+            [NonSerialized] public IntegerField layerField;
+            [NonSerialized] public Vector2Field scaleField;
             [NonSerialized] public VisualElement container;
         }
 
@@ -245,6 +247,22 @@ namespace VisualNovelEngine.Elements
             entry.damageField.RegisterValueChangedCallback(evt => entry.baseDamage = evt.newValue);
             container.Add(entry.damageField);
 
+            entry.layerField = new IntegerField("Layer") { value = entry.layer };
+            entry.layerField.RegisterValueChangedCallback(evt =>
+            {
+                entry.layer = evt.newValue;
+                RebuildPreview();
+            });
+            container.Add(entry.layerField);
+
+            entry.scaleField = new Vector2Field("Scale") { value = entry.characterScale };
+            entry.scaleField.RegisterValueChangedCallback(evt =>
+            {
+                entry.characterScale = evt.newValue;
+                RebuildPreview();
+            });
+            container.Add(entry.scaleField);
+
             _fightersContainer.Add(container);
 
             RefreshEmotionDropdown(entry);
@@ -293,13 +311,14 @@ namespace VisualNovelEngine.Elements
             _previewScaleSlider.SetEnabled(true);
             var targetHeight = Mathf.RoundToInt(BasePreviewHeight * PreviewScale);
 
+            var scale = first.characterScale != Vector2.zero ? first.characterScale : Vector2.one;
             var info = new CharacterPreviewInfo
             {
                 sprite = sprite,
                 position = CharacterOffset,
-                layer = _parallaxLayers.IndexOf(SelectedParallaxLayer),
+                layer = first.layer,
                 color = Color.white,
-                scale = Vector2.one
+                scale = scale
             };
 
             var tex = RenderCharacterPreview(Scene, new List<CharacterPreviewInfo> { info }, targetHeight);

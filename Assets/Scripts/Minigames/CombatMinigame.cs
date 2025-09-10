@@ -53,7 +53,7 @@ namespace VisualNovel.Minigames.Combat
             }
 
             sceneManager.ShowCharacter(data.characterReference, data.characterEmotion, Color.white,
-                _characterOffset, 0, Vector2.one, _parallaxLayer);
+                _characterOffset, data.layer, data.characterScale, _parallaxLayer);
 
             if (enemyHealthBar != null)
                 enemyHealthBar.Initialize(data.baseHealthPoints, data.baseHealthPoints);

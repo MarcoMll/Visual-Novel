@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Visual-Novel/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Chapter 1 - Winterhold.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chapter 1 - Winterhold.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Courtyard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Courtyard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Good old days.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Good old days.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Environment/Scenery/SceneEnvironmentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Environment/Scenery/SceneEnvironmentManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +108,7 @@
       <workItem from="1757255546787" duration="7708000" />
       <workItem from="1757265553223" duration="9968000" />
       <workItem from="1757370618194" duration="612000" />
+      <workItem from="1757439726148" duration="646000" />
     </task>
     <servers />
   </component>

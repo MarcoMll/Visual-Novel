@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670b220bfff74d409a0ffc57b027078, type: 3}
+  m_Name: Rosalinda
+  m_EditorClassIdentifier: 
+  guid: 47c8bdff-da77-4cff-9e41-249126643333
+  characterName: "\u041C\u0430\u0442\u0443\u0448\u043A\u0430"
+  characterEmotionSpriteSheet:
+  - spriteName: Idle
+    sprite: {fileID: -8191164248126382142, guid: 6b94d251c635fe64ca3d4e86a06a53b0, type: 3}
+  - spriteName: Happy
+    sprite: {fileID: 5776998049800088381, guid: 155065e5859c97d4389a7c372bc669cd, type: 3}
+  - spriteName: Sad
+    sprite: {fileID: 228750879390077610, guid: 5b3329258cecce748a6cb32715a199f8, type: 3}

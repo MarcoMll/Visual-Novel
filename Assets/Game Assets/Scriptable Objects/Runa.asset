@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670b220bfff74d409a0ffc57b027078, type: 3}
+  m_Name: Runa
+  m_EditorClassIdentifier: 
+  guid: 7a865cf8-5408-4f78-9519-ba8a8045a63d
+  characterName: "\u0421\u043B\u0443\u0436\u0430\u043D\u043A\u0430"
+  characterEmotionSpriteSheet:
+  - spriteName: Wondering
+    sprite: {fileID: -7333737084938489686, guid: 336826711fd3a9a429f90412805bd5c0, type: 3}
+  - spriteName: Cooking
+    sprite: {fileID: -2188615181085522768, guid: 716adc070c4697441b6917b45b5fc5eb, type: 3}
+  - spriteName: Laughing
+    sprite: {fileID: -914398043039499843, guid: 0569aedf5f843a440ac0d2606ca2ad0a, type: 3}

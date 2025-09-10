@@ -23,3 +23,5 @@ MonoBehaviour:
     sprite: {fileID: 7062547734341193994, guid: 3fe70f05bbfa2ec4db7db7bc8dcfcfc0, type: 3}
   - spriteName: Mocking
     sprite: {fileID: 5070162499368016184, guid: 96cb3b2648e37244ea4bbdcc8e1b5bc9, type: 3}
+  - spriteName: Playful
+    sprite: {fileID: 5899021491847403848, guid: 0fe094f7cf6e3a8449f7e69b4713b660, type: 3}

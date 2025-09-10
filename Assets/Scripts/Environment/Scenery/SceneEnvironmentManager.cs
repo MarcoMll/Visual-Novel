@@ -61,6 +61,7 @@ namespace VisualNovel.Environment
             // We're switching scenes – remove the previous scene before creating a new one
             if (_currentScene != null)
             {
+                _charactersOnSceneData.Clear();
                 var oldScene = _currentScene;
                 _currentScene = null;
                 Destroy(oldScene.gameObject);

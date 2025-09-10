@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace VisualNovel.Minigames.Combat
@@ -13,6 +14,8 @@ namespace VisualNovel.Minigames.Combat
         public int CurrentHealth { get; private set; }
         public int ActionPointsPerRound { get; private set; }
 
+        public event Action<int> OnHealthChanged;
+
         public FighterRuntime(FighterBaseStats baseStats)
         {
             BaseStats = baseStats ?? new FighterBaseStats();
@@ -24,7 +27,10 @@ namespace VisualNovel.Minigames.Combat
 
         public void TakeDamage(int amount)
         {
+            var previousHealth = CurrentHealth;
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+            var delta = CurrentHealth - previousHealth;
+            OnHealthChanged?.Invoke(delta);
         }
 
         public void ApplyRest(int restPoints)

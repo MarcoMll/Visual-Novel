@@ -44,10 +44,15 @@ namespace VisualNovel.Minigames.Combat
                 var enemyBase = Fighters[0];
                 _enemy = new FighterRuntime(enemyBase);
                 SpawnEnemy(enemyBase);
+                if (enemyHealthBar != null)
+                    _enemy.OnHealthChanged += enemyHealthBar.ModifyCurrentHealthValue;
             }
 
             if (playerHealthBar != null)
+            {
                 playerHealthBar.Initialize(_player.BaseStats.baseHealthPoints);
+                _player.OnHealthChanged += playerHealthBar.ModifyCurrentHealthValue;
+            }
 
             playerStatsController.Initialize(_player);
 
@@ -87,14 +92,12 @@ namespace VisualNovel.Minigames.Combat
             {
                 var damage = (p_attackPoints - e_defencePoints) * _player.BaseStats.baseDamage;
                 _enemy.TakeDamage(damage);
-                enemyHealthBar.ModifyCurrentHealthValue(-damage);
             }
 
             if (_enemy.IsAlive && e_attackPoints > p_defencePoints)
             {
                 var damage = (e_attackPoints - p_defencePoints) * _enemy.BaseStats.baseDamage;
                 _player.TakeDamage(damage);
-                playerHealthBar.ModifyCurrentHealthValue(-damage);
             }
 
             _enemy.ApplyRest(e_restPoints);

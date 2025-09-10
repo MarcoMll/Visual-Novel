@@ -22,6 +22,7 @@ namespace VisualNovelEngine.Core
         private NodeSearchWindow _searchWindowProvider;
         private GraphNodeBlackboard _blackboardProvider;
         private GraphEditUtility _editUtility;
+        private MiniMap _miniMap;
         public List<GraphFlag> Flags => _blackboardProvider.Flags;
 
         public NodeGraphView(NodeEditorWindow nodeEditorWindow)
@@ -30,6 +31,7 @@ namespace VisualNovelEngine.Core
 
             DrawGridBackground();
             AddManipulators();
+            AddMiniMap();
             SetupBlackboard();
             SetupSearchWindow();
             _editUtility = new GraphEditUtility(this);
@@ -99,13 +101,20 @@ namespace VisualNovelEngine.Core
         private void AddManipulators()
         {
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
-            
+
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
-            
+
             this.AddManipulator(new ContextualMenuManipulator(CreateNodeContextualMenu));
             this.AddManipulator(CreateGroupContextualMenu());
+        }
+
+        private void AddMiniMap()
+        {
+            _miniMap = new MiniMap { anchored = true };
+            _miniMap.SetPosition(new Rect(15, 50, 200, 140));
+            Add(_miniMap);
         }
 
         private IManipulator CreateGroupContextualMenu()

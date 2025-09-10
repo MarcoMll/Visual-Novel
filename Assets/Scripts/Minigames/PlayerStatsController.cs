@@ -14,6 +14,8 @@ namespace VisualNovel.Minigames.Combat
 
         public Action onActionPointAssigned;
 
+        public int BaseDamage => _playerRuntime?.BaseStats.baseDamage ?? 0;
+
         public void Initialize(FighterRuntime playerRuntime)
         {
             _playerRuntime = playerRuntime;

@@ -56,8 +56,16 @@ namespace VisualNovel.Minigames.Combat
 
             playerStatsController.Initialize(_player);
 
+            if (playerStatsController != null)
+            {
+                playerStatsController.onActionPointAssigned += CheckActionPoints;
+            }
+
             if (startRoundButton != null)
+            {
                 startRoundButton.onClick.AddListener(PlayRound);
+                CheckActionPoints();
+            }
 
             Debug.Log("Combat minigame launched");
         }
@@ -103,6 +111,20 @@ namespace VisualNovel.Minigames.Combat
             _enemy.ApplyRest(e_restPoints);
 
             playerStatsController.ResetPoints();
+            CheckActionPoints();
+        }
+
+        private void CheckActionPoints()
+        {
+            if (startRoundButton == null || playerStatsController == null) return;
+
+            startRoundButton.interactable = playerStatsController.AllActionPointsDistributed();
+        }
+
+        private void OnDestroy()
+        {
+            if (playerStatsController != null)
+                playerStatsController.onActionPointAssigned -= CheckActionPoints;
         }
     }
 }

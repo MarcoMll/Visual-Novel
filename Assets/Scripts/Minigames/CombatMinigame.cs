@@ -87,14 +87,14 @@ namespace VisualNovel.Minigames.Combat
             {
                 var damage = (p_attackPoints - e_defencePoints) * _player.BaseStats.baseDamage;
                 _enemy.TakeDamage(damage);
-                enemyHealthBar?.ModifyCurrentHealthValue(-damage);
+                enemyHealthBar.ModifyCurrentHealthValue(-damage);
             }
 
             if (_enemy.IsAlive && e_attackPoints > p_defencePoints)
             {
                 var damage = (e_attackPoints - p_defencePoints) * _enemy.BaseStats.baseDamage;
                 _player.TakeDamage(damage);
-                playerHealthBar?.ModifyCurrentHealthValue(-damage);
+                playerHealthBar.ModifyCurrentHealthValue(-damage);
             }
 
             _player.ApplyRest(p_restPoints);

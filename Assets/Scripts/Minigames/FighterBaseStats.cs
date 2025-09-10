@@ -5,7 +5,7 @@ using UnityEngine;
 namespace VisualNovel.Minigames.Combat
 {
     [Serializable]
-    public class FighterData
+    public class FighterBaseStats
     {
         public CharacterSO characterReference;
         public CharacterSO.CharacterEmotion characterEmotion;

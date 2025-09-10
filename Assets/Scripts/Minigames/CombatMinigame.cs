@@ -20,36 +20,44 @@ namespace VisualNovel.Minigames.Combat
         [SerializeField] private UIHealthBar enemyHealthBar;
         [SerializeField] private Button startRoundButton;
 
-        public List<FighterData> Fighters { get; private set; } = new();
+        public List<FighterBaseStats> Fighters { get; private set; } = new();
 
-        private FighterData _player;
-        private FighterData _enemy;
+        private FighterRuntime _player;
+        private FighterRuntime _enemy;
         private string _parallaxLayer;
         private Vector2 _characterOffset;
 
-        public void Initialize(List<FighterData> fighters, string parallaxLayer, Vector2 characterOffset)
+        public void Initialize(List<FighterBaseStats> fighters, string parallaxLayer, Vector2 characterOffset)
         {
-            Fighters = fighters ?? new List<FighterData>();
+            Fighters = fighters ?? new List<FighterBaseStats>();
             _parallaxLayer = parallaxLayer;
             _characterOffset = characterOffset;
         }
 
         protected override void OnStart()
         {
-            _player = new FighterData();
+            var playerBase = new FighterBaseStats();
+            _player = new FighterRuntime(playerBase);
 
             if (Fighters != null && Fighters.Count > 0)
             {
-                _enemy = Fighters[0];
-                SpawnEnemy(_enemy);
+                var enemyBase = Fighters[0];
+                _enemy = new FighterRuntime(enemyBase);
+                SpawnEnemy(enemyBase);
             }
 
-            playerHealthBar.Initialize(_player.baseHealthPoints);
-            
+            if (playerHealthBar != null)
+                playerHealthBar.Initialize(_player.BaseStats.baseHealthPoints);
+
+            playerStatsController.Initialize(_player.ActionPointsPerRound);
+
+            if (startRoundButton != null)
+                startRoundButton.onClick.AddListener(PlayRound);
+
             Debug.Log("Combat minigame launched");
         }
 
-        private void SpawnEnemy(FighterData data)
+        private void SpawnEnemy(FighterBaseStats data)
         {
             if (data?.characterReference == null || data.characterEmotion == null)
                 return;
@@ -72,8 +80,27 @@ namespace VisualNovel.Minigames.Combat
         {
             // ----- player have already distributed their points -----
             playerStatsController.GetDistributedActionPoints(out var p_attackPoints, out var p_defencePoints, out var p_restPoints);
-            // ----- randomly distribute AI's points -----
-            // ----- compare -----
+
+            MathUtility.SplitIntoThree(_enemy.ActionPointsPerRound, out var e_attackPoints, out var e_defencePoints, out var e_restPoints);
+
+            if (p_attackPoints > e_defencePoints)
+            {
+                var damage = (p_attackPoints - e_defencePoints) * _player.BaseStats.baseDamage;
+                _enemy.TakeDamage(damage);
+                enemyHealthBar?.ModifyCurrentHealthValue(-damage);
+            }
+
+            if (_enemy.IsAlive && e_attackPoints > p_defencePoints)
+            {
+                var damage = (e_attackPoints - p_defencePoints) * _enemy.BaseStats.baseDamage;
+                _player.TakeDamage(damage);
+                playerHealthBar?.ModifyCurrentHealthValue(-damage);
+            }
+
+            _player.ApplyRest(p_restPoints);
+            _enemy.ApplyRest(e_restPoints);
+
+            playerStatsController.ResetPoints();
         }
     }
 }

@@ -249,7 +249,7 @@ namespace VisualNovel.GameFlow
             {
                 if (mg is CombatMinigame combat)
                 {
-                    combat.Initialize(minigameNode.Fighters.Cast<FighterData>().ToList(),
+                    combat.Initialize(minigameNode.Fighters.Cast<FighterBaseStats>().ToList(),
                         minigameNode.SelectedParallaxLayer, minigameNode.CharacterOffset);
                 }
             }, success =>

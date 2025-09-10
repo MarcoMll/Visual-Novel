@@ -19,7 +19,7 @@ namespace VisualNovel.Minigames.Combat
         [SerializeField] private UIHealthBar playerHealthBar;
         [SerializeField] private UIHealthBar enemyHealthBar;
         [SerializeField] private Button startRoundButton;
-
+        
         public List<FighterBaseStats> Fighters { get; private set; } = new();
 
         private FighterRuntime _player;

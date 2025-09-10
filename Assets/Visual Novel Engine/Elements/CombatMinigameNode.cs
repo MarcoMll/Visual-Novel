@@ -16,7 +16,7 @@ namespace VisualNovelEngine.Elements
     using VisualNovel.Minigames.Combat;
 
     [Serializable]
-    [NodeMenu("Combat Minigame", "Logic & Flow/Minigames")]
+    [NodeMenu("Combat Minigame", "Logic & Flow")]
     public class CombatMinigameNode : GraphNode
     {
         // Data

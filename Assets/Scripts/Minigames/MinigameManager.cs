@@ -27,8 +27,9 @@ namespace VisualNovel.Minigames
         /// Launches a new minigame based on the given prefab.
         /// </summary>
         /// <param name="minigamePrefab">Prefab that contains a <see cref="MinigameBase"/>.</param>
+        /// <param name="setup">Optional callback to configure the minigame before launch.</param>
         /// <param name="callback">Invoked with the success state once the minigame finishes.</param>
-        public void StartMinigame(MinigameBase minigamePrefab, Action<bool> callback = null)
+        public void StartMinigame(MinigameBase minigamePrefab, Action<MinigameBase> setup = null, Action<bool> callback = null)
         {
             if (_current != null)
             {
@@ -37,6 +38,7 @@ namespace VisualNovel.Minigames
             }
 
             _current = Instantiate(minigamePrefab);
+            setup?.Invoke(_current);
             if (callback != null)
                 _current.Finished += callback;
             _current.Finished += HandleMinigameFinished;

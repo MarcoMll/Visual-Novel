@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
 using VisualNovel.Minigames;
+using VisualNovel.Minigames.Combat;
 
 namespace VisualNovel.GameFlow
 {
@@ -185,7 +186,7 @@ namespace VisualNovel.GameFlow
                 case AudioNode audioNode:
                     ExecuteAudioNode(audioNode);
                     break;
-                case MinigameNode minigameNode:
+                case CombatMinigameNode minigameNode:
                     ExecuteMinigameNode(minigameNode);
                     break;
                 case DelayNode delayNode:
@@ -226,7 +227,7 @@ namespace VisualNovel.GameFlow
             }
         }
 
-        private void ExecuteMinigameNode(MinigameNode minigameNode)
+        private void ExecuteMinigameNode(CombatMinigameNode minigameNode)
         {
             var manager = MinigameManager.Instance;
             if (manager == null)
@@ -235,7 +236,13 @@ namespace VisualNovel.GameFlow
                 return;
             }
 
-            manager.StartMinigame(minigameNode.MinigamePrefab, success =>
+            manager.StartMinigame(minigameNode.MinigamePrefab, mg =>
+            {
+                if (mg is CombatMinigame combat)
+                {
+                    combat.Initialize(minigameNode.Fighters.Cast<FighterData>().ToList());
+                }
+            }, success =>
             {
                 var port = success ? "onSuccess" : "onFail";
                 var linked = _graphTracer.GetConnectedNodes(minigameNode.GUID, port);

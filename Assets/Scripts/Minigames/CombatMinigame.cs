@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace VisualNovel.Minigames
+namespace VisualNovel.Minigames.Combat
 {
     /// <summary>
     /// Example implementation of a minigame. This is only a placeholder

@@ -1,17 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using VisualNovel.Environment;
 using VisualNovel.UI.Dynamic;
 
 namespace VisualNovel.Minigames.Combat
 {
+    using Utilities;
+    
     /// <summary>
     /// Example implementation of a minigame. This is only a placeholder
     /// to demonstrate how to derive from <see cref="MinigameBase"/>.
     /// </summary>
     public class CombatMinigame : MinigameBase
     {
+        [SerializeField] private PlayerStatsController playerStatsController;
+        [Header("UI")]
+        [SerializeField] private UIHealthBar playerHealthBar;
         [SerializeField] private UIHealthBar enemyHealthBar;
+        [SerializeField] private Button startRoundButton;
 
         public List<FighterData> Fighters { get; private set; } = new();
 
@@ -37,6 +44,8 @@ namespace VisualNovel.Minigames.Combat
                 SpawnEnemy(_enemy);
             }
 
+            playerHealthBar.Initialize(_player.baseHealthPoints);
+            
             Debug.Log("Combat minigame launched");
         }
 
@@ -57,6 +66,14 @@ namespace VisualNovel.Minigames.Combat
 
             if (enemyHealthBar != null)
                 enemyHealthBar.Initialize(data.baseHealthPoints, data.baseHealthPoints);
+        }
+        
+        private void PlayRound()
+        {
+            // ----- player have already distributed their points -----
+            playerStatsController.GetDistributedActionPoints(out var p_attackPoints, out var p_defencePoints, out var p_restPoints);
+            // ----- randomly distribute AI's points -----
+            // ----- compare -----
         }
     }
 }

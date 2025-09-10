@@ -4438,6 +4438,45 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
+  - GUID: bc2ff85d-e38a-47b4-af9e-a41a62fb059d
+    Type: VisualNovelEngine.Elements.CombatMinigameNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 1029, y: 364}
+    Properties:
+    - Name: MinigamePrefab
+      Type: VisualNovel.Minigames.Combat.CombatMinigame, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 
+    - Name: Scene
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 80055cd3f4f611348b639594783a60e9
+    - Name: SelectedParallaxLayer
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Foreground"}'
+    - Name: CharacterOffset
+      Type: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      JsonValue: '{"Value":{"x":6.0,"y":-3.5}}'
+    - Name: Fighters
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.CombatMinigameNode+FighterEntry,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[{"characterReference":{"fileID":11400000,"guid":"a61153de2d2cf1b4f935c0a46cbe0a63","type":2},"characterEmotion":{"spriteName":"","sprite":{"instanceID":0}},"baseHealthPoints":20,"baseActionPoints":3,"baseDamage":5,"characterScale":{"x":0.75,"y":0.75},"layer":5,"SelectedEmotion":"Idle"}]}'
+    - Name: PreviewScale
+      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":1.5}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Combat Minigame"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":""}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["onSuccess","onFail"]}'
   Links:
   - BaseNodeGUID: 3671db3d-a5e2-4ace-bf70-5be210b4dd21
     PortName: Output Link
@@ -5117,7 +5156,7 @@ MonoBehaviour:
     TargetNodeGUID: e900d023-00ef-4de7-91d5-16957a5aa1b1
   Groups:
   - Title: Introduction
-    Position: {x: 258.00003, y: -807.00006}
+    Position: {x: 258, y: -807}
     Size: {x: 34330, y: 3350}
     Nodes:
     - 7e613050-dd92-43db-a1de-56ab1eb14cfa
@@ -5285,6 +5324,7 @@ MonoBehaviour:
     - 39c74b07-fb7e-46df-9de5-51eefbde83ef
     - c94e8049-9756-4d8a-8640-80a7bf80478d
     - 00dc2cc8-773e-4581-82c2-bd18465775cc
+    - bc2ff85d-e38a-47b4-af9e-a41a62fb059d
   Flags:
   - Name: scared_lilia
     Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089

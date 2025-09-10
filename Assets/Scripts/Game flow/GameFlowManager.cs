@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
+using VisualNovel.Minigames;
 
 namespace VisualNovel.GameFlow
 {
@@ -184,6 +185,9 @@ namespace VisualNovel.GameFlow
                 case AudioNode audioNode:
                     ExecuteAudioNode(audioNode);
                     break;
+                case MinigameNode minigameNode:
+                    ExecuteMinigameNode(minigameNode);
+                    break;
                 case DelayNode delayNode:
                     break;
                 default:
@@ -220,6 +224,30 @@ namespace VisualNovel.GameFlow
                     Debug.Log($"AudioKind not defined in node. Node guid: {audioNode.GUID}");
                     break;
             }
+        }
+
+        private void ExecuteMinigameNode(MinigameNode minigameNode)
+        {
+            var manager = MinigameManager.Instance;
+            if (manager == null)
+            {
+                Debug.LogError("MinigameManager is absent on the scene or was not initialized before usage!");
+                return;
+            }
+
+            manager.StartMinigame(minigameNode.MinigamePrefab, success =>
+            {
+                var port = success ? "onSuccess" : "onFail";
+                var linked = _graphTracer.GetConnectedNodes(minigameNode.GUID, port);
+                foreach (var node in linked)
+                {
+                    var nodeType = _graphTracer.GetNodeType(node);
+                    if (nodeType is TextNode)
+                        _currentNode = node;
+
+                    ExecuteNode(node);
+                }
+            });
         }
 
         private void ExecuteConditionNode(ConditionCheckNode conditionNode)

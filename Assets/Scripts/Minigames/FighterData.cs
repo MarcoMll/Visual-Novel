@@ -12,5 +12,7 @@ namespace VisualNovel.Minigames.Combat
         public int baseHealthPoints = 100;
         public int baseActionPoints = 5;
         public int baseDamage = 5;
+        public Vector2 characterScale = Vector2.one;
+        public int layer;
     }
 }

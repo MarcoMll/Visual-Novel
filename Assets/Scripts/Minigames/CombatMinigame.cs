@@ -49,7 +49,7 @@ namespace VisualNovel.Minigames.Combat
             if (playerHealthBar != null)
                 playerHealthBar.Initialize(_player.BaseStats.baseHealthPoints);
 
-            playerStatsController.Initialize(_player.ActionPointsPerRound);
+            playerStatsController.Initialize(_player);
 
             if (startRoundButton != null)
                 startRoundButton.onClick.AddListener(PlayRound);
@@ -97,7 +97,6 @@ namespace VisualNovel.Minigames.Combat
                 playerHealthBar.ModifyCurrentHealthValue(-damage);
             }
 
-            _player.ApplyRest(p_restPoints);
             _enemy.ApplyRest(e_restPoints);
 
             playerStatsController.ResetPoints();

@@ -26,7 +26,7 @@ namespace VisualNovelEngine.Elements
         public Vector2 CharacterOffset { get; set; }
 
         [Serializable]
-        public class FighterEntry : FighterData
+        public class FighterEntry : FighterBaseStats
         {
             public string SelectedEmotion;
 

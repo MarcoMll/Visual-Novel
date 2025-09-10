@@ -13,6 +13,15 @@ namespace VisualNovel.Minigames.Combat
         private int _actionPointsPerRound;
 
         public Action onActionPointAssigned;
+
+        public void Initialize(int actionPointsPerRound)
+        {
+            _actionPointsPerRound = actionPointsPerRound;
+            _totalLeftActionPoints = actionPointsPerRound;
+            _attackActionPoints = 0;
+            _defenceActionPoints = 0;
+            _restActionPoints = 0;
+        }
         
         public void AddAttackActionPoint()
         {

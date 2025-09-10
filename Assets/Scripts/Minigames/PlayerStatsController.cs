@@ -10,14 +10,14 @@ namespace VisualNovel.Minigames.Combat
         private int _restActionPoints;
 
         private int _totalLeftActionPoints;
-        private int _actionPointsPerRound;
+        private FighterRuntime _playerRuntime;
 
         public Action onActionPointAssigned;
 
-        public void Initialize(int actionPointsPerRound)
+        public void Initialize(FighterRuntime playerRuntime)
         {
-            _actionPointsPerRound = actionPointsPerRound;
-            _totalLeftActionPoints = actionPointsPerRound;
+            _playerRuntime = playerRuntime;
+            _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
             _attackActionPoints = 0;
             _defenceActionPoints = 0;
             _restActionPoints = 0;
@@ -84,9 +84,9 @@ namespace VisualNovel.Minigames.Combat
 
         public void ResetPoints()
         {
-            _actionPointsPerRound += _restActionPoints;
-            _totalLeftActionPoints = _actionPointsPerRound;
-            
+            _playerRuntime.ApplyRest(_restActionPoints);
+            _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
+
             _attackActionPoints = 0;
             _defenceActionPoints = 0;
             _restActionPoints = 0;

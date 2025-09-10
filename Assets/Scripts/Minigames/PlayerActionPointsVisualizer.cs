@@ -5,30 +5,59 @@ namespace VisualNovel.Minigames.Combat
 {
     public class PlayerActionPointsVisualizer : MonoBehaviour
     {
-        [Header("Attack")] 
+        [Header("Attack")]
         [SerializeField] private TMP_Text attackPointsTextField;
         [SerializeField] private TMP_Text currentDamageTextField;
         [SerializeField] private TMP_Text nextDamageTextField;
-        [Header("Defence")] 
+        [Header("Defence")]
         [SerializeField] private TMP_Text defencePointsTextField;
-        [Header("Rest")] 
+        [Header("Rest")]
         [SerializeField] private TMP_Text restPointsTextField;
+        [Header("Stats Controller")]
+        [SerializeField] private PlayerStatsController playerStatsController;
 
-        private void UpdateAttack()
+        private void OnEnable()
         {
-            // attackPointsTextField -> type the amount of action points currently dedicated to attack
-            // currentDamageTextField -> the amount of attack points * base damage
-            // nextDamageTextField -> currentDamageTextField + base damage, this field shows what the damage will become on the next "add"
+            if (playerStatsController != null)
+            {
+                playerStatsController.onActionPointAssigned += UpdateUi;
+                UpdateUi();
+            }
         }
 
-        private void UpdateDefence()
+        private void OnDisable()
         {
-            // defencePointsTextField -> type the amount of action points currently dedicated to defence
+            if (playerStatsController != null)
+                playerStatsController.onActionPointAssigned -= UpdateUi;
         }
 
-        private void UpdateRest()
+        private void UpdateUi()
         {
-            // restPointsTextField -> type the amount of action points currently dedicated to resting
+            if (playerStatsController == null) return;
+
+            playerStatsController.GetDistributedActionPoints(out var attack, out var defence, out var rest);
+            UpdateAttack(attack);
+            UpdateDefence(defence);
+            UpdateRest(rest);
+        }
+
+        private void UpdateAttack(int attackPoints)
+        {
+            attackPointsTextField.text = attackPoints.ToString();
+            var baseDamage = playerStatsController.BaseDamage;
+            currentDamageTextField.text = (attackPoints * baseDamage).ToString();
+            nextDamageTextField.text = ((attackPoints + 1) * baseDamage).ToString();
+        }
+
+        private void UpdateDefence(int defencePoints)
+        {
+            defencePointsTextField.text = defencePoints.ToString();
+        }
+
+        private void UpdateRest(int restPoints)
+        {
+            restPointsTextField.text = restPoints.ToString();
         }
     }
 }
+

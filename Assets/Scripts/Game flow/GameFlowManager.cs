@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
 using VisualNovel.Minigames;
+using VisualNovel.Minigames.Combat;
 
 namespace VisualNovel.GameFlow
 {
@@ -185,7 +186,7 @@ namespace VisualNovel.GameFlow
                 case AudioNode audioNode:
                     ExecuteAudioNode(audioNode);
                     break;
-                case MinigameNode minigameNode:
+                case CombatMinigameNode minigameNode:
                     ExecuteMinigameNode(minigameNode);
                     break;
                 case DelayNode delayNode:
@@ -226,7 +227,7 @@ namespace VisualNovel.GameFlow
             }
         }
 
-        private void ExecuteMinigameNode(MinigameNode minigameNode)
+        private void ExecuteMinigameNode(CombatMinigameNode minigameNode)
         {
             var manager = MinigameManager.Instance;
             if (manager == null)
@@ -235,7 +236,23 @@ namespace VisualNovel.GameFlow
                 return;
             }
 
-            manager.StartMinigame(minigameNode.MinigamePrefab, success =>
+            var sceneManager = SceneEnvironmentManager.Instance;
+            if (sceneManager == null)
+            {
+                Debug.LogError("SceneEnvironmentManager is absent on the scene or was not initialized before usage!");
+                return;
+            }
+
+            sceneManager.ShowScene(minigameNode.Scene, string.Empty);
+
+            manager.StartMinigame(minigameNode.MinigamePrefab, mg =>
+            {
+                if (mg is CombatMinigame combat)
+                {
+                    combat.Initialize(minigameNode.Fighters.Cast<FighterData>().ToList(),
+                        minigameNode.SelectedParallaxLayer, minigameNode.CharacterOffset);
+                }
+            }, success =>
             {
                 var port = success ? "onSuccess" : "onFail";
                 var linked = _graphTracer.GetConnectedNodes(minigameNode.GUID, port);

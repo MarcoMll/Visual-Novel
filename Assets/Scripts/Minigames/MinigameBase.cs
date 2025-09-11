@@ -9,7 +9,7 @@ namespace VisualNovel.Minigames
     /// </summary>
     public abstract class MinigameBase : MonoBehaviour
     {
-        [SerializeField] private GameObject uiPrefab;
+        [SerializeField] protected GameObject uiPrefab;
         private GameObject _uiInstance;
         private Transform _uiRoot;
 
@@ -18,14 +18,8 @@ namespace VisualNovel.Minigames
 
         /// <summary>Launches the minigame and spawns its UI.</summary>
         /// <param name="uiParent">Parent transform for the minigame UI.</param>
-        public virtual void Launch(Transform uiParent)
+        public virtual void Launch()
         {
-            _uiRoot = uiParent;
-            if (uiPrefab != null && _uiRoot != null)
-            {
-                _uiInstance = Instantiate(uiPrefab, _uiRoot);
-            }
-
             OnStart();
         }
 

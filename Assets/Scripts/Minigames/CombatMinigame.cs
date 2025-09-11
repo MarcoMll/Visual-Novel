@@ -17,8 +17,8 @@ namespace VisualNovel.Minigames.Combat
     /// </summary>
     public class CombatMinigame : MinigameBase
     {
-        [SerializeField] private GameObject additionalUiPrefab;
         [SerializeField] private PlayerStatsController playerStatsController;
+        
         [Header("UI")]
         [SerializeField] private UIHealthBar playerHealthBar;
         [SerializeField] private UIHealthBar enemyHealthBar;
@@ -42,6 +42,7 @@ namespace VisualNovel.Minigames.Combat
         private bool _roundInProgress;
         private GameObject _additionalUiInstance;
 
+        
         public void Initialize(List<FighterBaseStats> fighters, string parallaxLayer, Vector2 characterOffset)
         {
             Fighters = fighters ?? new List<FighterBaseStats>();
@@ -49,15 +50,20 @@ namespace VisualNovel.Minigames.Combat
             _characterOffset = characterOffset;
         }
 
+        public override void Launch()
+        {
+            // ----- Instantiating game's UI -----
+            if (UserInterfaceManager.Instance != null && uiPrefab != null)
+            {
+                _additionalUiInstance = UserInterfaceManager.Instance.SpawnAdditionalUI(uiPrefab);
+                _additionalUiInstance.GetComponent<PlayerActionPointsVisualizer>().Initialize(playerStatsController); // assuming the game's UI root has PlayerActionPointsVisualizer script attached
+            }
+            
+            OnStart();
+        }
+
         protected override void OnStart()
         {
-            if (UserInterfaceManager.Instance != null && additionalUiPrefab != null)
-            {
-                _additionalUiInstance = UserInterfaceManager.Instance.SpawnAdditionalUI(additionalUiPrefab);
-                if (_additionalUiInstance != null)
-                    playerStatsController = _additionalUiInstance.GetComponent<PlayerStatsController>();
-            }
-
             var playerBase = new FighterBaseStats();
             _player = new FighterRuntime(playerBase);
 
@@ -93,9 +99,9 @@ namespace VisualNovel.Minigames.Combat
 
         protected override void OnFinish(bool isSuccess)
         {
-            if (UserInterfaceManager.Instance != null && additionalUiPrefab != null)
+            if (UserInterfaceManager.Instance != null && uiPrefab != null)
             {
-                UserInterfaceManager.Instance.DeleteAdditionalUI(additionalUiPrefab);
+                UserInterfaceManager.Instance.DeleteAdditionalUI(uiPrefab);
             }
 
             base.OnFinish(isSuccess);

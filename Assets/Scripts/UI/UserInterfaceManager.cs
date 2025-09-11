@@ -37,7 +37,7 @@ namespace VisualNovel.UI
             additionalUIs[uiPrefab] = spawnedUi;
             return spawnedUi;
         }
-
+        
         public void DeleteAdditionalUI(GameObject uiPrefab)
         {
             if (uiPrefab == null)

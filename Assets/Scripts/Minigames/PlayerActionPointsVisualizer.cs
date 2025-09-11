@@ -13,29 +13,31 @@ namespace VisualNovel.Minigames.Combat.UI
         [SerializeField] private TMP_Text defencePointsTextField;
         [Header("Rest")]
         [SerializeField] private TMP_Text restPointsTextField;
-        [Header("Stats Controller")]
-        [SerializeField] private PlayerStatsController playerStatsController;
+        
+        private PlayerStatsController _playerStatsController;
 
-        private void OnEnable()
+        public void Initialize(PlayerStatsController playerStatsController)
         {
-            if (playerStatsController != null)
+            _playerStatsController = playerStatsController;
+            
+            if (_playerStatsController != null) // moved from OnEnable here to avoid issues
             {
-                playerStatsController.onActionPointAssigned += UpdateUi;
+                _playerStatsController.onActionPointAssigned += UpdateUi;
                 UpdateUi();
             }
         }
 
         private void OnDisable()
         {
-            if (playerStatsController != null)
-                playerStatsController.onActionPointAssigned -= UpdateUi;
+            if (_playerStatsController != null)
+                _playerStatsController.onActionPointAssigned -= UpdateUi;
         }
 
         private void UpdateUi()
         {
-            if (playerStatsController == null) return;
+            if (_playerStatsController == null) return;
 
-            playerStatsController.GetDistributedActionPoints(out var attack, out var defence, out var rest);
+            _playerStatsController.GetDistributedActionPoints(out var attack, out var defence, out var rest);
             UpdateAttack(attack);
             UpdateDefence(defence);
             UpdateRest(rest);
@@ -44,7 +46,7 @@ namespace VisualNovel.Minigames.Combat.UI
         private void UpdateAttack(int attackPoints)
         {
             attackPointsTextField.text = attackPoints.ToString();
-            var baseDamage = playerStatsController.BaseDamage;
+            var baseDamage = _playerStatsController.BaseDamage;
             currentDamageTextField.text = (attackPoints * baseDamage).ToString();
             nextDamageTextField.text = ((attackPoints + 1) * baseDamage).ToString();
         }

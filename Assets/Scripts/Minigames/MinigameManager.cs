@@ -42,7 +42,7 @@ namespace VisualNovel.Minigames
             if (callback != null)
                 _current.Finished += callback;
             _current.Finished += HandleMinigameFinished;
-            _current.Launch(uiRoot);
+            _current.Launch();
         }
 
         private void HandleMinigameFinished(bool success)

@@ -11,6 +11,9 @@ namespace VisualNovel.Minigames
     {
         private MinigameBase _current;
 
+        [SerializeField]
+        private Transform minigameRoot;
+
         public static MinigameManager Instance { get; private set; }
 
         public void Initialize()
@@ -35,7 +38,11 @@ namespace VisualNovel.Minigames
                 return;
             }
 
-            _current = Instantiate(minigamePrefab);
+            var spawnRoot = minigameRoot != null ? minigameRoot : transform;
+            _current = Instantiate(minigamePrefab, spawnRoot);
+            _current.gameObject.SetActive(true);
+            _current.transform.localPosition = Vector3.zero;
+            _current.transform.localRotation = Quaternion.identity;
             setup?.Invoke(_current);
             if (callback != null)
                 _current.Finished += callback;

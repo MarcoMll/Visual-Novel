@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using VisualNovel.GameFlow;
 
@@ -7,6 +8,8 @@ namespace VisualNovel.UI
     {
         [SerializeField] private Canvas gameCanvas;
         public static UserInterfaceManager Instance { get; private set; }
+
+        private readonly Dictionary<GameObject, GameObject> additionalUIs = new();
         
         public void Initialize()
         {
@@ -16,6 +19,39 @@ namespace VisualNovel.UI
             }
 
             Instance = this;
+        }
+
+        public GameObject SpawnAdditionalUI(GameObject uiPrefab)
+        {
+            if (uiPrefab == null)
+            {
+                return null;
+            }
+
+            if (additionalUIs.TryGetValue(uiPrefab, out var existingUi))
+            {
+                return existingUi;
+            }
+
+            var spawnedUi = Instantiate(uiPrefab, gameCanvas.transform);
+            additionalUIs[uiPrefab] = spawnedUi;
+            return spawnedUi;
+        }
+
+        public void DeleteAdditionalUI(GameObject uiPrefab)
+        {
+            if (uiPrefab == null)
+            {
+                return;
+            }
+
+            if (!additionalUIs.TryGetValue(uiPrefab, out var spawnedUi))
+            {
+                return;
+            }
+
+            Destroy(spawnedUi);
+            additionalUIs.Remove(uiPrefab);
         }
     }
 }

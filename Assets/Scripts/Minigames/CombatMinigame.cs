@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using VisualNovel.Environment;
 using VisualNovel.Minigames.Combat.UI;
 using VisualNovel.UI.Dynamic;
+using VisualNovel.UI;
 
 namespace VisualNovel.Minigames.Combat
 {
@@ -16,6 +17,7 @@ namespace VisualNovel.Minigames.Combat
     /// </summary>
     public class CombatMinigame : MinigameBase
     {
+        [SerializeField] private GameObject additionalUiPrefab;
         [SerializeField] private PlayerStatsController playerStatsController;
         [Header("UI")]
         [SerializeField] private UIHealthBar playerHealthBar;
@@ -38,6 +40,7 @@ namespace VisualNovel.Minigames.Combat
         private string _parallaxLayer;
         private Vector2 _characterOffset;
         private bool _roundInProgress;
+        private GameObject _additionalUiInstance;
 
         public void Initialize(List<FighterBaseStats> fighters, string parallaxLayer, Vector2 characterOffset)
         {
@@ -48,6 +51,13 @@ namespace VisualNovel.Minigames.Combat
 
         protected override void OnStart()
         {
+            if (UserInterfaceManager.Instance != null && additionalUiPrefab != null)
+            {
+                _additionalUiInstance = UserInterfaceManager.Instance.SpawnAdditionalUI(additionalUiPrefab);
+                if (_additionalUiInstance != null)
+                    playerStatsController = _additionalUiInstance.GetComponent<PlayerStatsController>();
+            }
+
             var playerBase = new FighterBaseStats();
             _player = new FighterRuntime(playerBase);
 
@@ -66,10 +76,9 @@ namespace VisualNovel.Minigames.Combat
                 _player.OnHealthChanged += playerHealthBar.ModifyCurrentHealthValue;
             }
 
-            playerStatsController.Initialize(_player);
-
             if (playerStatsController != null)
             {
+                playerStatsController.Initialize(_player);
                 playerStatsController.onActionPointAssigned += CheckActionPoints;
             }
 
@@ -80,6 +89,16 @@ namespace VisualNovel.Minigames.Combat
             }
 
             Debug.Log("Combat minigame launched");
+        }
+
+        protected override void OnFinish(bool isSuccess)
+        {
+            if (UserInterfaceManager.Instance != null && additionalUiPrefab != null)
+            {
+                UserInterfaceManager.Instance.DeleteAdditionalUI(additionalUiPrefab);
+            }
+
+            base.OnFinish(isSuccess);
         }
 
         private void SpawnEnemy(FighterBaseStats data)

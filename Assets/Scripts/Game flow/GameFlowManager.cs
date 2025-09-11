@@ -243,7 +243,7 @@ namespace VisualNovel.GameFlow
                 return;
             }
 
-            sceneManager.ShowScene(minigameNode.Scene, string.Empty);
+            sceneManager.ShowScene(minigameNode.Scene, "Sunny");
 
             manager.StartMinigame(minigameNode.MinigamePrefab, mg =>
             {

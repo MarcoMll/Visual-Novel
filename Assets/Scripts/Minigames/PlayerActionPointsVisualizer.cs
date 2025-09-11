@@ -1,17 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace VisualNovel.Minigames.Combat.UI
 {
     public class PlayerActionPointsVisualizer : MonoBehaviour
     {
-        [Header("Attack")]
+        [Header("Attack")] 
+        [SerializeField] private Button attackButton;
         [SerializeField] private TMP_Text attackPointsTextField;
         [SerializeField] private TMP_Text currentDamageTextField;
         [SerializeField] private TMP_Text nextDamageTextField;
         [Header("Defence")]
+        [SerializeField] private Button defenceButton;
         [SerializeField] private TMP_Text defencePointsTextField;
         [Header("Rest")]
+        [SerializeField] private Button restButton;
         [SerializeField] private TMP_Text restPointsTextField;
         
         private PlayerStatsController _playerStatsController;
@@ -20,11 +24,18 @@ namespace VisualNovel.Minigames.Combat.UI
         {
             _playerStatsController = playerStatsController;
             
-            if (_playerStatsController != null) // moved from OnEnable here to avoid issues
+            if (_playerStatsController == null) // moved from OnEnable here to avoid issues
             {
-                _playerStatsController.onActionPointAssigned += UpdateUi;
-                UpdateUi();
+                Debug.LogError("PlayerStatsController is absent!");
+                return;
             }
+            
+            _playerStatsController.onActionPointAssigned += UpdateUi;
+            UpdateUi();
+            
+            attackButton.onClick.AddListener(_playerStatsController.AddAttackActionPoint);
+            defenceButton.onClick.AddListener(_playerStatsController.AddDefenceActionPoint);
+            restButton.onClick.AddListener(_playerStatsController.AddRestActionPoints);
         }
 
         private void OnDisable()

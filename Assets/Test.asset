@@ -53,7 +53,7 @@ MonoBehaviour:
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.CombatMinigameNode+FighterEntry,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[{"characterReference":{"fileID":11400000,"guid":"a61153de2d2cf1b4f935c0a46cbe0a63","type":2},"characterEmotion":{"spriteName":"","sprite":{"instanceID":0}},"baseHealthPoints":20,"baseActionPoints":3,"baseDamage":5,"characterScale":{"x":0.75,"y":0.75},"layer":5,"SelectedEmotion":"Idle"}]}'
+      JsonValue: '{"Value":[{"characterReference":{"fileID":11400000,"guid":"a61153de2d2cf1b4f935c0a46cbe0a63","type":2},"characterEmotion":{"spriteName":"Idle","sprite":{"fileID":-7223533898722505132,"guid":"78c4b73b11681e744a765eb511ef1311","type":3}},"baseHealthPoints":50,"baseActionPoints":3,"baseDamage":5,"characterScale":{"x":0.75,"y":0.75},"layer":5,"SelectedEmotion":"Idle"}]}'
     - Name: PreviewScale
       Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":1.5}'

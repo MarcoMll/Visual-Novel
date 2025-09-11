@@ -47,7 +47,11 @@ namespace VisualNovel.Minigames.Combat
 
         protected override void OnStart()
         {
-            var playerBase = new FighterBaseStats();
+            var playerBase = new FighterBaseStats
+            {
+                baseActionPoints = 2,
+                baseHealthPoints = 20
+            };
             _player = new FighterRuntime(playerBase);
 
             _currentEnemyIndex = -1;

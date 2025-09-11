@@ -1,17 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using VisualNovel.Environment;
-using VisualNovel.Minigames.Combat.UI;
-using VisualNovel.UI;
 
 namespace VisualNovel.Minigames.Combat
 {
-    using Utilities;
+    using Environment;
+    using UI;
+    using VisualNovel.UI;
     
-    /// <summary>
-    /// Example implementation of a minigame. This is only a placeholder
-    /// to demonstrate how to derive from <see cref="MinigameBase"/>.
-    /// </summary>
     public class CombatMinigame : MinigameBase
     {
         [SerializeField] private PlayerStatsController playerStatsController;

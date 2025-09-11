@@ -9,8 +9,6 @@ namespace VisualNovel.Minigames
     /// </summary>
     public class MinigameManager : MonoBehaviour, IInitializeOnAwake
     {
-        [SerializeField] private Transform uiRoot;
-
         private MinigameBase _current;
 
         public static MinigameManager Instance { get; private set; }

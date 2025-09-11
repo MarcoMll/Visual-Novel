@@ -62,8 +62,12 @@ namespace VisualNovel.Minigames.Combat.UI
         /// </summary>
         public void SetupCombatants(FighterRuntime player, FighterRuntime enemy)
         {
+            if (_player != null && playerHealthBar != null)
+            {
+                _player.OnHealthChanged -= playerHealthBar.ModifyCurrentHealthValue;
+            }
+
             _player = player;
-            _enemy = enemy;
 
             if (playerHealthBar != null)
             {
@@ -71,10 +75,20 @@ namespace VisualNovel.Minigames.Combat.UI
                 _player.OnHealthChanged += playerHealthBar.ModifyCurrentHealthValue;
             }
 
-            if (_enemy != null && enemyHealthBar != null)
+            if (enemyHealthBar != null)
             {
-                enemyHealthBar.Initialize(_enemy.BaseStats.baseHealthPoints, _enemy.BaseStats.baseHealthPoints);
-                _enemy.OnHealthChanged += enemyHealthBar.ModifyCurrentHealthValue;
+                if (_enemy != null)
+                {
+                    _enemy.OnHealthChanged -= enemyHealthBar.ModifyCurrentHealthValue;
+                }
+
+                _enemy = enemy;
+
+                if (_enemy != null)
+                {
+                    enemyHealthBar.Initialize(_enemy.BaseStats.baseHealthPoints, _enemy.BaseStats.baseHealthPoints);
+                    _enemy.OnHealthChanged += enemyHealthBar.ModifyCurrentHealthValue;
+                }
             }
 
             CheckActionPoints();
@@ -126,6 +140,17 @@ namespace VisualNovel.Minigames.Combat.UI
                 yield return new WaitForSeconds(waitBeforeMove);
                 playerAction.Hide(hideTime);
                 yield return new WaitForSeconds(hideTime);
+
+                if (!_enemy.IsAlive)
+                {
+                    _playerStats.ResetPoints();
+                    CheckActionPoints();
+                    playerAction.Reset();
+                    enemyAction.Reset();
+                    _roundInProgress = false;
+                    _minigame.HandleEnemyDefeat();
+                    yield break;
+                }
             }
             else
             {
@@ -158,6 +183,20 @@ namespace VisualNovel.Minigames.Combat.UI
                     yield return new WaitForSeconds(hideTime);
                     var damage = (eAttackPoints - pDefencePoints) * _enemy.BaseStats.baseDamage;
                     _player.TakeDamage(damage);
+                    if (!_player.IsAlive)
+                    {
+                        yield return new WaitForSeconds(waitBeforeMove);
+                        enemyAction.Hide(hideTime);
+                        yield return new WaitForSeconds(hideTime);
+                        _playerStats.ResetPoints();
+                        CheckActionPoints();
+                        playerAction.Reset();
+                        enemyAction.Reset();
+                        _roundInProgress = false;
+                        _minigame.HandlePlayerDefeat();
+                        yield break;
+                    }
+
                     yield return new WaitForSeconds(waitBeforeMove);
                     enemyAction.Hide(hideTime);
                     yield return new WaitForSeconds(hideTime);

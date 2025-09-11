@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VisualNovel.Environment;
+using VisualNovel.Minigames.Combat.UI;
 using VisualNovel.UI.Dynamic;
 
 namespace VisualNovel.Minigames.Combat
@@ -19,6 +21,15 @@ namespace VisualNovel.Minigames.Combat
         [SerializeField] private UIHealthBar playerHealthBar;
         [SerializeField] private UIHealthBar enemyHealthBar;
         [SerializeField] private Button startRoundButton;
+
+        [Header("Action Visualizers")]
+        [SerializeField] private ActionVisualizer playerAction;
+        [SerializeField] private ActionVisualizer enemyAction;
+
+        [Header("Action Sprites")]
+        [SerializeField] private Sprite attackSprite;
+        [SerializeField] private Sprite defenceSprite;
+        [SerializeField] private Sprite restSprite;
         
         public List<FighterBaseStats> Fighters { get; private set; } = new();
 
@@ -26,6 +37,7 @@ namespace VisualNovel.Minigames.Combat
         private FighterRuntime _enemy;
         private string _parallaxLayer;
         private Vector2 _characterOffset;
+        private bool _roundInProgress;
 
         public void Initialize(List<FighterBaseStats> fighters, string parallaxLayer, Vector2 characterOffset)
         {
@@ -91,27 +103,117 @@ namespace VisualNovel.Minigames.Combat
         
         private void PlayRound()
         {
-            // ----- player have already distributed their points -----
-            playerStatsController.GetDistributedActionPoints(out var p_attackPoints, out var p_defencePoints, out var p_restPoints);
+            if (_roundInProgress)
+                return;
 
-            MathUtility.SplitIntoThree(_enemy.ActionPointsPerRound, out var e_attackPoints, out var e_defencePoints, out var e_restPoints);
+            StartCoroutine(PlayRoundRoutine());
+        }
 
-            if (p_attackPoints > e_defencePoints)
+        private IEnumerator PlayRoundRoutine()
+        {
+            _roundInProgress = true;
+
+            if (startRoundButton != null)
+                startRoundButton.interactable = false;
+
+            // get points
+            playerStatsController.GetDistributedActionPoints(out var pAttackPoints, out var pDefencePoints, out var pRestPoints);
+            MathUtility.SplitIntoThree(_enemy.ActionPointsPerRound, out var eAttackPoints, out var eDefencePoints, out var eRestPoints);
+
+            const float showTime = 0.25f;
+            const float moveTime = 0.5f;
+            const float hideTime = 0.2f;
+            const float waitBeforeMove = 0.1f;
+            const float preImpact = 0.05f;
+
+            // player attacks first
+            playerAction.Setup(attackSprite, pAttackPoints);
+            enemyAction.Setup(defenceSprite, eDefencePoints);
+            playerAction.Show(showTime);
+            enemyAction.Show(showTime);
+            yield return new WaitForSeconds(showTime + waitBeforeMove);
+            playerAction.MoveToTarget(moveTime);
+            enemyAction.MoveToTarget(moveTime);
+            yield return new WaitForSeconds(moveTime - preImpact);
+
+            if (pAttackPoints > eDefencePoints)
             {
-                var damage = (p_attackPoints - e_defencePoints) * _player.BaseStats.baseDamage;
+                enemyAction.Hide(hideTime);
+                yield return new WaitForSeconds(preImpact);
+                playerAction.SetNumber(pAttackPoints - eDefencePoints);
+                yield return new WaitForSeconds(hideTime);
+                var damage = (pAttackPoints - eDefencePoints) * _player.BaseStats.baseDamage;
                 _enemy.TakeDamage(damage);
+                yield return new WaitForSeconds(waitBeforeMove);
+                playerAction.Hide(hideTime);
+                yield return new WaitForSeconds(hideTime);
             }
-
-            if (_enemy.IsAlive && e_attackPoints > p_defencePoints)
+            else
             {
-                var damage = (e_attackPoints - p_defencePoints) * _enemy.BaseStats.baseDamage;
-                _player.TakeDamage(damage);
+                playerAction.Hide(hideTime);
+                yield return new WaitForSeconds(preImpact);
+                enemyAction.SetNumber(eDefencePoints - pAttackPoints);
+                yield return new WaitForSeconds(hideTime);
+                yield return new WaitForSeconds(waitBeforeMove);
+                enemyAction.Hide(hideTime);
+                yield return new WaitForSeconds(hideTime);
             }
 
-            _enemy.ApplyRest(e_restPoints);
+            // enemy attacks
+            if (_enemy.IsAlive)
+            {
+                enemyAction.Setup(attackSprite, eAttackPoints);
+                playerAction.Setup(defenceSprite, pDefencePoints);
+                enemyAction.Show(showTime);
+                playerAction.Show(showTime);
+                yield return new WaitForSeconds(showTime + waitBeforeMove);
+                enemyAction.MoveToTarget(moveTime);
+                playerAction.MoveToTarget(moveTime);
+                yield return new WaitForSeconds(moveTime - preImpact);
+
+                if (eAttackPoints > pDefencePoints)
+                {
+                    playerAction.Hide(hideTime);
+                    yield return new WaitForSeconds(preImpact);
+                    enemyAction.SetNumber(eAttackPoints - pDefencePoints);
+                    yield return new WaitForSeconds(hideTime);
+                    var damage = (eAttackPoints - pDefencePoints) * _enemy.BaseStats.baseDamage;
+                    _player.TakeDamage(damage);
+                    yield return new WaitForSeconds(waitBeforeMove);
+                    enemyAction.Hide(hideTime);
+                    yield return new WaitForSeconds(hideTime);
+                }
+                else
+                {
+                    enemyAction.Hide(hideTime);
+                    yield return new WaitForSeconds(preImpact);
+                    playerAction.SetNumber(pDefencePoints - eAttackPoints);
+                    yield return new WaitForSeconds(hideTime);
+                    yield return new WaitForSeconds(waitBeforeMove);
+                    playerAction.Hide(hideTime);
+                    yield return new WaitForSeconds(hideTime);
+                }
+            }
+
+            // rest animations
+            playerAction.Setup(restSprite, pRestPoints);
+            enemyAction.Setup(restSprite, eRestPoints);
+            playerAction.Show(showTime);
+            enemyAction.Show(showTime);
+            yield return new WaitForSeconds(showTime + waitBeforeMove);
+            _player.ApplyRest(pRestPoints);
+            _enemy.ApplyRest(eRestPoints);
+            playerAction.Hide(hideTime);
+            enemyAction.Hide(hideTime);
+            yield return new WaitForSeconds(hideTime);
 
             playerStatsController.ResetPoints();
             CheckActionPoints();
+
+            playerAction.Reset();
+            enemyAction.Reset();
+
+            _roundInProgress = false;
         }
 
         private void CheckActionPoints()

@@ -169,6 +169,18 @@ namespace VisualNovel.Minigames.Combat.UI
         }
 
         /// <summary>
+        /// Updates only the number displayed for the action without
+        /// affecting position or alpha.
+        /// </summary>
+        public void SetNumber(int number)
+        {
+            if (actionNumberTextField != null)
+            {
+                actionNumberTextField.text = number.ToString();
+            }
+        }
+
+        /// <summary>
         /// Immediately resets to the start state: position at start, alpha 0.
         /// </summary>
         public void Reset()

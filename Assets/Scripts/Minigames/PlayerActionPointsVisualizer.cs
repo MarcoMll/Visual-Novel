@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace VisualNovel.Minigames.Combat
+namespace VisualNovel.Minigames.Combat.UI
 {
     public class PlayerActionPointsVisualizer : MonoBehaviour
     {

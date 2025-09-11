@@ -992,30 +992,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
-  - GUID: 3da68253-83cf-4332-9d2f-c01da0c7f0f2
-    Type: VisualNovelEngine.Elements.AudioNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 283, y: 219}
-    Properties:
-    - Name: Kind
-      Type: VisualNovelEngine.Elements.AudioNode+AudioKind, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: '{"Value":1}'
-    - Name: AudioClip
-      Type: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      JsonValue: 726d8cce43974bd4592dbb13dfff8d04
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Audio Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Node text."}'
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
   - GUID: 32448f57-3e77-4211-b09c-eec97de73738
     Type: VisualNovelEngine.Elements.AudioNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -2911,7 +2887,7 @@ MonoBehaviour:
       JsonValue: '{"Value":"Text Node"}'
     - Name: Text
       Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u041C\u0430\u0442\u0443\u0448\u043A\u0430 \u0440\u0430\u0437\u0432\u043E\u0440\u0430\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044F
+      JsonValue: "{\"Value\":\"\u041C\u0430\u0442\u0443\u0448\u043A\u0430 \u043F\u043E\u0434\u0445\u043E\u0434\u0438\u0442
         \u043A \u041B\u0438\u043B\u0438\u0438\"}"
     - Name: Choices
       Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
@@ -3610,36 +3586,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
-  - GUID: 2f12c33e-9de4-41b2-a6ac-f304898e502e
-    Type: VisualNovelEngine.Elements.SceneControllerNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 34046, y: 1179}
-    Properties:
-    - Name: ScenePrefab
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: e4363ecffeb12364b94725e84c1ef606
-    - Name: Scene
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: e4363ecffeb12364b94725e84c1ef606
-    - Name: SelectedPresetName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Night"}'
-    - Name: PreviewScale
-      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":1.5}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Scene node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":""}'
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
   - GUID: 7a117b08-fedd-44c1-99e3-1b1fcb7920bc
     Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -4438,10 +4384,112 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
-  - GUID: bc2ff85d-e38a-47b4-af9e-a41a62fb059d
+  - GUID: f8dd7fc9-54fb-4f6a-b6b8-1ea56fb439e4
+    Type: VisualNovelEngine.Elements.AudioNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 20849, y: 722}
+    Properties:
+    - Name: Kind
+      Type: VisualNovelEngine.Elements.AudioNode+AudioKind, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: '{"Value":3}'
+    - Name: AudioClip
+      Type: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      JsonValue: 449d95ee213be3e4a85e30f772f7202c
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Audio Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Node text."}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+  - GUID: c4b92baa-05d8-471c-a482-303043d3b31a
+    Type: VisualNovelEngine.Elements.AudioNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 21565, y: 1441}
+    Properties:
+    - Name: Kind
+      Type: VisualNovelEngine.Elements.AudioNode+AudioKind, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: '{"Value":3}'
+    - Name: AudioClip
+      Type: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      JsonValue: 4daf960a5acbf4341b924a49016cc2b2
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Audio Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Node text."}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+  - GUID: 3da68253-83cf-4332-9d2f-c01da0c7f0f2
+    Type: VisualNovelEngine.Elements.AudioNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 283, y: 218}
+    Properties:
+    - Name: Kind
+      Type: VisualNovelEngine.Elements.AudioNode+AudioKind, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: '{"Value":1}'
+    - Name: AudioClip
+      Type: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      JsonValue: 726d8cce43974bd4592dbb13dfff8d04
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Audio Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Node text."}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+  - GUID: 2f12c33e-9de4-41b2-a6ac-f304898e502e
+    Type: VisualNovelEngine.Elements.SceneControllerNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 34046, y: 1179}
+    Properties:
+    - Name: ScenePrefab
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: e4363ecffeb12364b94725e84c1ef606
+    - Name: Scene
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: e4363ecffeb12364b94725e84c1ef606
+    - Name: SelectedPresetName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Night"}'
+    - Name: PreviewScale
+      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":1.5}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Scene node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":""}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+  - GUID: 21b5837a-6436-431b-b2a6-0409480dba55
     Type: VisualNovelEngine.Elements.CombatMinigameNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-    Position: {x: 1029, y: 364}
+    Position: {x: 34046, y: 1629}
     Properties:
     - Name: MinigamePrefab
       Type: VisualNovel.Minigames.Combat.CombatMinigame, Assembly-CSharp, Version=0.0.0.0,
@@ -4450,19 +4498,19 @@ MonoBehaviour:
     - Name: Scene
       Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      JsonValue: 80055cd3f4f611348b639594783a60e9
+      JsonValue: 
     - Name: SelectedParallaxLayer
       Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Foreground"}'
+      JsonValue: '{"Value":""}'
     - Name: CharacterOffset
       Type: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      JsonValue: '{"Value":{"x":6.0,"y":-3.5}}'
+      JsonValue: '{"Value":{"x":0.0,"y":0.0}}'
     - Name: Fighters
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.CombatMinigameNode+FighterEntry,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[{"characterReference":{"fileID":11400000,"guid":"a61153de2d2cf1b4f935c0a46cbe0a63","type":2},"characterEmotion":{"spriteName":"","sprite":{"instanceID":0}},"baseHealthPoints":20,"baseActionPoints":3,"baseDamage":5,"characterScale":{"x":0.75,"y":0.75},"layer":5,"SelectedEmotion":"Idle"}]}'
+      JsonValue: '{"Value":[]}'
     - Name: PreviewScale
       Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":1.5}'
@@ -5154,6 +5202,14 @@ MonoBehaviour:
     PortName: Output Link
     OutputPortIndex: 0
     TargetNodeGUID: e900d023-00ef-4de7-91d5-16957a5aa1b1
+  - BaseNodeGUID: 512122d1-2054-4b4a-81bc-3ec7ba2b4412
+    PortName: Output Link
+    OutputPortIndex: 0
+    TargetNodeGUID: f8dd7fc9-54fb-4f6a-b6b8-1ea56fb439e4
+  - BaseNodeGUID: 0c580ff6-4999-4e8a-bb11-f624dee24a11
+    PortName: Output Link
+    OutputPortIndex: 0
+    TargetNodeGUID: c4b92baa-05d8-471c-a482-303043d3b31a
   Groups:
   - Title: Introduction
     Position: {x: 258, y: -807}
@@ -5324,8 +5380,7 @@ MonoBehaviour:
     - 39c74b07-fb7e-46df-9de5-51eefbde83ef
     - c94e8049-9756-4d8a-8640-80a7bf80478d
     - 00dc2cc8-773e-4581-82c2-bd18465775cc
-    - bc2ff85d-e38a-47b4-af9e-a41a62fb059d
-  Flags:
-  - Name: scared_lilia
-    Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-    JsonValue: '{"Value":false}'
+    - f8dd7fc9-54fb-4f6a-b6b8-1ea56fb439e4
+    - c4b92baa-05d8-471c-a482-303043d3b31a
+    - 21b5837a-6436-431b-b2a6-0409480dba55
+  Flags: []

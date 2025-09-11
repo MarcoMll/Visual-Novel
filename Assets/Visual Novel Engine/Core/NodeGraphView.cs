@@ -113,7 +113,7 @@ namespace VisualNovelEngine.Core
         private void AddMiniMap()
         {
             _miniMap = new MiniMap { anchored = true };
-            _miniMap.SetPosition(new Rect(15, 50, 200, 140));
+            _miniMap.SetPosition(new Rect(1670, 50, 200, 140));
             Add(_miniMap);
         }
 

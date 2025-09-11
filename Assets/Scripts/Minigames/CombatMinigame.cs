@@ -15,6 +15,7 @@ namespace VisualNovel.Minigames.Combat
 
         private FighterRuntime _player;
         private FighterRuntime _enemy;
+        private int _currentEnemyIndex;
         private string _parallaxLayer;
         private Vector2 _characterOffset;
         private GameObject _additionalUiInstance;
@@ -49,12 +50,8 @@ namespace VisualNovel.Minigames.Combat
             var playerBase = new FighterBaseStats();
             _player = new FighterRuntime(playerBase);
 
-            if (Fighters != null && Fighters.Count > 0)
-            {
-                var enemyBase = Fighters[0];
-                _enemy = new FighterRuntime(enemyBase);
-                SpawnEnemy(enemyBase);
-            }
+            _currentEnemyIndex = -1;
+            SetNextEnemy();
 
             if (playerStatsController != null)
             {
@@ -91,6 +88,49 @@ namespace VisualNovel.Minigames.Combat
             sceneManager.ShowCharacter(data.characterReference, data.characterEmotion, Color.white,
                 _characterOffset, data.layer, data.characterScale, _parallaxLayer);
 
+        }
+
+        private void SetNextEnemy()
+        {
+            _currentEnemyIndex++;
+            if (Fighters == null)
+            {
+                Finish(true);
+                return;
+            }
+
+            while (_currentEnemyIndex < Fighters.Count)
+            {
+                var enemyBase = Fighters[_currentEnemyIndex];
+                var runtime = new FighterRuntime(enemyBase);
+                if (runtime.IsAlive)
+                {
+                    _enemy = runtime;
+                    SpawnEnemy(enemyBase);
+                    _uiController?.SetupCombatants(_player, _enemy);
+                    return;
+                }
+
+                _currentEnemyIndex++;
+            }
+
+            Finish(true);
+        }
+
+        public void HandleEnemyDefeat()
+        {
+            if (_enemy == null || _enemy.IsAlive)
+                return;
+
+            SetNextEnemy();
+        }
+
+        public void HandlePlayerDefeat()
+        {
+            if (_player == null || _player.IsAlive)
+                return;
+
+            Finish(false);
         }
     }
 }

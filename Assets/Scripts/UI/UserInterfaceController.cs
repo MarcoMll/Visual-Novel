@@ -4,10 +4,10 @@ using VisualNovel.GameFlow;
 
 namespace VisualNovel.UI
 {
-    public class UserInterfaceManager : MonoBehaviour, IInitializeOnAwake
+    public class UserInterfaceController : MonoBehaviour, IInitializeOnAwake
     {
         [SerializeField] private Canvas gameCanvas;
-        public static UserInterfaceManager Instance { get; private set; }
+        public static UserInterfaceController Instance { get; private set; }
 
         private readonly Dictionary<GameObject, GameObject> additionalUIs = new();
         

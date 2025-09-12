@@ -7,6 +7,7 @@ using GameAssets.ScriptableObjects.Core;
 
 namespace VisualNovel.UI.Notifications
 {
+    using UI;
     using Animations;
     
     public class TraitNotification : GlobalNotification
@@ -15,6 +16,7 @@ namespace VisualNovel.UI.Notifications
         [SerializeField] private Image traitImage;
         [SerializeField] private TMP_Text traitNameTextField;
         [SerializeField] private TMP_Text traitDescriptionTextField;
+        [SerializeField] private ExtendedButton readButton;
 
         [Header("Animators")] 
         [SerializeField] private AnimatorSequence[] animatorSequences;
@@ -34,6 +36,8 @@ namespace VisualNovel.UI.Notifications
             traitNameTextField.text = targetTrait.traitName;
             traitDescriptionTextField.text = targetTrait.traitDescription;
         }
+
+        public ExtendedButton ReadButton => readButton;
         
         public override void Show()
         {

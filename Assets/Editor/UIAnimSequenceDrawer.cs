@@ -18,8 +18,18 @@ public class UIAnimSequenceDrawer : PropertyDrawer
     ReorderableList GetList(SerializedProperty property)
     {
         var steps = property.FindPropertyRelative("steps");
-        if (_lists.TryGetValue(property.propertyPath, out var list) && list.serializedProperty == steps)
-            return list;
+        if (_lists.TryGetValue(property.propertyPath, out var list))
+        {
+            var serializedProp = list.serializedProperty;
+            if (serializedProp != null &&
+                serializedProp.serializedObject.targetObject != null &&
+                serializedProp == steps)
+            {
+                return list;
+            }
+
+            _lists.Remove(property.propertyPath);
+        }
 
         list = new ReorderableList(property.serializedObject, steps, true, true, true, true);
         list.drawHeaderCallback = rect => EditorGUI.LabelField(rect, "Steps");

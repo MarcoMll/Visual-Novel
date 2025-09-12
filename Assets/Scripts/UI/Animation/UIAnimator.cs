@@ -21,6 +21,23 @@ namespace VisualNovel.UI.Animations
             if (_canvas == null) _canvas = gameObject.AddComponent<CanvasGroup>();
         }
 
+#if UNITY_EDITOR
+        void OnValidate()
+        {
+            var seen = new HashSet<UIAnimStep>();
+            foreach (var seq in sequences)
+            {
+                for (int i = 0; i < seq.steps.Count; i++)
+                {
+                    var step = seq.steps[i];
+                    if (step == null) continue;
+                    if (!seen.Add(step))
+                        seq.steps[i] = step.Clone();
+                }
+            }
+        }
+#endif
+
         /// <summary>Plays a sequence identified by <paramref name="id"/>.</summary>
         public Sequence Play(string id)
         {

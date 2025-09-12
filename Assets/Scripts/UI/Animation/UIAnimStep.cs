@@ -13,5 +13,15 @@ namespace VisualNovel.UI.Animations
     {
         /// <summary>Builds the tween for this step.</summary>
         public abstract Tween Build(RectTransform rect, CanvasGroup canvas);
+
+        /// <summary>
+        /// Creates a shallow copy of this step. This is used when ensuring
+        /// each animation sequence has its own instance of a step so that
+        /// editing one sequence's step does not affect others.
+        /// </summary>
+        public UIAnimStep Clone()
+        {
+            return (UIAnimStep)MemberwiseClone();
+        }
     }
 }

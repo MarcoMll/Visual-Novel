@@ -8,7 +8,7 @@ namespace VisualNovel.UI.Animations
     [RequireComponent(typeof(RectTransform))]
     public sealed class UIAnimator : MonoBehaviour
     {
-        [SerializeReference] public List<UIAnimSequence> sequences = new();
+        [SerializeField] public List<UIAnimSequence> sequences = new();
 
         RectTransform _rect;
         CanvasGroup _canvas;

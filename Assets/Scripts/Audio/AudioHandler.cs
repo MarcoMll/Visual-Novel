@@ -174,11 +174,19 @@ namespace VisualNovel.Audio
 
         public AudioClip PickRandom(AudioClip[] sounds)
         {
-            if (sounds.Length == 0) return null;
-            if (sounds.Length == 1) return sounds[0];
-            
-            var randomIndex = Random.Range(0, sounds.Length + 1);
-            return sounds[randomIndex];
+            switch (sounds.Length)
+            {
+                case 0:
+                    return null;
+                case 1:
+                    return sounds[0];
+                default:
+                {
+                    var randomIndex = Random.Range(0, sounds.Length);
+                    Debug.Log(randomIndex);
+                    return sounds[randomIndex];
+                }
+            }
         }
     }
 }

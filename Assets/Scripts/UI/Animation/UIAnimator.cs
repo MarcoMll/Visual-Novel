@@ -55,7 +55,10 @@ namespace VisualNovel.UI.Animations
             _current?.Kill();
             var seq = DOTween.Sequence();
             foreach (var step in data.steps)
-                seq.Append(step.Build(_rect, _canvas));
+            {
+                if (step != null)
+                    seq.Append(step.Build(_rect, _canvas));
+            }
             _current = seq;
             return _current.Play();
         }
@@ -65,6 +68,11 @@ namespace VisualNovel.UI.Animations
         {
             _current?.Kill();
             _current = null;
+        }
+        
+        void OnDestroy()
+        {
+            _current?.Kill();
         }
     }
 }

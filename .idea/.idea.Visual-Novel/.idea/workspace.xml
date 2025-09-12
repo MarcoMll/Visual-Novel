@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/UIAnimSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/UIAnimSequence.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Core/TraitSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Core/TraitSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minigames/Combat/ActionVisualizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minigames/Combat/ActionVisualizer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/UIAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/UIAnimator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +119,7 @@
       <workItem from="1757265553223" duration="9968000" />
       <workItem from="1757370618194" duration="612000" />
       <workItem from="1757439726148" duration="646000" />
-      <workItem from="1757512154683" duration="42091000" />
+      <workItem from="1757512154683" duration="45584000" />
     </task>
     <servers />
   </component>

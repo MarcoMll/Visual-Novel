@@ -4,6 +4,8 @@ namespace GameAssets.ScriptableObjects.Core
 {
     public class TraitSO : BaseSO
     {
-        public string characteristicName;
+        public string traitName;
+        public string traitDescription;
+        public Sprite traitIcon;
     }
 }

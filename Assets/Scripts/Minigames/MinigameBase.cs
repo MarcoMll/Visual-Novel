@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using VisualNovel.UI;
 
 namespace VisualNovel.Minigames
 {
@@ -35,13 +36,44 @@ namespace VisualNovel.Minigames
         /// <param name="isSuccess">Whether the player succeeded.</param>
         protected void Finish(bool isSuccess)
         {
-            if (_uiInstance != null)
+            DestroyUI();
+
+            OnFinish(isSuccess);
+            Finished?.Invoke(isSuccess);
+        }
+
+        /// <summary>
+        /// Spawns the configured UI prefab using <see cref="UserInterfaceManager"/>.
+        /// </summary>
+        /// <returns>The spawned UI instance or null if none was spawned.</returns>
+        protected GameObject SpawnUI()
+        {
+            if (UserInterfaceManager.Instance != null && uiPrefab != null)
+            {
+                _uiInstance = UserInterfaceManager.Instance.SpawnAdditionalUI(uiPrefab);
+            }
+
+            return _uiInstance;
+        }
+
+        /// <summary>Destroys the previously spawned UI instance.</summary>
+        protected void DestroyUI()
+        {
+            if (_uiInstance == null)
+            {
+                return;
+            }
+
+            if (UserInterfaceManager.Instance != null && uiPrefab != null)
+            {
+                UserInterfaceManager.Instance.DeleteAdditionalUI(uiPrefab);
+            }
+            else
             {
                 Destroy(_uiInstance);
             }
 
-            OnFinish(isSuccess);
-            Finished?.Invoke(isSuccess);
+            _uiInstance = null;
         }
 
         /// <summary>

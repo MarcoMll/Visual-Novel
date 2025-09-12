@@ -5,7 +5,6 @@ namespace VisualNovel.Minigames.Combat
 {
     using Environment;
     using UI;
-    using VisualNovel.UI;
     
     public class CombatMinigame : MinigameBase
     {
@@ -18,7 +17,6 @@ namespace VisualNovel.Minigames.Combat
         private int _currentEnemyIndex;
         private string _parallaxLayer;
         private Vector2 _characterOffset;
-        private GameObject _additionalUiInstance;
         private CombatMinigameUI _uiController;
 
         
@@ -31,18 +29,14 @@ namespace VisualNovel.Minigames.Combat
 
         public override void Launch()
         {
-            // ----- Instantiating game's UI -----
-            if (UserInterfaceManager.Instance != null && uiPrefab != null)
+            var uiInstance = SpawnUI();
+            _uiController = uiInstance?.GetComponent<CombatMinigameUI>();
+            if (_uiController != null)
             {
-                _additionalUiInstance = UserInterfaceManager.Instance.SpawnAdditionalUI(uiPrefab);
-                _uiController = _additionalUiInstance.GetComponent<CombatMinigameUI>();
-                if (_uiController != null)
-                {
-                    _uiController.Initialize(this, playerStatsController);
-                }
+                _uiController.Initialize(this, playerStatsController);
             }
 
-            OnStart();
+            base.Launch();
         }
 
         protected override void OnStart()
@@ -67,15 +61,7 @@ namespace VisualNovel.Minigames.Combat
             Debug.Log("Combat minigame launched");
         }
 
-        protected override void OnFinish(bool isSuccess)
-        {
-            if (UserInterfaceManager.Instance != null && uiPrefab != null)
-            {
-                UserInterfaceManager.Instance.DeleteAdditionalUI(uiPrefab);
-            }
-
-            base.OnFinish(isSuccess);
-        }
+        
 
         private void SpawnEnemy(FighterBaseStats data)
         {

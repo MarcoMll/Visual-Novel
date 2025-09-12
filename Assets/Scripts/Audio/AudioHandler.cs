@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 namespace VisualNovel.Audio
 {
@@ -169,6 +170,12 @@ namespace VisualNovel.Audio
         public void PlaySfx(AudioClip soundEffectClip)
         {
             SetAudioClip(soundEffectClip, "SFX Player", playOneShot: true);
+        }
+
+        public AudioClip PickRandom(AudioClip[] sounds)
+        {
+            var randomIndex = Random.Range(0, sounds.Length + 1);
+            return sounds[randomIndex];
         }
     }
 }

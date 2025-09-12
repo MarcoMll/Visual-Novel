@@ -2,12 +2,13 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using VisualNovel.Minigames.Combat;
-using VisualNovel.UI.Dynamic;
-using VisualNovel.Utilities;
 
 namespace VisualNovel.Minigames.Combat.UI
 {
+    using VisualNovel.UI.Dynamic;
+    using Utilities;
+    using Audio;
+    
     /// <summary>
     /// Handles all UI interactions for the combat minigame.
     /// This script is intended to be attached to the minigame UI prefab.
@@ -30,6 +31,9 @@ namespace VisualNovel.Minigames.Combat.UI
         [SerializeField] private Sprite defenceSprite;
         [SerializeField] private Sprite restSprite;
 
+        [Header("Sound")]
+        [SerializeField] private AudioContainer audioContainer;
+        
         private CombatMinigame _minigame;
         private PlayerStatsController _playerStats;
         private FighterRuntime _player;
@@ -81,6 +85,8 @@ namespace VisualNovel.Minigames.Combat.UI
             {
                 startRoundButton.onClick.AddListener(PlayRound);
             }
+            
+            audioContainer.Initialize();
         }
 
         /// <summary>
@@ -254,6 +260,8 @@ namespace VisualNovel.Minigames.Combat.UI
                 var damage = (attackPoints - defencePoints) * attacker.BaseStats.baseDamage;
                 defender.TakeDamage(damage);
 
+                AudioHandler.Instance.PlaySfx(AudioHandler.Instance.PickRandom(audioContainer.GetAllAudioClipsFromGroup("hits")));
+                
                 if (!defender.IsAlive)
                 {
                     yield return new WaitForSeconds(timings.waitBeforeMove);

@@ -36,6 +36,26 @@ namespace VisualNovel.Minigames.Combat.UI
         private FighterRuntime _enemy;
         private bool _roundInProgress;
         private int _round = 1;
+
+        [System.Serializable]
+        private struct TimingSettings
+        {
+            public float showTime;       // duration to display action icons
+            public float moveTime;       // duration for icons to travel to target
+            public float hideTime;       // duration to hide action icons
+            public float waitBeforeMove; // pause after showing before movement
+            public float preImpact;      // lead-up time before impact occurs
+        }
+
+        [Header("Timing Settings")]
+        [SerializeField] private TimingSettings timings = new TimingSettings
+        {
+            showTime = 0.25f,
+            moveTime = 0.5f,
+            hideTime = 0.2f,
+            waitBeforeMove = 0.1f,
+            preImpact = 0.05f
+        };
         
         /// <summary>
         /// Initialize the UI and hook up required events.
@@ -132,33 +152,28 @@ namespace VisualNovel.Minigames.Combat.UI
             _playerStats.GetDistributedActionPoints(out var pAttackPoints, out var pDefencePoints, out var pRestPoints);
             MathUtility.SplitIntoThree(_enemy.ActionPointsPerRound, out var eAttackPoints, out var eDefencePoints, out var eRestPoints);
 
-            const float showTime = 0.25f;
-            const float moveTime = 0.5f;
-            const float hideTime = 0.2f;
-            const float waitBeforeMove = 0.1f;
-            const float preImpact = 0.05f;
 
             // player attacks first
             playerAction.Setup(attackSprite, pAttackPoints);
             enemyAction.Setup(defenceSprite, eDefencePoints);
-            playerAction.Show(showTime);
-            enemyAction.Show(showTime);
-            yield return new WaitForSeconds(showTime + waitBeforeMove);
-            playerAction.MoveToTarget(moveTime);
-            enemyAction.MoveToTarget(moveTime);
-            yield return new WaitForSeconds(moveTime - preImpact);
+            playerAction.Show(timings.showTime);
+            enemyAction.Show(timings.showTime);
+            yield return new WaitForSeconds(timings.showTime + timings.waitBeforeMove);
+            playerAction.MoveToTarget(timings.moveTime);
+            enemyAction.MoveToTarget(timings.moveTime);
+            yield return new WaitForSeconds(timings.moveTime - timings.preImpact);
 
             if (pAttackPoints > eDefencePoints)
             {
-                enemyAction.Hide(hideTime);
-                yield return new WaitForSeconds(preImpact);
+                enemyAction.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.preImpact);
                 playerAction.SetNumber(pAttackPoints - eDefencePoints);
-                yield return new WaitForSeconds(hideTime);
+                yield return new WaitForSeconds(timings.hideTime);
                 var damage = (pAttackPoints - eDefencePoints) * _player.BaseStats.baseDamage;
                 _enemy.TakeDamage(damage);
-                yield return new WaitForSeconds(waitBeforeMove);
-                playerAction.Hide(hideTime);
-                yield return new WaitForSeconds(hideTime);
+                yield return new WaitForSeconds(timings.waitBeforeMove);
+                playerAction.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.hideTime);
 
                 if (!_enemy.IsAlive)
                 {
@@ -173,13 +188,13 @@ namespace VisualNovel.Minigames.Combat.UI
             }
             else
             {
-                playerAction.Hide(hideTime);
-                yield return new WaitForSeconds(preImpact);
+                playerAction.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.preImpact);
                 enemyAction.SetNumber(eDefencePoints - pAttackPoints);
-                yield return new WaitForSeconds(hideTime);
-                yield return new WaitForSeconds(waitBeforeMove);
-                enemyAction.Hide(hideTime);
-                yield return new WaitForSeconds(hideTime);
+                yield return new WaitForSeconds(timings.hideTime);
+                yield return new WaitForSeconds(timings.waitBeforeMove);
+                enemyAction.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.hideTime);
             }
 
             // enemy attacks
@@ -187,26 +202,26 @@ namespace VisualNovel.Minigames.Combat.UI
             {
                 enemyAction.Setup(attackSprite, eAttackPoints);
                 playerAction.Setup(defenceSprite, pDefencePoints);
-                enemyAction.Show(showTime);
-                playerAction.Show(showTime);
-                yield return new WaitForSeconds(showTime + waitBeforeMove);
-                enemyAction.MoveToTarget(moveTime);
-                playerAction.MoveToTarget(moveTime);
-                yield return new WaitForSeconds(moveTime - preImpact);
+                enemyAction.Show(timings.showTime);
+                playerAction.Show(timings.showTime);
+                yield return new WaitForSeconds(timings.showTime + timings.waitBeforeMove);
+                enemyAction.MoveToTarget(timings.moveTime);
+                playerAction.MoveToTarget(timings.moveTime);
+                yield return new WaitForSeconds(timings.moveTime - timings.preImpact);
 
                 if (eAttackPoints > pDefencePoints)
                 {
-                    playerAction.Hide(hideTime);
-                    yield return new WaitForSeconds(preImpact);
+                    playerAction.Hide(timings.hideTime);
+                    yield return new WaitForSeconds(timings.preImpact);
                     enemyAction.SetNumber(eAttackPoints - pDefencePoints);
-                    yield return new WaitForSeconds(hideTime);
+                    yield return new WaitForSeconds(timings.hideTime);
                     var damage = (eAttackPoints - pDefencePoints) * _enemy.BaseStats.baseDamage;
                     _player.TakeDamage(damage);
                     if (!_player.IsAlive)
                     {
-                        yield return new WaitForSeconds(waitBeforeMove);
-                        enemyAction.Hide(hideTime);
-                        yield return new WaitForSeconds(hideTime);
+                        yield return new WaitForSeconds(timings.waitBeforeMove);
+                        enemyAction.Hide(timings.hideTime);
+                        yield return new WaitForSeconds(timings.hideTime);
                         _playerStats.ResetPoints();
                         CheckActionPoints();
                         playerAction.Reset();
@@ -216,33 +231,33 @@ namespace VisualNovel.Minigames.Combat.UI
                         yield break;
                     }
 
-                    yield return new WaitForSeconds(waitBeforeMove);
-                    enemyAction.Hide(hideTime);
-                    yield return new WaitForSeconds(hideTime);
+                    yield return new WaitForSeconds(timings.waitBeforeMove);
+                    enemyAction.Hide(timings.hideTime);
+                    yield return new WaitForSeconds(timings.hideTime);
                 }
                 else
                 {
-                    enemyAction.Hide(hideTime);
-                    yield return new WaitForSeconds(preImpact);
+                    enemyAction.Hide(timings.hideTime);
+                    yield return new WaitForSeconds(timings.preImpact);
                     playerAction.SetNumber(pDefencePoints - eAttackPoints);
-                    yield return new WaitForSeconds(hideTime);
-                    yield return new WaitForSeconds(waitBeforeMove);
-                    playerAction.Hide(hideTime);
-                    yield return new WaitForSeconds(hideTime);
+                    yield return new WaitForSeconds(timings.hideTime);
+                    yield return new WaitForSeconds(timings.waitBeforeMove);
+                    playerAction.Hide(timings.hideTime);
+                    yield return new WaitForSeconds(timings.hideTime);
                 }
             }
 
             // rest animations
             playerAction.Setup(restSprite, pRestPoints);
             enemyAction.Setup(restSprite, eRestPoints);
-            playerAction.Show(showTime);
-            enemyAction.Show(showTime);
-            yield return new WaitForSeconds(showTime + waitBeforeMove);
+            playerAction.Show(timings.showTime);
+            enemyAction.Show(timings.showTime);
+            yield return new WaitForSeconds(timings.showTime + timings.waitBeforeMove);
             _player.ApplyRest(pRestPoints);
             _enemy.ApplyRest(eRestPoints);
-            playerAction.Hide(hideTime);
-            enemyAction.Hide(hideTime);
-            yield return new WaitForSeconds(hideTime);
+            playerAction.Hide(timings.hideTime);
+            enemyAction.Hide(timings.hideTime);
+            yield return new WaitForSeconds(timings.hideTime);
 
             _playerStats.ResetPoints();
             _playerStats.onActionPointAssigned?.Invoke();

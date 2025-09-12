@@ -5497,6 +5497,52 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":[]}'
+  - GUID: 439526db-4b21-49c7-8b8e-09bf9d8a1623
+    Type: VisualNovelEngine.Elements.ModifierNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 695, y: -288}
+    Properties:
+    - Name: ItemsToAdd
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: ItemsToRemove
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: RelationshipModifiers
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.RelationshipModifier,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: TraitsToAdd
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.TraitData,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[{"Trait":{"fileID":11400000,"guid":"d80a84ce9a0e9ac4aa9021d07c05cf8b","type":2},"HasTrait":false}]}'
+    - Name: FlagsToTrigger
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.FlagData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: FlagsToModify
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.FlagData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Modifier Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Node text."}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
   Links:
   - BaseNodeGUID: 3671db3d-a5e2-4ace-bf70-5be210b4dd21
     PortName: Output Link
@@ -6350,9 +6396,13 @@ MonoBehaviour:
     PortName: Output Link
     OutputPortIndex: 0
     TargetNodeGUID: b2029e18-a6b1-4c45-ae42-d3008a13efbe
+  - BaseNodeGUID: 80ce19bd-230d-4542-8ffa-0ae038438d5f
+    PortName: Output Link
+    OutputPortIndex: 0
+    TargetNodeGUID: 439526db-4b21-49c7-8b8e-09bf9d8a1623
   Groups:
   - Title: Introduction
-    Position: {x: 258, y: -807}
+    Position: {x: 258, y: -806.99994}
     Size: {x: 44198, y: 3350}
     Nodes:
     - 7e613050-dd92-43db-a1de-56ab1eb14cfa
@@ -6562,6 +6612,7 @@ MonoBehaviour:
     - b05c6f8d-70c1-4a46-be8e-53fe247a8373
     - 1297b1a0-8c7e-41b5-aa4e-3c48d9237493
     - b2029e18-a6b1-4c45-ae42-d3008a13efbe
+    - 439526db-4b21-49c7-8b8e-09bf9d8a1623
   Flags:
   - Name: scared_lilia
     Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089

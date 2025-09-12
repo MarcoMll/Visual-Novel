@@ -340,7 +340,14 @@ namespace VisualNovel.GameFlow
             {
                 gameDataManager.playerTraitCollection.AddTrait(traitData.Trait);
                 var notificationManager = UINotificationManager.Instance;
-                notificationManager?.ShowTraitNotification(traitData.Trait);
+                
+                if (notificationManager == null)
+                {
+                    Debug.LogError("UINotificationManager is absent on the scene or was not initialized before usage!");
+                    return;
+                }
+                
+                notificationManager.ShowTraitNotification(traitData.Trait);
             }
             
             // ----- check item modifiers -----

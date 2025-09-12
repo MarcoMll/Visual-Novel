@@ -32,7 +32,17 @@ public class UIAnimSequenceDrawer : PropertyDrawer
         {
             var element = steps.GetArrayElementAtIndex(index);
             rect.height = EditorGUI.GetPropertyHeight(element, true);
-            EditorGUI.PropertyField(rect, element, GUIContent.none, true);
+            // Display the step's type name so each element is clearly labeled.
+            var typeName = "";
+            var fullName = element.managedReferenceFullTypename;
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                var lastDot = fullName.LastIndexOf('.') + 1;
+                var comma = fullName.IndexOf(',');
+                if (comma < 0) comma = fullName.Length;
+                typeName = fullName.Substring(lastDot, comma - lastDot);
+            }
+            EditorGUI.PropertyField(rect, element, new GUIContent(typeName), true);
         };
         list.onAddDropdownCallback = (rect, l) =>
         {

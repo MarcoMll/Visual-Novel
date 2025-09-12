@@ -3,6 +3,13 @@ using UnityEngine;
 
 namespace VisualNovel.Minigames.Combat
 {
+    public enum ActionPointType
+    {
+        Attack,
+        Defence,
+        Rest
+    }
+
     public class PlayerStatsController : MonoBehaviour
     {
         private int _attackActionPoints;
@@ -27,57 +34,39 @@ namespace VisualNovel.Minigames.Combat
             _restActionPoints = 0;
         }
         
-        public void AddAttackActionPoint()
+        public void ModifyActionPoint(ActionPointType type, int delta)
         {
-            if (_totalLeftActionPoints <= 0) return;
-            _attackActionPoints++;
-            _totalLeftActionPoints--;
-            
-            onActionPointAssigned?.Invoke();
-        }
+            if (delta == 0) return;
 
-        public void RemoveAttackActionPoint()
-        {
-            if (_attackActionPoints <= 0) return;
-            _attackActionPoints--;
-            _totalLeftActionPoints++;
-            
-            onActionPointAssigned?.Invoke();
-        }
-        
-        public void AddDefenceActionPoint()
-        {
-            if (_totalLeftActionPoints <= 0) return;
-            _defenceActionPoints++;
-            _totalLeftActionPoints--;
-            
-            onActionPointAssigned?.Invoke();
-        }
+            ref int points = ref _attackActionPoints;
+            switch (type)
+            {
+                case ActionPointType.Attack:
+                    points = ref _attackActionPoints;
+                    break;
+                case ActionPointType.Defence:
+                    points = ref _defenceActionPoints;
+                    break;
+                case ActionPointType.Rest:
+                    points = ref _restActionPoints;
+                    break;
+                default:
+                    return;
+            }
 
-        public void RemoveDefenceActionPoint()
-        {
-            if (_defenceActionPoints <= 0) return;
-            _defenceActionPoints--;
-            _totalLeftActionPoints++;
-            
-            onActionPointAssigned?.Invoke();
-        }
-        
-        public void AddRestActionPoint()
-        {
-            if (_totalLeftActionPoints <= 0) return;
-            _restActionPoints++;
-            _totalLeftActionPoints--;
-            
-            onActionPointAssigned?.Invoke();
-        }
+            if (delta > 0)
+            {
+                if (_totalLeftActionPoints < delta) return;
+                points += delta;
+                _totalLeftActionPoints -= delta;
+            }
+            else // delta < 0
+            {
+                if (points < -delta) return;
+                points += delta;
+                _totalLeftActionPoints -= delta; // delta is negative
+            }
 
-        public void RemoveRestActionPoint()
-        {
-            if (_restActionPoints <= 0) return;
-            _restActionPoints--;
-            _totalLeftActionPoints++;
-            
             onActionPointAssigned?.Invoke();
         }
         

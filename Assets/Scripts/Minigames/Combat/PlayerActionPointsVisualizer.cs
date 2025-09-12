@@ -34,13 +34,13 @@ namespace VisualNovel.Minigames.Combat.UI
             _playerStatsController.onActionPointAssigned += UpdateUi;
             UpdateUi();
             
-            attackButton.OnLeftClick.AddListener(_playerStatsController.AddAttackActionPoint);
-            defenceButton.OnLeftClick.AddListener(_playerStatsController.AddDefenceActionPoint);
-            restButton.OnLeftClick.AddListener(_playerStatsController.AddRestActionPoint);
-            
-            attackButton.OnRightClick.AddListener(_playerStatsController.RemoveAttackActionPoint);
-            defenceButton.OnRightClick.AddListener(_playerStatsController.RemoveDefenceActionPoint);
-            restButton.OnRightClick.AddListener(_playerStatsController.RemoveRestActionPoint);
+            attackButton.OnLeftClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Attack, 1));
+            defenceButton.OnLeftClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Defence, 1));
+            restButton.OnLeftClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Rest, 1));
+
+            attackButton.OnRightClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Attack, -1));
+            defenceButton.OnRightClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Defence, -1));
+            restButton.OnRightClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Rest, -1));
         }
 
         private void OnDisable()

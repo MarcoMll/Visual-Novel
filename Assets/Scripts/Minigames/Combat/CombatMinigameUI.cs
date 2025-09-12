@@ -154,97 +154,51 @@ namespace VisualNovel.Minigames.Combat.UI
 
 
             // player attacks first
-            playerAction.Setup(attackSprite, pAttackPoints);
-            enemyAction.Setup(defenceSprite, eDefencePoints);
-            playerAction.Show(timings.showTime);
-            enemyAction.Show(timings.showTime);
-            yield return new WaitForSeconds(timings.showTime + timings.waitBeforeMove);
-            playerAction.MoveToTarget(timings.moveTime);
-            enemyAction.MoveToTarget(timings.moveTime);
-            yield return new WaitForSeconds(timings.moveTime - timings.preImpact);
+            var enemyDefeated = false;
+            yield return HandleAttackSequence(
+                pAttackPoints,
+                eDefencePoints,
+                _player,
+                _enemy,
+                playerAction,
+                enemyAction,
+                attackSprite,
+                defenceSprite,
+                result => enemyDefeated = result);
 
-            if (pAttackPoints > eDefencePoints)
+            if (enemyDefeated)
             {
-                enemyAction.Hide(timings.hideTime);
-                yield return new WaitForSeconds(timings.preImpact);
-                playerAction.SetNumber(pAttackPoints - eDefencePoints);
-                yield return new WaitForSeconds(timings.hideTime);
-                var damage = (pAttackPoints - eDefencePoints) * _player.BaseStats.baseDamage;
-                _enemy.TakeDamage(damage);
-                yield return new WaitForSeconds(timings.waitBeforeMove);
-                playerAction.Hide(timings.hideTime);
-                yield return new WaitForSeconds(timings.hideTime);
-
-                if (!_enemy.IsAlive)
-                {
-                    _playerStats.ResetPoints();
-                    CheckActionPoints();
-                    playerAction.Reset();
-                    enemyAction.Reset();
-                    _roundInProgress = false;
-                    _minigame.HandleEnemyDefeat();
-                    yield break;
-                }
-            }
-            else
-            {
-                playerAction.Hide(timings.hideTime);
-                yield return new WaitForSeconds(timings.preImpact);
-                enemyAction.SetNumber(eDefencePoints - pAttackPoints);
-                yield return new WaitForSeconds(timings.hideTime);
-                yield return new WaitForSeconds(timings.waitBeforeMove);
-                enemyAction.Hide(timings.hideTime);
-                yield return new WaitForSeconds(timings.hideTime);
+                _playerStats.ResetPoints();
+                CheckActionPoints();
+                playerAction.Reset();
+                enemyAction.Reset();
+                _roundInProgress = false;
+                _minigame.HandleEnemyDefeat();
+                yield break;
             }
 
             // enemy attacks
-            if (_enemy.IsAlive)
+            var playerDefeated = false;
+            yield return HandleAttackSequence(
+                eAttackPoints,
+                pDefencePoints,
+                _enemy,
+                _player,
+                enemyAction,
+                playerAction,
+                attackSprite,
+                defenceSprite,
+                result => playerDefeated = result);
+
+            if (playerDefeated)
             {
-                enemyAction.Setup(attackSprite, eAttackPoints);
-                playerAction.Setup(defenceSprite, pDefencePoints);
-                enemyAction.Show(timings.showTime);
-                playerAction.Show(timings.showTime);
-                yield return new WaitForSeconds(timings.showTime + timings.waitBeforeMove);
-                enemyAction.MoveToTarget(timings.moveTime);
-                playerAction.MoveToTarget(timings.moveTime);
-                yield return new WaitForSeconds(timings.moveTime - timings.preImpact);
-
-                if (eAttackPoints > pDefencePoints)
-                {
-                    playerAction.Hide(timings.hideTime);
-                    yield return new WaitForSeconds(timings.preImpact);
-                    enemyAction.SetNumber(eAttackPoints - pDefencePoints);
-                    yield return new WaitForSeconds(timings.hideTime);
-                    var damage = (eAttackPoints - pDefencePoints) * _enemy.BaseStats.baseDamage;
-                    _player.TakeDamage(damage);
-                    if (!_player.IsAlive)
-                    {
-                        yield return new WaitForSeconds(timings.waitBeforeMove);
-                        enemyAction.Hide(timings.hideTime);
-                        yield return new WaitForSeconds(timings.hideTime);
-                        _playerStats.ResetPoints();
-                        CheckActionPoints();
-                        playerAction.Reset();
-                        enemyAction.Reset();
-                        _roundInProgress = false;
-                        _minigame.HandlePlayerDefeat();
-                        yield break;
-                    }
-
-                    yield return new WaitForSeconds(timings.waitBeforeMove);
-                    enemyAction.Hide(timings.hideTime);
-                    yield return new WaitForSeconds(timings.hideTime);
-                }
-                else
-                {
-                    enemyAction.Hide(timings.hideTime);
-                    yield return new WaitForSeconds(timings.preImpact);
-                    playerAction.SetNumber(pDefencePoints - eAttackPoints);
-                    yield return new WaitForSeconds(timings.hideTime);
-                    yield return new WaitForSeconds(timings.waitBeforeMove);
-                    playerAction.Hide(timings.hideTime);
-                    yield return new WaitForSeconds(timings.hideTime);
-                }
+                _playerStats.ResetPoints();
+                CheckActionPoints();
+                playerAction.Reset();
+                enemyAction.Reset();
+                _roundInProgress = false;
+                _minigame.HandlePlayerDefeat();
+                yield break;
             }
 
             // rest animations
@@ -267,8 +221,64 @@ namespace VisualNovel.Minigames.Combat.UI
 
             _round++;
             UpdateRoundCountTextField();
-            
+
             _roundInProgress = false;
+        }
+
+        private IEnumerator HandleAttackSequence(
+            int attackPoints,
+            int defencePoints,
+            FighterRuntime attacker,
+            FighterRuntime defender,
+            ActionVisualizer attackerVisualizer,
+            ActionVisualizer defenderVisualizer,
+            Sprite attackSprite,
+            Sprite defenceSprite,
+            System.Action<bool> onComplete)
+        {
+            attackerVisualizer.Setup(attackSprite, attackPoints);
+            defenderVisualizer.Setup(defenceSprite, defencePoints);
+            attackerVisualizer.Show(timings.showTime);
+            defenderVisualizer.Show(timings.showTime);
+            yield return new WaitForSeconds(timings.showTime + timings.waitBeforeMove);
+            attackerVisualizer.MoveToTarget(timings.moveTime);
+            defenderVisualizer.MoveToTarget(timings.moveTime);
+            yield return new WaitForSeconds(timings.moveTime - timings.preImpact);
+
+            if (attackPoints > defencePoints)
+            {
+                defenderVisualizer.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.preImpact);
+                attackerVisualizer.SetNumber(attackPoints - defencePoints);
+                yield return new WaitForSeconds(timings.hideTime);
+                var damage = (attackPoints - defencePoints) * attacker.BaseStats.baseDamage;
+                defender.TakeDamage(damage);
+
+                if (!defender.IsAlive)
+                {
+                    yield return new WaitForSeconds(timings.waitBeforeMove);
+                    attackerVisualizer.Hide(timings.hideTime);
+                    yield return new WaitForSeconds(timings.hideTime);
+                    onComplete?.Invoke(true);
+                    yield break;
+                }
+
+                yield return new WaitForSeconds(timings.waitBeforeMove);
+                attackerVisualizer.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.hideTime);
+            }
+            else
+            {
+                attackerVisualizer.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.preImpact);
+                defenderVisualizer.SetNumber(defencePoints - attackPoints);
+                yield return new WaitForSeconds(timings.hideTime);
+                yield return new WaitForSeconds(timings.waitBeforeMove);
+                defenderVisualizer.Hide(timings.hideTime);
+                yield return new WaitForSeconds(timings.hideTime);
+            }
+
+            onComplete?.Invoke(false);
         }
 
         private void CheckActionPoints()

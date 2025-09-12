@@ -339,6 +339,8 @@ namespace VisualNovel.GameFlow
             foreach (var traitData in modifierNode.TraitsToAdd)
             {
                 gameDataManager.playerTraitCollection.AddTrait(traitData.Trait);
+                var notificationManager = UINotificationManager.Instance;
+                notificationManager?.ShowTraitNotification(traitData.Trait);
             }
             
             // ----- check item modifiers -----

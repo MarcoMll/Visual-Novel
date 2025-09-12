@@ -43,14 +43,14 @@ namespace VisualNovel.Minigames
         }
 
         /// <summary>
-        /// Spawns the configured UI prefab using <see cref="UserInterfaceManager"/>.
+        /// Spawns the configured UI prefab using <see cref="UserInterfaceController"/>.
         /// </summary>
         /// <returns>The spawned UI instance or null if none was spawned.</returns>
         protected GameObject SpawnUI()
         {
-            if (UserInterfaceManager.Instance != null && uiPrefab != null)
+            if (UserInterfaceController.Instance != null && uiPrefab != null)
             {
-                _uiInstance = UserInterfaceManager.Instance.SpawnAdditionalUI(uiPrefab);
+                _uiInstance = UserInterfaceController.Instance.SpawnAdditionalUI(uiPrefab);
             }
 
             return _uiInstance;
@@ -64,9 +64,9 @@ namespace VisualNovel.Minigames
                 return;
             }
 
-            if (UserInterfaceManager.Instance != null && uiPrefab != null)
+            if (UserInterfaceController.Instance != null && uiPrefab != null)
             {
-                UserInterfaceManager.Instance.DeleteAdditionalUI(uiPrefab);
+                UserInterfaceController.Instance.DeleteAdditionalUI(uiPrefab);
             }
             else
             {

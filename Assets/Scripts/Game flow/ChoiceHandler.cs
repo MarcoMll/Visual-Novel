@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using VisualNovel.Decisions;
 
 namespace VisualNovel.GameFlow
 {
+    using Decisions;
+    using Audio;
+    
     /// <summary>
     /// Controls the group of decision options and coordinates them with the
     /// DecisionCircle. Provides an easy API for enabling/disabling options,

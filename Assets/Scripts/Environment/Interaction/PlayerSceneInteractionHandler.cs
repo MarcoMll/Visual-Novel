@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace VisualNovel.Environment.Interaction
 {
-    using GameFlow;
+    using Audio;
     
     public class PlayerSceneInteractionHandler : MonoBehaviour
     {

@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
-using VisualNovel.Minigames;
-using VisualNovel.Minigames.Combat;
 
 namespace VisualNovel.GameFlow
 {
     using UI;
     using Environment;
     using Data;
+    using Audio;
+    using Minigames;
+    using Minigames.Combat;
     
     public class GameFlowManager : MonoBehaviour
     {

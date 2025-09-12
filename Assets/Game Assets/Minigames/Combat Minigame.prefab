@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8838784612338122392}
   - component: {fileID: 7218027660827447083}
   - component: {fileID: 1860029132457879032}
+  - component: {fileID: 9026329389850681462}
   m_Layer: 0
   m_Name: Combat Minigame
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5e6f7081923456789abcdef0123456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPrefab: {fileID: 6995260674686140371, guid: 7beaac336fd414b4e9bfde71e544678a, type: 3}
+  uiPrefab: {fileID: 3171634481198444764, guid: 7beaac336fd414b4e9bfde71e544678a, type: 3}
   playerStatsController: {fileID: 1860029132457879032}
 --- !u!114 &1860029132457879032
 MonoBehaviour:
@@ -59,3 +60,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d6999f33dba39489eea42f61de763c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9026329389850681462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244303424143376227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab74444d66146404199427747cfae912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioGroups:
+  - name: hits
+    elements:
+    - name: hit_1
+      audioClip: {fileID: 0}
+    - name: hit_2
+      audioClip: {fileID: 0}
+    - name: hit_3
+      audioClip: {fileID: 0}
+    - name: critical_hit
+      audioClip: {fileID: 0}

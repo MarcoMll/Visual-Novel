@@ -19,3 +19,7 @@ MonoBehaviour:
     sprite: {fileID: -7223533898722505132, guid: 78c4b73b11681e744a765eb511ef1311, type: 3}
   - spriteName: Angry
     sprite: {fileID: 5848098946603641242, guid: 3be53f58d93b6134a9a570574cca67c7, type: 3}
+  - spriteName: Tired
+    sprite: {fileID: -8173437985292252023, guid: 5366feef51d08f9448da670481299777, type: 3}
+  - spriteName: Battle stance
+    sprite: {fileID: 5527222564645909542, guid: a444f2550f861654f9e05ac850956eaa, type: 3}

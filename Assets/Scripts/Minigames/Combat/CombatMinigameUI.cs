@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VisualNovel.Minigames.Combat;
@@ -13,6 +14,9 @@ namespace VisualNovel.Minigames.Combat.UI
     /// </summary>
     public class CombatMinigameUI : MonoBehaviour
     {
+        [SerializeField] private TMP_Text roundCountTextField;
+        [SerializeField] private TMP_Text playerActionPointsTextField;
+        [SerializeField] private TMP_Text enemyNameTextField;
         [SerializeField] private UIHealthBar playerHealthBar;
         [SerializeField] private UIHealthBar enemyHealthBar;
         [SerializeField] private Button startRoundButton;
@@ -31,7 +35,8 @@ namespace VisualNovel.Minigames.Combat.UI
         private FighterRuntime _player;
         private FighterRuntime _enemy;
         private bool _roundInProgress;
-
+        private int _round = 1;
+        
         /// <summary>
         /// Initialize the UI and hook up required events.
         /// </summary>
@@ -49,6 +54,7 @@ namespace VisualNovel.Minigames.Combat.UI
             if (_playerStats != null)
             {
                 _playerStats.onActionPointAssigned += CheckActionPoints;
+                _playerStats.onActionPointAssigned += UpdatePlayerActionPointsTextField;
             }
 
             if (startRoundButton != null)
@@ -88,12 +94,25 @@ namespace VisualNovel.Minigames.Combat.UI
                 {
                     enemyHealthBar.Initialize(_enemy.BaseStats.baseHealthPoints, _enemy.BaseStats.baseHealthPoints);
                     _enemy.OnHealthChanged += enemyHealthBar.ModifyCurrentHealthValue;
+
+                    enemyNameTextField.text = _enemy.BaseStats.characterReference.characterName;
                 }
             }
 
             CheckActionPoints();
+            UpdatePlayerActionPointsTextField();
         }
 
+        private void UpdatePlayerActionPointsTextField()
+        {
+            playerActionPointsTextField.text = $"Очков осталось: {_playerStats.totalLeftActionPoints}/{_player.ActionPointsPerRound}";
+        }
+
+        private void UpdateRoundCountTextField()
+        {
+            roundCountTextField.text = $"РАУНД {_round}";
+        }
+        
         private void PlayRound()
         {
             if (_roundInProgress || _playerStats == null || _enemy == null)
@@ -226,11 +245,14 @@ namespace VisualNovel.Minigames.Combat.UI
             yield return new WaitForSeconds(hideTime);
 
             _playerStats.ResetPoints();
-            CheckActionPoints();
+            _playerStats.onActionPointAssigned?.Invoke();
 
             playerAction.Reset();
             enemyAction.Reset();
 
+            _round++;
+            UpdateRoundCountTextField();
+            
             _roundInProgress = false;
         }
 

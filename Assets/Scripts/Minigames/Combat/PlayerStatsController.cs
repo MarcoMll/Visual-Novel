@@ -13,7 +13,9 @@ namespace VisualNovel.Minigames.Combat
         private FighterRuntime _playerRuntime;
 
         public Action onActionPointAssigned;
-
+        public int totalLeftActionPoints => _totalLeftActionPoints;
+        public int actionPointsPerRound => _playerRuntime.ActionPointsPerRound;
+        
         public int BaseDamage => _playerRuntime?.BaseStats.baseDamage ?? 0;
 
         public void Initialize(FighterRuntime playerRuntime)
@@ -61,7 +63,7 @@ namespace VisualNovel.Minigames.Combat
             onActionPointAssigned?.Invoke();
         }
         
-        public void AddRestActionPoints()
+        public void AddRestActionPoint()
         {
             if (_totalLeftActionPoints <= 0) return;
             _restActionPoints++;
@@ -86,7 +88,6 @@ namespace VisualNovel.Minigames.Combat
 
         public void ResetPoints()
         {
-            _playerRuntime.ApplyRest(_restActionPoints);
             _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
 
             _attackActionPoints = 0;

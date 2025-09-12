@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace VisualNovel.GameFlow
+namespace VisualNovel.Audio
 {
+    using GameFlow;
+    
     public class AudioHandler : MonoBehaviour, IInitializeOnAwake
     {
         [SerializeField] private AudioData[] audioDatas;

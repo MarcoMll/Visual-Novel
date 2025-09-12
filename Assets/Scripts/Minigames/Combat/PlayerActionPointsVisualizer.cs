@@ -1,21 +1,22 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VisualNovel.UI;
 
 namespace VisualNovel.Minigames.Combat.UI
 {
     public class PlayerActionPointsVisualizer : MonoBehaviour
     {
         [Header("Attack")] 
-        [SerializeField] private Button attackButton;
+        [SerializeField] private ExtendedButton attackButton;
         [SerializeField] private TMP_Text attackPointsTextField;
         [SerializeField] private TMP_Text currentDamageTextField;
         [SerializeField] private TMP_Text nextDamageTextField;
         [Header("Defence")]
-        [SerializeField] private Button defenceButton;
+        [SerializeField] private ExtendedButton defenceButton;
         [SerializeField] private TMP_Text defencePointsTextField;
         [Header("Rest")]
-        [SerializeField] private Button restButton;
+        [SerializeField] private ExtendedButton restButton;
         [SerializeField] private TMP_Text restPointsTextField;
         
         private PlayerStatsController _playerStatsController;
@@ -33,9 +34,13 @@ namespace VisualNovel.Minigames.Combat.UI
             _playerStatsController.onActionPointAssigned += UpdateUi;
             UpdateUi();
             
-            attackButton.onClick.AddListener(_playerStatsController.AddAttackActionPoint);
-            defenceButton.onClick.AddListener(_playerStatsController.AddDefenceActionPoint);
-            restButton.onClick.AddListener(_playerStatsController.AddRestActionPoints);
+            attackButton.OnLeftClick.AddListener(_playerStatsController.AddAttackActionPoint);
+            defenceButton.OnLeftClick.AddListener(_playerStatsController.AddDefenceActionPoint);
+            restButton.OnLeftClick.AddListener(_playerStatsController.AddRestActionPoint);
+            
+            attackButton.OnRightClick.AddListener(_playerStatsController.RemoveAttackActionPoint);
+            defenceButton.OnRightClick.AddListener(_playerStatsController.RemoveDefenceActionPoint);
+            restButton.OnRightClick.AddListener(_playerStatsController.RemoveRestActionPoint);
         }
 
         private void OnDisable()

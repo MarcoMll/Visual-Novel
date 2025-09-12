@@ -20,12 +20,20 @@ public class UIAnimSequenceDrawer : PropertyDrawer
         var steps = property.FindPropertyRelative("steps");
         if (_lists.TryGetValue(property.propertyPath, out var list))
         {
-            var serializedProp = list.serializedProperty;
-            if (serializedProp != null &&
-                serializedProp.serializedObject.targetObject != null &&
-                serializedProp == steps)
+            try
             {
-                return list;
+                var serializedProp = list.serializedProperty;
+                if (serializedProp != null &&
+                    serializedProp.serializedObject.targetObject != null &&
+                    serializedProp == steps)
+                {
+                    return list;
+                }
+            }
+            catch (SerializedObjectNotCreatableException)
+            {
+                // The cached ReorderableList references a destroyed object.
+                // Fall through so it can be rebuilt below.
             }
 
             _lists.Remove(property.propertyPath);

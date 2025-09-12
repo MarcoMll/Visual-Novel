@@ -32,7 +32,11 @@ namespace VisualNovel.UI.Animations
                     var step = seq.steps[i];
                     if (step == null) continue;
                     if (!seen.Add(step))
-                        seq.steps[i] = step.Clone();
+                    {
+                        var clone = step.Clone();
+                        seq.steps[i] = clone;
+                        seen.Add(clone);
+                    }
                 }
             }
         }

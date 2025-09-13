@@ -92,7 +92,9 @@ namespace VisualNovel.UI.Notifications
                     {
                         seq.animator.Play("Appear");
                         if (seq.uiParticle != null)
+                        {
                             seq.uiParticle.Play();
+                        }
                     }
                 }
                 yield break;
@@ -108,6 +110,11 @@ namespace VisualNovel.UI.Notifications
                     yield return new WaitForSeconds(seq.delayInSec);
 
                 seq.animator.Play("Appear");
+                
+                if (seq.uiParticle != null)
+                {
+                    seq.uiParticle.Play();
+                }
             }
         }
     }

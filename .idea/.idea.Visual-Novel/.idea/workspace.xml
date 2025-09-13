@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d9920f-ac65-40d7-9ed2-1e82b6a240db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Core/TraitSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Core/TraitSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chapter 1 - Winterhold.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chapter 1 - Winterhold.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Short sword.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Assets/Scriptable Objects/Short sword.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Scenery/Unity Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minigames/Combat/ActionVisualizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minigames/Combat/ActionVisualizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/UIAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/UIAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/FadeStep.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/FadeStep.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/MoveStep.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Animation/MoveStep.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/In-game notifications/ItemNotification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/In-game notifications/ItemNotification.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +31,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Dynamic/UIHealthBar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ExtendedButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/In-game notifications/GlobalNotification.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/In-game notifications/ItemNotification.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIDialogueTextController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UserInterfaceManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/Math/MathUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Visual Novel Engine/Elements/CombatMinigameNode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
@@ -119,7 +121,7 @@
       <workItem from="1757265553223" duration="9968000" />
       <workItem from="1757370618194" duration="612000" />
       <workItem from="1757439726148" duration="646000" />
-      <workItem from="1757512154683" duration="45584000" />
+      <workItem from="1757512154683" duration="55899000" />
     </task>
     <servers />
   </component>

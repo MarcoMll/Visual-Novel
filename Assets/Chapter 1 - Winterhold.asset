@@ -5500,13 +5500,13 @@ MonoBehaviour:
   - GUID: 439526db-4b21-49c7-8b8e-09bf9d8a1623
     Type: VisualNovelEngine.Elements.ModifierNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-    Position: {x: 695, y: -288}
+    Position: {x: 694, y: -288}
     Properties:
     - Name: ItemsToAdd
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
+      JsonValue: '{"Value":[{"Item":{"fileID":11400000,"guid":"7f0865194551c224b8aa00f8111ee013","type":2},"HasItem":false}]}'
     - Name: ItemsToRemove
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
@@ -5521,7 +5521,7 @@ MonoBehaviour:
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.TraitData,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[{"Trait":{"fileID":11400000,"guid":"d80a84ce9a0e9ac4aa9021d07c05cf8b","type":2},"HasTrait":false}]}'
+      JsonValue: '{"Value":[]}'
     - Name: FlagsToTrigger
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.FlagData, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
@@ -6402,7 +6402,7 @@ MonoBehaviour:
     TargetNodeGUID: 439526db-4b21-49c7-8b8e-09bf9d8a1623
   Groups:
   - Title: Introduction
-    Position: {x: 258, y: -806.99994}
+    Position: {x: 258, y: -807}
     Size: {x: 44198, y: 3350}
     Nodes:
     - 7e613050-dd92-43db-a1de-56ab1eb14cfa

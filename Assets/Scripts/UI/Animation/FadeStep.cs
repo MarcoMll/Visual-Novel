@@ -10,7 +10,7 @@ namespace VisualNovel.UI.Animations
         public float from = 0f;
         public float to = 1f;
         public float duration = 0.5f;
-        public Ease ease = Ease.Linear;
+        public Ease ease = Ease.InOutQuad;
 
         public override Tween Build(RectTransform rect, CanvasGroup canvas)
         {

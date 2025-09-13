@@ -30,7 +30,7 @@ public class UIAnimSequenceDrawer : PropertyDrawer
                     return list;
                 }
             }
-            catch (SerializedObjectNotCreatableException)
+            catch (Exception)
             {
                 // The cached ReorderableList references a destroyed object.
                 // Fall through so it can be rebuilt below.

@@ -37,7 +37,7 @@ namespace VisualNovel.UI.Notifications
             traitDescriptionTextField.text = targetTrait.traitDescription;
         }
 
-        public ExtendedButton ReadButton => readButton;
+        public override ExtendedButton ReadButton => readButton;
         
         public override void Show()
         {

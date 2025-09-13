@@ -335,26 +335,27 @@ namespace VisualNovel.GameFlow
                 gameDataManager.characterCollection.ModifyRelationship(character, amount);
             }
             
+            var notificationManager = UINotificationManager.Instance;
+
+            if (notificationManager == null)
+            {
+                Debug.LogError("UINotificationManager is absent on the scene or was not initialized before usage!");
+                return;
+            }
+
             // ----- check trait modifiers ------
             foreach (var traitData in modifierNode.TraitsToAdd)
             {
                 gameDataManager.playerTraitCollection.AddTrait(traitData.Trait);
-                var notificationManager = UINotificationManager.Instance;
-                
-                if (notificationManager == null)
-                {
-                    Debug.LogError("UINotificationManager is absent on the scene or was not initialized before usage!");
-                    return;
-                }
-                
                 notificationManager.ShowTraitNotification(traitData.Trait);
             }
-            
+
             // ----- check item modifiers -----
             // items to add
             foreach (var itemData in modifierNode.ItemsToAdd)
             {
                 gameDataManager.playerInventory.AddItem(itemData.Item);
+                notificationManager.ShowItemNotification(itemData.Item);
             }
             
             // items to remove

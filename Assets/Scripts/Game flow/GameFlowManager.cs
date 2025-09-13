@@ -17,9 +17,10 @@ namespace VisualNovel.GameFlow
     public class GameFlowManager : MonoBehaviour
     {
         [SerializeField] private GraphContainer graph;
-        
+
         private GraphTracer _graphTracer;
         private GraphNodeData _currentNode;
+        private readonly System.Collections.Generic.List<GraphNodeData> _queuedNodes = new();
 
         private void Awake()
         {
@@ -35,6 +36,10 @@ namespace VisualNovel.GameFlow
         private void Update()
         {
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                LaunchNextNodes();
+            }
+            else if (_queuedNodes.Count > 0 && NotificationsPending() == false)
             {
                 LaunchNextNodes();
             }
@@ -65,8 +70,36 @@ namespace VisualNovel.GameFlow
             }
         }
 
+        private bool NotificationsPending()
+        {
+            var notificationManager = UINotificationManager.Instance;
+            return notificationManager != null && notificationManager.HasPendingNotifications;
+        }
+
+        private void ExecuteQueuedNodes()
+        {
+            while (_queuedNodes.Count > 0)
+            {
+                var node = _queuedNodes[0];
+                _queuedNodes.RemoveAt(0);
+                ExecuteNode(node);
+
+                if (NotificationsPending())
+                    return;
+            }
+        }
+
         private void LaunchNextNodes()
         {
+            if (NotificationsPending())
+                return;
+
+            if (_queuedNodes.Count > 0)
+            {
+                ExecuteQueuedNodes();
+                return;
+            }
+
             var linkedNodes = _graphTracer.GetConnectedNodes(_currentNode.GUID);
             if (linkedNodes.Count == 0) return;
 
@@ -154,9 +187,19 @@ namespace VisualNovel.GameFlow
             if (textNodeToExecute != null)
                 _currentNode = textNodeToExecute;
 
-            foreach (var node in nodesToExecute)
+            for (var i = 0; i < nodesToExecute.Count; i++)
             {
+                var node = nodesToExecute[i];
                 ExecuteNode(node);
+
+                if (NotificationsPending())
+                {
+                    for (var j = i + 1; j < nodesToExecute.Count; j++)
+                    {
+                        _queuedNodes.Add(nodesToExecute[j]);
+                    }
+                    return;
+                }
             }
         }
         
@@ -387,18 +430,25 @@ namespace VisualNovel.GameFlow
                 Debug.LogError("ChoiceHandler is absent on the scene or was not initialized before usage!");
                 return;
             }
-            
+
             choiceHandler.AddChoice(choiceNode.Text, () =>
             {
                 var linkedNodes = _graphTracer.GetConnectedNodes(choiceNode.GUID);
+                GraphNodeData textNodeToExecute = null;
+
                 foreach (var node in linkedNodes)
                 {
                     var nodeType = _graphTracer.GetNodeType(node);
                     if (nodeType is TextNode)
-                        _currentNode = node;
+                        textNodeToExecute = node;
 
-                    ExecuteNode(node);
+                    _queuedNodes.Add(node);
                 }
+
+                if (textNodeToExecute != null)
+                    _currentNode = textNodeToExecute;
+
+                LaunchNextNodes();
             });
         }
 

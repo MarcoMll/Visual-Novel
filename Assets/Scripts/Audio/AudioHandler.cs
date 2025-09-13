@@ -35,7 +35,7 @@ namespace VisualNovel.Audio
             {
                 if (audioSource == null || audioMixerGroup == null)
                 {
-                    Debug.LogError("AudioSource or AudioMixerGroup is are not defined!");
+                    Debug.LogError("AudioSource or AudioMixerGroup is not defined.");
                     return;
                 }
 
@@ -57,8 +57,19 @@ namespace VisualNovel.Audio
 
         private void OnValidate()
         {
+            if (audioDatas == null)
+            {
+                Debug.LogWarning("AudioHandler: audioDatas array is null in OnValidate");
+                return;
+            }
+
             foreach (var audioData in audioDatas)
             {
+                if (audioData == null)
+                {
+                    Debug.LogWarning("AudioHandler: audioDatas contains null entry in OnValidate");
+                    continue;
+                }
                 audioData.UpdateNameField();
             }
         }
@@ -72,8 +83,20 @@ namespace VisualNovel.Audio
             }
             Instance = this;
 
+            if (audioDatas == null)
+            {
+                Debug.LogWarning("AudioHandler: audioDatas array is null during Initialize");
+                return;
+            }
+
             foreach (var audioData in audioDatas)
             {
+                if (audioData == null)
+                {
+                    Debug.LogWarning("AudioHandler: audioDatas contains null entry during Initialize");
+                    continue;
+                }
+
                 audioData.InitializeAudioSource();
 
                 if (audioData.name == "Ambience Player")
@@ -85,14 +108,34 @@ namespace VisualNovel.Audio
 
         private void SetAudioClip(AudioClip audioClip, string audioDataName, bool loop = false, bool playOneShot = false)
         {
+            if (audioClip == null)
+            {
+                Debug.LogWarning($"AudioHandler: Provided audio clip for '{audioDataName}' is null");
+                return;
+            }
+
+            if (audioDatas == null)
+            {
+                Debug.LogWarning("AudioHandler: audioDatas array is null in SetAudioClip");
+                return;
+            }
+
             foreach (var audioData in audioDatas)
             {
+                if (audioData == null)
+                {
+                    Debug.LogWarning("AudioHandler: audioDatas contains null entry in SetAudioClip");
+                    continue;
+                }
+
                 if (audioDataName == audioData.name)
                 {
                     audioData.PlayClip(audioClip, loop, playOneShot);
                     return;
                 }
             }
+
+            Debug.LogWarning($"AudioHandler: AudioData with name '{audioDataName}' was not found");
         }
         
         public void SetMusicClip(AudioClip musicClip, bool loop = true)
@@ -115,6 +158,12 @@ namespace VisualNovel.Audio
 
         private void PlayAmbienceClip(AudioClip ambienceClip, bool loop)
         {
+            if (ambienceClip == null)
+            {
+                Debug.LogWarning("AudioHandler: ambience clip is null");
+                return;
+            }
+
             if (_ambienceMixerGroup == null)
             {
                 Debug.LogWarning("Ambience mixer group is not defined!");
@@ -174,6 +223,12 @@ namespace VisualNovel.Audio
 
         public AudioClip PickRandom(AudioClip[] sounds)
         {
+            if (sounds == null)
+            {
+                Debug.LogWarning("AudioHandler: PickRandom received null array");
+                return null;
+            }
+
             switch (sounds.Length)
             {
                 case 0:
@@ -181,11 +236,8 @@ namespace VisualNovel.Audio
                 case 1:
                     return sounds[0];
                 default:
-                {
                     var randomIndex = Random.Range(0, sounds.Length);
-                    Debug.Log(randomIndex);
                     return sounds[randomIndex];
-                }
             }
         }
     }

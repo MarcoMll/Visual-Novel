@@ -32,14 +32,14 @@ namespace VisualNovel.UI.Notifications
 
         private Coroutine showNotificationRoutine;
         
-        public void Initialize(TraitSO targetTrait)
+        public void Initialize(ItemSO targetItem)
         {
-            itemIcon.sprite = targetTrait.traitIcon;
-            itemNameTextField.text = targetTrait.traitName;
-            itemDescriptionTextField.text = targetTrait.traitDescription;
+            itemIcon.sprite = targetItem.itemIcon;
+            itemNameTextField.text = targetItem.itemName;
+            itemDescriptionTextField.text = targetItem.itemDescription;
         }
 
-        public ExtendedButton ReadButton => readButton;
+        public override ExtendedButton ReadButton => readButton;
         
         public override void Show()
         {

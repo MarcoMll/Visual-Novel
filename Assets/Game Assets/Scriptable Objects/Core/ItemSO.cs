@@ -6,5 +6,7 @@ namespace GameAssets.ScriptableObjects.Core
     public class ItemSO : BaseSO
     {
         public string itemName;
+        public string itemDescription;
+        public Sprite itemIcon;
     }
 }

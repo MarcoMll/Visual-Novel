@@ -6,6 +6,7 @@ using UnityEngine;
 namespace VisualNovel.UI.Notifications
 {
     using Animations;
+    using Audio;
 
     public abstract class AnimatedNotification : GlobalNotification
     {
@@ -17,6 +18,7 @@ namespace VisualNovel.UI.Notifications
         {
             public UIAnimator animator;
             public UIParticle uiParticle;
+            public AudioClip sfx;
             public float delayInSec;
         }
 
@@ -75,6 +77,10 @@ namespace VisualNovel.UI.Notifications
                         {
                             seq.uiParticle.Play();
                         }
+                        if (seq.sfx != null)
+                        {
+                            AudioHandler.Instance.PlaySfx(seq.sfx);
+                        }
                     }
                 }
                 yield break;
@@ -94,6 +100,11 @@ namespace VisualNovel.UI.Notifications
                 if (seq.uiParticle != null)
                 {
                     seq.uiParticle.Play();
+                }
+
+                if (seq.sfx != null)
+                {
+                    AudioHandler.Instance.PlaySfx(seq.sfx);
                 }
             }
         }

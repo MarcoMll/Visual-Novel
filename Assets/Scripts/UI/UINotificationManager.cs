@@ -19,6 +19,8 @@ namespace VisualNovel.UI
 
         public static UINotificationManager Instance { get; private set; }
 
+        public bool HasPendingNotifications => currentNotification != null || notificationQueue.Count > 0;
+
         public void Initialize()
         {
             if (Instance != null)

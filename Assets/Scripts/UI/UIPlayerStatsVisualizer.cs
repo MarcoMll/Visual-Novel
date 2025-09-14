@@ -3,7 +3,7 @@ using VisualNovel.Data;
 
 namespace VisualNovel.UI
 {
-    public class UIInventoryInitializer : MonoBehaviour
+    public class UIPlayerStatsVisualizer : MonoBehaviour
     {
         [SerializeField] private UICharacterEquipment characterEquipment;
         [SerializeField] private ExtendedButton hideButton;

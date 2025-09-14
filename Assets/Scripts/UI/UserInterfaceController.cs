@@ -72,7 +72,7 @@ namespace VisualNovel.UI
                 return;
             }
 
-            var initializer = inventoryUi.GetComponent<UIInventoryInitializer>();
+            var initializer = inventoryUi.GetComponent<UIPlayerStatsVisualizer>();
             initializer.Initialize(inventory, inventoryPrefab);
         }
     }

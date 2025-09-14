@@ -6069,7 +6069,7 @@ MonoBehaviour:
   - GUID: ae771eed-6e40-4651-8f35-cb0b59e9d803
     Type: VisualNovelEngine.Elements.ModifierNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-    Position: {x: 688, y: -287}
+    Position: {x: 682, y: -317}
     Properties:
     - Name: ItemsToAdd
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
@@ -6090,7 +6090,7 @@ MonoBehaviour:
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.TraitData,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
+      JsonValue: '{"Value":[{"Trait":{"fileID":11400000,"guid":"d80a84ce9a0e9ac4aa9021d07c05cf8b","type":2},"HasTrait":false}]}'
     - Name: FlagsToTrigger
       Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.FlagData, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,

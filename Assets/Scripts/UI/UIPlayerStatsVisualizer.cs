@@ -6,6 +6,7 @@ namespace VisualNovel.UI
     public class UIPlayerStatsVisualizer : MonoBehaviour
     {
         [SerializeField] private UICharacterEquipment characterEquipment;
+        [SerializeField] private UIPlayerInventoryVisualizer playerInventoryVisualizer;
         [SerializeField] private ExtendedButton hideButton;
 
         private GameObject inventoryPrefab;
@@ -17,6 +18,11 @@ namespace VisualNovel.UI
             if (characterEquipment != null)
             {
                 characterEquipment.Initialize(inventory);
+            }
+
+            if (playerInventoryVisualizer != null)
+            {
+                playerInventoryVisualizer.Initialize(inventory);
             }
 
             if (hideButton != null)

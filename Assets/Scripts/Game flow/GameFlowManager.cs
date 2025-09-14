@@ -417,7 +417,7 @@ namespace VisualNovel.GameFlow
                             equip = true;
                         break;
                     case ItemType.Trinket:
-                        if (inventory.EquippedCount(ItemType.Trinket) < 3)
+                        if (inventory.EquippedCount(ItemType.Trinket) < inventory.MaxEquippedTrinkets)
                             equip = true;
                         break;
                 }

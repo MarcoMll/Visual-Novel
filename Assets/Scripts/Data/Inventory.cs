@@ -13,7 +13,9 @@ namespace VisualNovel.Data
     public class Inventory : BaseGameData
     {
         [SerializeField] private List<string> itemGuids = new();
+        [SerializeField] private List<string> equippedGuids = new();
         private readonly List<ItemSO> items = new();
+        private readonly List<ItemSO> equippedItems = new();
 
         protected override string SaveKey => "INVENTORY_DATA";
 
@@ -21,6 +23,7 @@ namespace VisualNovel.Data
         /// Exposes the current list of items.
         /// </summary>
         public IReadOnlyList<ItemSO> Items => items;
+        public IReadOnlyList<ItemSO> EquippedItems => equippedItems;
 
         public void AddItem(ItemSO item)
         {
@@ -36,18 +39,39 @@ namespace VisualNovel.Data
                 Debug.Log($"Item {item.itemName} is not present in the player's inventory.");
                 return;
             }
-            
+
             items.Remove(item);
+            equippedItems.Remove(item);
         }
 
         public bool HasItem(ItemSO item) => items.Contains(item);
 
+        public void EquipItem(ItemSO item)
+        {
+            if (item == null || items.Contains(item) == false) return;
+            if (equippedItems.Contains(item)) return;
+            equippedItems.Add(item);
+        }
+
+        public void UnequipItem(ItemSO item)
+        {
+            if (item == null) return;
+            equippedItems.Remove(item);
+        }
+
+        public bool IsEquipped(ItemSO item) => equippedItems.Contains(item);
+
         public override void Save()
         {
             itemGuids.Clear();
+            equippedGuids.Clear();
             foreach (var item in items)
             {
                 itemGuids.Add(item.Guid);
+                if (equippedItems.Contains(item))
+                {
+                    equippedGuids.Add(item.Guid);
+                }
             }
             base.Save();
         }
@@ -56,12 +80,26 @@ namespace VisualNovel.Data
         {
             base.Load();
             items.Clear();
+            equippedItems.Clear();
             foreach (var guid in itemGuids)
             {
                 var item = BaseSO.GetByGuid<ItemSO>(guid);
                 if (item != null)
                 {
                     items.Add(item);
+                }
+            }
+
+            foreach (var guid in equippedGuids)
+            {
+                var item = BaseSO.GetByGuid<ItemSO>(guid);
+                if (item != null)
+                {
+                    if (items.Contains(item) == false)
+                    {
+                        items.Add(item);
+                    }
+                    equippedItems.Add(item);
                 }
             }
         }

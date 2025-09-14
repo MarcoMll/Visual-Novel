@@ -8,5 +8,6 @@ namespace GameAssets.ScriptableObjects.Core
         public string itemName;
         public string itemDescription;
         public Sprite itemIcon;
+        public ItemType itemType = ItemType.Trinket;
     }
 }

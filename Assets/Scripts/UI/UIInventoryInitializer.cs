@@ -10,9 +10,9 @@ namespace VisualNovel.UI
 
         private GameObject inventoryPrefab;
 
-        public void Initialize(Inventory inventory, GameObject prefab)
+        public void Initialize(Inventory inventory, GameObject uiReference)
         {
-            inventoryPrefab = prefab;
+            inventoryPrefab = uiReference;
 
             if (characterEquipment != null)
             {
@@ -21,14 +21,13 @@ namespace VisualNovel.UI
 
             if (hideButton != null)
             {
-                hideButton.OnLeftClick.RemoveListener(Hide);
                 hideButton.OnLeftClick.AddListener(Hide);
             }
         }
 
         private void Hide()
         {
-            if (UserInterfaceController.Instance != null && inventoryPrefab != null)
+            if (inventoryPrefab != null)
             {
                 UserInterfaceController.Instance.DeleteAdditionalUI(inventoryPrefab);
             }

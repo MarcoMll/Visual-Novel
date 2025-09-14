@@ -8,6 +8,8 @@ namespace VisualNovel.UI
     public class UserInterfaceController : MonoBehaviour, IInitializeOnAwake
     {
         [SerializeField] private Canvas gameCanvas;
+        [SerializeField] private GameObject inventoryPrefab;
+        
         public static UserInterfaceController Instance { get; private set; }
 
         private readonly Dictionary<GameObject, GameObject> additionalUIs = new();
@@ -55,12 +57,14 @@ namespace VisualNovel.UI
             additionalUIs.Remove(uiPrefab);
         }
 
-        public void ShowInventory(GameObject inventoryPrefab, Inventory inventory)
+        public void ShowInventory()
         {
             if (inventoryPrefab == null)
             {
                 return;
             }
+
+            var inventory = GameDataManager.Instance.playerInventory;
 
             var inventoryUi = SpawnAdditionalUI(inventoryPrefab);
             if (inventoryUi == null)
@@ -69,7 +73,7 @@ namespace VisualNovel.UI
             }
 
             var initializer = inventoryUi.GetComponent<UIInventoryInitializer>();
-            initializer?.Initialize(inventory, inventoryPrefab);
+            initializer.Initialize(inventory, inventoryPrefab);
         }
     }
 }

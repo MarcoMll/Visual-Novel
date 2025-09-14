@@ -5500,7 +5500,7 @@ MonoBehaviour:
     - Name: Speaker
       Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      JsonValue: a61153de2d2cf1b4f935c0a46cbe0a63
+      JsonValue: fa23255c21cab794ba8de98cc5624790
     - Name: IsDialogue
       Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":true}'
@@ -5525,7 +5525,7 @@ MonoBehaviour:
     - Name: Speaker
       Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      JsonValue: a61153de2d2cf1b4f935c0a46cbe0a63
+      JsonValue: fa23255c21cab794ba8de98cc5624790
     - Name: IsDialogue
       Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":true}'
@@ -6066,6 +6066,52 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":[]}'
+  - GUID: ae771eed-6e40-4651-8f35-cb0b59e9d803
+    Type: VisualNovelEngine.Elements.ModifierNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 688, y: -287}
+    Properties:
+    - Name: ItemsToAdd
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[{"Item":{"fileID":11400000,"guid":"0c7dc21c289088441b11f318ae07987d","type":2},"HasItem":false}]}'
+    - Name: ItemsToRemove
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.ItemData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: RelationshipModifiers
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.RelationshipModifier,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: TraitsToAdd
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.TraitData,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: FlagsToTrigger
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.FlagData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: FlagsToModify
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Data.FlagData, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Modifier Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Node text."}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
   Links:
   - BaseNodeGUID: 3671db3d-a5e2-4ace-bf70-5be210b4dd21
     PortName: Output Link
@@ -7011,9 +7057,13 @@ MonoBehaviour:
     PortName: Output Link
     OutputPortIndex: 0
     TargetNodeGUID: 80b9d503-6e2c-4084-a2d0-1bcbb5d65255
+  - BaseNodeGUID: 80ce19bd-230d-4542-8ffa-0ae038438d5f
+    PortName: Output Link
+    OutputPortIndex: 0
+    TargetNodeGUID: ae771eed-6e40-4651-8f35-cb0b59e9d803
   Groups:
   - Title: Introduction
-    Position: {x: 258, y: -807.00006}
+    Position: {x: 258, y: -807}
     Size: {x: 49752, y: 3350}
     Nodes:
     - 7e613050-dd92-43db-a1de-56ab1eb14cfa
@@ -7245,4 +7295,5 @@ MonoBehaviour:
     - 35e8ce47-8e55-43cd-b9ce-0944065284be
     - 4ed7975b-8dc3-404c-997f-2d376ae0fd5c
     - 80b9d503-6e2c-4084-a2d0-1bcbb5d65255
+    - ae771eed-6e40-4651-8f35-cb0b59e9d803
   Flags: []

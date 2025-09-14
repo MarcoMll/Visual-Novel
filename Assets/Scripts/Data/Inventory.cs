@@ -61,6 +61,29 @@ namespace VisualNovel.Data
 
         public bool IsEquipped(ItemSO item) => equippedItems.Contains(item);
 
+        public bool HasEquippedOfType(ItemType type)
+        {
+            foreach (var equipped in equippedItems)
+            {
+                if (equipped.itemType == type)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public int EquippedCount(ItemType type)
+        {
+            var count = 0;
+            foreach (var equipped in equippedItems)
+            {
+                if (equipped.itemType == type)
+                    count++;
+            }
+
+            return count;
+        }
+
         public override void Save()
         {
             itemGuids.Clear();

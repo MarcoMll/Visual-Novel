@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using VisualNovelEngine.Data;
 using VisualNovelEngine.Elements;
+using GameAssets.ScriptableObjects.Core;
 
 namespace VisualNovel.GameFlow
 {
@@ -397,8 +398,34 @@ namespace VisualNovel.GameFlow
             // items to add
             foreach (var itemData in modifierNode.ItemsToAdd)
             {
-                gameDataManager.playerInventory.AddItem(itemData.Item);
-                notificationManager.ShowItemNotification(itemData.Item);
+                var item = itemData.Item;
+                var inventory = gameDataManager.playerInventory;
+
+                inventory.AddItem(item);
+
+                var itemType = item.itemType;
+                var equip = false;
+
+                switch (itemType)
+                {
+                    case ItemType.Weapon:
+                    case ItemType.Shield:
+                    case ItemType.Helmet:
+                    case ItemType.Chest:
+                    case ItemType.Pants:
+                        if (inventory.HasEquippedOfType(itemType) == false)
+                            equip = true;
+                        break;
+                    case ItemType.Trinket:
+                        if (inventory.EquippedCount(ItemType.Trinket) < 3)
+                            equip = true;
+                        break;
+                }
+
+                if (equip)
+                    inventory.EquipItem(item);
+
+                notificationManager.ShowItemNotification(item);
             }
             
             // items to remove

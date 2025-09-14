@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VisualNovel.GameFlow;
+using VisualNovel.Data;
 
 namespace VisualNovel.UI
 {
@@ -52,6 +53,23 @@ namespace VisualNovel.UI
 
             Destroy(spawnedUi);
             additionalUIs.Remove(uiPrefab);
+        }
+
+        public void ShowInventory(GameObject inventoryPrefab, Inventory inventory)
+        {
+            if (inventoryPrefab == null)
+            {
+                return;
+            }
+
+            var inventoryUi = SpawnAdditionalUI(inventoryPrefab);
+            if (inventoryUi == null)
+            {
+                return;
+            }
+
+            var initializer = inventoryUi.GetComponent<UIInventoryInitializer>();
+            initializer?.Initialize(inventory, inventoryPrefab);
         }
     }
 }

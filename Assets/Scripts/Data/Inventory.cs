@@ -14,6 +14,7 @@ namespace VisualNovel.Data
     {
         [SerializeField] private List<string> itemGuids = new();
         [SerializeField] private List<string> equippedGuids = new();
+        [SerializeField] private int maxEquippedTrinkets = 1;
         private readonly List<ItemSO> items = new();
         private readonly List<ItemSO> equippedItems = new();
 
@@ -24,6 +25,11 @@ namespace VisualNovel.Data
         /// </summary>
         public IReadOnlyList<ItemSO> Items => items;
         public IReadOnlyList<ItemSO> EquippedItems => equippedItems;
+        public int MaxEquippedTrinkets
+        {
+            get => maxEquippedTrinkets;
+            set => maxEquippedTrinkets = value;
+        }
 
         public void AddItem(ItemSO item)
         {

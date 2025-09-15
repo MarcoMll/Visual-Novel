@@ -11,8 +11,9 @@ namespace GameAssets.ScriptableObjects.Core
         public string itemDescription;
         public Sprite itemIcon;
         public ItemType itemType = ItemType.Trinket;
+        [Header("Item effects")]
+        [ShowIfIs(nameof(itemType), ItemType.Weapon)]
+        [Indent(-1)] public CombatSkill baseWeaponSkill;
         public List<BaseSkill> skills = new();
-        [ShowIf(nameof(itemType), ItemType.Weapon)]
-        public CombatSkill baseWeaponSkill;
     }
 }

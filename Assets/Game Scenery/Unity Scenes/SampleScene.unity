@@ -4295,6 +4295,8 @@ MonoBehaviour:
     relationshipValues: 
   playerTraitCollection:
     traitGuids: []
+  playerSkillCollection:
+    skillGuids: []
   flagCollection:
     keys: []
     values: 
@@ -8546,6 +8548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2117636954}
+  - component: {fileID: 2117636955}
   m_Layer: 5
   m_Name: Skills panel
   m_TagString: Untagged
@@ -8574,6 +8577,14 @@ RectTransform:
   m_AnchoredPosition: {x: -895.52, y: -23.235}
   m_SizeDelta: {x: 107.09, y: 606.63}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2117636955
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117636953}
+  m_CullTransparentMesh: 1
 --- !u!1 &2139526444
 GameObject:
   m_ObjectHideFlags: 0

@@ -2953,62 +2953,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
-  - GUID: 036625b0-8b6f-434b-a75b-c19abdd18eab
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 22976, y: 896}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 32775c16baa9abb499bec1dad4c6b169
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":true}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Dialogue Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u0410 \u043E\u043D \u0434\u0443\u043C\u0430\u0435\u0448\u044C
-        \u0433\u0434\u0435?! \u0421\u0438\u0434\u0438\u0442 \u0437\u0430 \u043A\u043E\u043C\u043E\u0434\u043E\u043C
-        \u0438 \u0442\u0438\u0445\u043E \u0445\u043E\u0445\u043E\u0447\u0435\u0442
-        \u0441 \u0442\u043E\u0433\u043E \u043A\u0430\u043A \u044F \u0441 \u0443\u043C\u0430
-        \u0441\u0445\u043E\u0436\u0443!\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
-  - GUID: 68f30fe5-778b-464b-9aef-6f13f1b16bb8
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 22621, y: 896}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 32775c16baa9abb499bec1dad4c6b169
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":true}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Dialogue Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F \u0443\u0442\u0440\u043E\u043C
-        \u043E\u043D \u0434\u043E \u0441\u043C\u0435\u0440\u0442\u0438 \u043C\u0435\u043D\u044F
-        \u043D\u0430\u043F\u0443\u0433\u0430\u043B. \u041F\u0440\u043E\u0441\u043D\u0443\u043B\u0441\u044F
-        \u043E\u0434\u0438\u043D \u0438\u2026 \u043F\u0440\u043E\u043F\u0430\u043B
-        \u0441 \u043A\u0440\u043E\u0432\u0430\u0442\u0438! \u042F \u043E\u0431\u044B\u0441\u043A\u0430\u043B\u0430
-        \u0432\u0441\u044E \u043A\u043E\u043C\u043D\u0430\u0442\u0443, \u0434\u0443\u043C\u0430\u043B\u0430
-        - \u0432\u0441\u0435, \u0438\u0441\u0447\u0435\u0437!\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
   - GUID: 630feece-96e4-4516-a7cd-cedea6d0f6d0
     Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3727,7 +3671,7 @@ MonoBehaviour:
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":[{"Character":{"fileID":11400000,"guid":"44634dd017850c143961ce1a6969b8da","type":2},"SelectedEmotion":"Wondering","SelectedPositionName":"Next
-        to the window","SelectedParallaxLayer":"Midground","Offset":{"x":0.1899999976158142,"y":-0.11999999731779099},"Layer":4,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":0.33000001311302187,"y":0.33000001311302187}}]}'
+        to the window","SelectedParallaxLayer":"Midground","Offset":{"x":0.1899999976158142,"y":-0.11999999731779099},"Layer":3,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":0.33000001311302187,"y":0.33000001311302187}}]}'
     - Name: PreviewScale
       Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":2.0}'
@@ -3760,7 +3704,7 @@ MonoBehaviour:
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":[{"Character":{"fileID":11400000,"guid":"44634dd017850c143961ce1a6969b8da","type":2},"SelectedEmotion":"Laughing","SelectedPositionName":"Next
-        to the window","SelectedParallaxLayer":"Midground","Offset":{"x":0.1899999976158142,"y":-0.11999999731779099},"Layer":4,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":0.33000001311302187,"y":0.33000001311302187}},{"Character":{"fileID":11400000,"guid":"32775c16baa9abb499bec1dad4c6b169","type":2},"SelectedEmotion":"Happy","SelectedPositionName":"Next
+        to the window","SelectedParallaxLayer":"Midground","Offset":{"x":0.1899999976158142,"y":-0.11999999731779099},"Layer":3,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":0.33000001311302187,"y":0.33000001311302187}},{"Character":{"fileID":11400000,"guid":"32775c16baa9abb499bec1dad4c6b169","type":2},"SelectedEmotion":"Happy","SelectedPositionName":"Next
         to the window","SelectedParallaxLayer":"Midground","Offset":{"x":1.5199999809265137,"y":0.029999999329447748},"Layer":4,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":0.33000001311302187,"y":0.33000001311302187}}]}'
     - Name: PreviewScale
       Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
@@ -3860,89 +3804,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
-  - GUID: eed7b01b-b384-4c25-bb3b-5875fc854786
-    Type: VisualNovelEngine.Elements.ShowCharacterNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 22621, y: 1173}
-    Properties:
-    - Name: ScenePrefab
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
-    - Name: Scene
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
-    - Name: Characters
-      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.ShowCharacterNode+CharacterEntry,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[{"Character":{"fileID":11400000,"guid":"32775c16baa9abb499bec1dad4c6b169","type":2},"SelectedEmotion":"Happy","SelectedPositionName":"Front
-        left","SelectedParallaxLayer":"Foreground","Offset":{"x":12.779999732971192,"y":-0.8399999737739563},"Layer":5,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":-1.0,"y":1.0}}]}'
-    - Name: PreviewScale
-      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":1.5}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Show Character"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":""}'
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
-  - GUID: b08ed314-7b45-4245-9f6f-de2abf123cd5
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 22351, y: 1806}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 32775c16baa9abb499bec1dad4c6b169
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":true}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Dialogue Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u041C\u0430\u0442\u0443\u0448\u043A\u0430, \u043C\u043D\u0435
-        \u0432\u043E\u0432\u0441\u0435 \u043D\u0435 \u0442\u0440\u0443\u0434\u043D\u043E\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
-  - GUID: 545846ad-9002-4e3a-bfcf-74989fdc05d0
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 22663, y: 1806}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 32775c16baa9abb499bec1dad4c6b169
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":true}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Dialogue Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F \u0443\u0442\u0440\u043E\u043C
-        \u0437\u0430\u0445\u043E\u0436\u0443 \u043A \u043D\u0435\u043C\u0443 \u0432
-        \u043A\u043E\u043C\u043D\u0430\u0442\u0443 \u0438 \u0447\u0442\u043E \u0442\u044B
-        \u0434\u0443\u043C\u0430\u0435\u0448\u044C?\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
   - GUID: f08b7e36-99bc-4f99-aec0-963811bda86d
     Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3963,117 +3824,6 @@ MonoBehaviour:
       JsonValue: "{\"Value\":\"\u0412\u0435\u0441\u044C \u0432 \u043E\u0442\u0446\u0430
         \u043F\u043E\u0448\u0451\u043B, \u043D\u0435\u043F\u043E\u0441\u0435\u0434\u0430
         \u0438 \u043D\u0438 \u043C\u0438\u043D\u0443\u0442\u044B \u043F\u043E\u043A\u043E\u044F\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
-  - GUID: c94e8049-9756-4d8a-8640-80a7bf80478d
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 24335, y: 1806}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":false}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Text Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u0412 \u043E\u0442\u0432\u0435\u0442 \u043C\u0430\u0442\u0443\u0448\u043A\u0430
-        \u0437\u0432\u043E\u043D\u043A\u043E \u0441\u043C\u0435\u0451\u0442\u0441\u044F,
-        \u043B\u0435\u0433\u043A\u043E \u0433\u043B\u0430\u0434\u044F \u0434\u043E\u0447\u044C
-        \u043F\u043E \u0433\u043E\u043B\u043E\u0432\u0435\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
-  - GUID: 39c74b07-fb7e-46df-9de5-51eefbde83ef
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 23022, y: 1806}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 32775c16baa9abb499bec1dad4c6b169
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":true}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Dialogue Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u0410 \u043E\u043D \u0441\u0438\u0434\u0438\u0442,
-        \u0432\u0435\u0441\u044C \u0438\u0437 \u0441\u0435\u0431\u044F \u0442\u0430\u043A\u043E\u0439
-        \u043B\u043E\u0440\u0434 \u0438 \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0435\u0442
-        \u0437\u0430 \u0432\u0441\u0435\u043C\u0438 \u0438\u0437 \u043E\u043A\u043D\u0430\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
-  - GUID: cda3ed57-6fae-4032-984b-4e359ce56f87
-    Type: VisualNovelEngine.Elements.ShowCharacterNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 23392, y: 1173}
-    Properties:
-    - Name: ScenePrefab
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
-    - Name: Scene
-      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
-    - Name: Characters
-      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.ShowCharacterNode+CharacterEntry,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[{"Character":{"fileID":11400000,"guid":"ddfeac532a68e6c4c9831b13f7091f04","type":2},"SelectedEmotion":"Happy","SelectedPositionName":"Front
-        left","SelectedParallaxLayer":"Foreground","Offset":{"x":1.090000033378601,"y":-0.5699999928474426},"Layer":5,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":1.100000023841858,"y":1.100000023841858}}]}'
-    - Name: PreviewScale
-      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":1.5}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Show Character"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":""}'
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":[]}'
-  - GUID: d8ba3c3d-0315-4229-a815-2ad7c7dbe42e
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 23375, y: 896}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":false}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Text Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"\u0412 \u043E\u0442\u0432\u0435\u0442 \u043C\u0430\u0442\u0443\u0448\u043A\u0430
-        \u0437\u0432\u043E\u043D\u043A\u043E \u0441\u043C\u0435\u0451\u0442\u0441\u044F,
-        \u043B\u0435\u0433\u043A\u043E \u0433\u043B\u0430\u0434\u044F \u0434\u043E\u0447\u044C
-        \u043F\u043E \u0433\u043E\u043B\u043E\u0432\u0435\"}"
     - Name: Choices
       Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
@@ -4982,29 +4732,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":[]}'
-  - GUID: 76934617-bc94-44a3-8cf6-cb53acb8c866
-    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    Position: {x: 38511, y: 1319}
-    Properties:
-    - Name: Speaker
-      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      JsonValue: 
-    - Name: IsDialogue
-      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":false}'
-    - Name: NodeName
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":"Text Node"}'
-    - Name: Text
-      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: "{\"Value\":\"[\u0432\u0435\u0442\u043A\u0430 \u043D\u0435 \u0433\u043E\u0442\u043E\u0432\u0430]\"}"
-    - Name: Choices
-      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      JsonValue: '{"Value":["Output Link"]}'
   - GUID: a8159903-fe06-4fd0-b35d-eb83a0f74cda
     Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -6112,6 +5839,279 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       JsonValue: '{"Value":["Output Link"]}'
+  - GUID: 76934617-bc94-44a3-8cf6-cb53acb8c866
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 38511, y: 1319}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":false}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Text Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"[\u0432\u0435\u0442\u043A\u0430 \u043D\u0435 \u0433\u043E\u0442\u043E\u0432\u0430]\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: 68f30fe5-778b-464b-9aef-6f13f1b16bb8
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 22621, y: 870}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 32775c16baa9abb499bec1dad4c6b169
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":true}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Dialogue Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F \u0443\u0442\u0440\u043E\u043C
+        \u043E\u043D \u0434\u043E \u0441\u043C\u0435\u0440\u0442\u0438 \u043C\u0435\u043D\u044F
+        \u043D\u0430\u043F\u0443\u0433\u0430\u043B. \u041F\u0440\u043E\u0441\u043D\u0443\u043B\u0441\u044F
+        \u043E\u0434\u0438\u043D \u0438\u2026 \u043F\u0440\u043E\u043F\u0430\u043B
+        \u0441 \u043A\u0440\u043E\u0432\u0430\u0442\u0438! \u042F \u043E\u0431\u044B\u0441\u043A\u0430\u043B\u0430
+        \u0432\u0441\u044E \u043A\u043E\u043C\u043D\u0430\u0442\u0443, \u0434\u0443\u043C\u0430\u043B\u0430
+        - \u0432\u0441\u0435, \u0438\u0441\u0447\u0435\u0437!\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: 036625b0-8b6f-434b-a75b-c19abdd18eab
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 22982, y: 870}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 32775c16baa9abb499bec1dad4c6b169
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":true}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Dialogue Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u0410 \u043E\u043D \u0434\u0443\u043C\u0430\u0435\u0448\u044C
+        \u0433\u0434\u0435?! \u0421\u0438\u0434\u0438\u0442 \u0437\u0430 \u043A\u043E\u043C\u043E\u0434\u043E\u043C
+        \u0438 \u0442\u0438\u0445\u043E \u0445\u043E\u0445\u043E\u0447\u0435\u0442
+        \u0441 \u0442\u043E\u0433\u043E \u043A\u0430\u043A \u044F \u0441 \u0443\u043C\u0430
+        \u0441\u0445\u043E\u0436\u0443!\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: eed7b01b-b384-4c25-bb3b-5875fc854786
+    Type: VisualNovelEngine.Elements.ShowCharacterNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 22621, y: 1159}
+    Properties:
+    - Name: ScenePrefab
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
+    - Name: Scene
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
+    - Name: Characters
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.ShowCharacterNode+CharacterEntry,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[{"Character":{"fileID":11400000,"guid":"32775c16baa9abb499bec1dad4c6b169","type":2},"SelectedEmotion":"Happy","SelectedPositionName":"Front
+        left","SelectedParallaxLayer":"Foreground","Offset":{"x":12.779999732971192,"y":-0.8399999737739563},"Layer":5,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":-1.0,"y":1.0}}]}'
+    - Name: PreviewScale
+      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":1.5}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Show Character"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":""}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+  - GUID: d8ba3c3d-0315-4229-a815-2ad7c7dbe42e
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 23372, y: 896}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":false}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Text Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u0412 \u043E\u0442\u0432\u0435\u0442 \u043C\u0430\u0442\u0443\u0448\u043A\u0430
+        \u0437\u0432\u043E\u043D\u043A\u043E \u0441\u043C\u0435\u0451\u0442\u0441\u044F,
+        \u043B\u0435\u0433\u043A\u043E \u0433\u043B\u0430\u0434\u044F \u0434\u043E\u0447\u044C
+        \u043F\u043E \u0433\u043E\u043B\u043E\u0432\u0435\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: b08ed314-7b45-4245-9f6f-de2abf123cd5
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 22289, y: 1806}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 32775c16baa9abb499bec1dad4c6b169
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":true}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Dialogue Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u041C\u0430\u0442\u0443\u0448\u043A\u0430, \u043C\u043D\u0435
+        \u0432\u043E\u0432\u0441\u0435 \u043D\u0435 \u0442\u0440\u0443\u0434\u043D\u043E\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: 39c74b07-fb7e-46df-9de5-51eefbde83ef
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 22960, y: 1806}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 32775c16baa9abb499bec1dad4c6b169
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":true}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Dialogue Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u0410 \u043E\u043D \u0441\u0438\u0434\u0438\u0442,
+        \u0432\u0435\u0441\u044C \u0438\u0437 \u0441\u0435\u0431\u044F \u0442\u0430\u043A\u043E\u0439
+        \u043B\u043E\u0440\u0434 \u0438 \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0435\u0442
+        \u0437\u0430 \u0432\u0441\u0435\u043C\u0438 \u0438\u0437 \u043E\u043A\u043D\u0430\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: cda3ed57-6fae-4032-984b-4e359ce56f87
+    Type: VisualNovelEngine.Elements.ShowCharacterNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 23349, y: 1173}
+    Properties:
+    - Name: ScenePrefab
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
+    - Name: Scene
+      Type: VisualNovel.Environment.SceneController, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 8dd4de10021d8c040835aa962ae07ad1
+    - Name: Characters
+      Type: System.Collections.Generic.List`1[[VisualNovelEngine.Elements.ShowCharacterNode+CharacterEntry,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[{"Character":{"fileID":11400000,"guid":"ddfeac532a68e6c4c9831b13f7091f04","type":2},"SelectedEmotion":"Happy","SelectedPositionName":"Front
+        left","SelectedParallaxLayer":"Foreground","Offset":{"x":1.090000033378601,"y":-0.5699999928474426},"Layer":5,"SpriteColor":{"r":0.9254902005195618,"g":0.9254902005195618,"b":0.9254902005195618,"a":1.0},"CharacterScale":{"x":1.100000023841858,"y":1.100000023841858}}]}'
+    - Name: PreviewScale
+      Type: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":1.5}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Show Character"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":""}'
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":[]}'
+  - GUID: 545846ad-9002-4e3a-bfcf-74989fdc05d0
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 22581, y: 1806}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 32775c16baa9abb499bec1dad4c6b169
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":true}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Dialogue Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F \u0443\u0442\u0440\u043E\u043C
+        \u0437\u0430\u0445\u043E\u0436\u0443 \u043A \u043D\u0435\u043C\u0443 \u0432
+        \u043A\u043E\u043C\u043D\u0430\u0442\u0443 \u0438 \u0447\u0442\u043E \u0442\u044B
+        \u0434\u0443\u043C\u0430\u0435\u0448\u044C?\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
+  - GUID: c94e8049-9756-4d8a-8640-80a7bf80478d
+    Type: VisualNovelEngine.Elements.TextNode, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    Position: {x: 24391, y: 1806}
+    Properties:
+    - Name: Speaker
+      Type: GameAssets.ScriptableObjects.Core.CharacterSO, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      JsonValue: 
+    - Name: IsDialogue
+      Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":false}'
+    - Name: NodeName
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":"Text Node"}'
+    - Name: Text
+      Type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: "{\"Value\":\"\u0412 \u043E\u0442\u0432\u0435\u0442 \u043C\u0430\u0442\u0443\u0448\u043A\u0430
+        \u0437\u0432\u043E\u043D\u043A\u043E \u0441\u043C\u0435\u0451\u0442\u0441\u044F,
+        \u043B\u0435\u0433\u043A\u043E \u0433\u043B\u0430\u0434\u044F \u0434\u043E\u0447\u044C
+        \u043F\u043E \u0433\u043E\u043B\u043E\u0432\u0435\"}"
+    - Name: Choices
+      Type: System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      JsonValue: '{"Value":["Output Link"]}'
   Links:
   - BaseNodeGUID: 3671db3d-a5e2-4ace-bf70-5be210b4dd21
     PortName: Output Link
@@ -7063,7 +7063,7 @@ MonoBehaviour:
     TargetNodeGUID: ae771eed-6e40-4651-8f35-cb0b59e9d803
   Groups:
   - Title: Introduction
-    Position: {x: 258, y: -807}
+    Position: {x: 257.99854, y: -806.99994}
     Size: {x: 49752, y: 3350}
     Nodes:
     - 7e613050-dd92-43db-a1de-56ab1eb14cfa
@@ -7296,4 +7296,7 @@ MonoBehaviour:
     - 4ed7975b-8dc3-404c-997f-2d376ae0fd5c
     - 80b9d503-6e2c-4084-a2d0-1bcbb5d65255
     - ae771eed-6e40-4651-8f35-cb0b59e9d803
-  Flags: []
+  Flags:
+  - Name: scared_lilia
+    Type: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    JsonValue: '{"Value":false}'

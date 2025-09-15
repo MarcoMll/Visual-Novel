@@ -749,7 +749,7 @@ MonoBehaviour:
       oddNumber: 1
     dynamicSliderExamples:
       sliderValue:
-        value: 3.9
+        value: 0.82
         min: 0.82
         max: 10
       value2:
@@ -838,7 +838,7 @@ MonoBehaviour:
     staticsDrawerExamples:
       hello: Hello!
     delayedAttributeExamples:
-      delayed: zukkuz
+      delayed: zukkuzf
       instant: 7iozkzu
       b2: 0
     headerAttributeExamples:

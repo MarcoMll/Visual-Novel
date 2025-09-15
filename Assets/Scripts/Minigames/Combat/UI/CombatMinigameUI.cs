@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ namespace VisualNovel.Minigames.Combat.UI
     using VisualNovel.UI.Dynamic;
     using Utilities;
     using Audio;
+    using GameAssets.ScriptableObjects.Core;
+    using VisualNovel.Data;
     
     /// <summary>
     /// Handles all UI interactions for the combat minigame.
@@ -21,6 +24,9 @@ namespace VisualNovel.Minigames.Combat.UI
         [SerializeField] private UIHealthBar playerHealthBar;
         [SerializeField] private UIHealthBar enemyHealthBar;
         [SerializeField] private Button startRoundButton;
+
+        [Header("Skills")]
+        [SerializeField] private PlayerCombatSkillsPanel playerCombatSkillsPanel;
 
         [Header("Action Visualizers")]
         [SerializeField] private ActionVisualizer playerAction;
@@ -85,8 +91,10 @@ namespace VisualNovel.Minigames.Combat.UI
             {
                 startRoundButton.onClick.AddListener(PlayRound);
             }
-            
+
             audioContainer.Initialize();
+
+            InitializePlayerSkillsPanel();
         }
 
         /// <summary>
@@ -300,6 +308,83 @@ namespace VisualNovel.Minigames.Combat.UI
         {
             if (_playerStats != null)
                 _playerStats.onActionPointAssigned -= CheckActionPoints;
+        }
+
+        private void InitializePlayerSkillsPanel()
+        {
+            if (playerCombatSkillsPanel == null)
+            {
+                return;
+            }
+
+            var dataManager = GameDataManager.Instance;
+            if (dataManager == null)
+            {
+                Debug.LogWarning("GameDataManager instance is unavailable while initializing combat skills panel.");
+                return;
+            }
+
+            var baseSkills = new List<BaseSkill>();
+            var baseSkillLookup = new HashSet<BaseSkill>();
+
+            var skillCollection = dataManager.playerSkillCollection;
+            if (skillCollection != null)
+            {
+                foreach (var skill in skillCollection.Skills)
+                {
+                    if (skill == null)
+                    {
+                        continue;
+                    }
+
+                    if (baseSkillLookup.Add(skill))
+                    {
+                        baseSkills.Add(skill);
+                    }
+                }
+            }
+
+            var equipmentSkills = new List<BaseSkill>();
+            var equipmentSkillLookup = new HashSet<BaseSkill>();
+
+            var inventory = dataManager.playerInventory;
+            if (inventory != null)
+            {
+                foreach (var item in inventory.EquippedItems)
+                {
+                    if (item == null)
+                    {
+                        continue;
+                    }
+
+                    if (item.baseWeaponSkill != null && equipmentSkillLookup.Add(item.baseWeaponSkill))
+                    {
+                        equipmentSkills.Add(item.baseWeaponSkill);
+                    }
+
+                    if (item.skills == null)
+                    {
+                        continue;
+                    }
+
+                    foreach (var skill in item.skills)
+                    {
+                        if (skill == null)
+                        {
+                            continue;
+                        }
+
+                        if (equipmentSkillLookup.Add(skill))
+                        {
+                            equipmentSkills.Add(skill);
+                        }
+                    }
+                }
+            }
+
+            playerCombatSkillsPanel.ClearSections();
+            playerCombatSkillsPanel.CreateSection(baseSkills, "Player Skills", baseSkillLookup);
+            playerCombatSkillsPanel.CreateSection(equipmentSkills, "Equipped Item Skills", baseSkillLookup);
         }
     }
 }

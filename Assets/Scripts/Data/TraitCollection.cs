@@ -22,6 +22,13 @@ namespace VisualNovel.Data
         {
             if (trait == null || traits.Contains(trait)) return;
             traits.Add(trait);
+            if (trait.skills != null)
+            {
+                foreach (var skill in trait.skills)
+                {
+                    GameDataManager.Instance.playerSkillCollection.AddSkill(skill);
+                }
+            }
         }
 
         public void RemoveTrait(TraitSO trait)

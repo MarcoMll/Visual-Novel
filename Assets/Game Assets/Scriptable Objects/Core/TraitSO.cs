@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameAssets.ScriptableObjects.Core
@@ -8,5 +9,6 @@ namespace GameAssets.ScriptableObjects.Core
         public string traitName;
         public string traitDescription;
         public Sprite traitIcon;
+        public List<BaseSkill> skills = new();
     }
 }

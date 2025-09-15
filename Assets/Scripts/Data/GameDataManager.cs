@@ -17,6 +17,7 @@ namespace VisualNovel.Data
         public Inventory playerInventory = new Inventory();
         public CharacterCollection characterCollection = new CharacterCollection();
         public TraitCollection playerTraitCollection = new TraitCollection();
+        public SkillCollection playerSkillCollection = new SkillCollection();
         
         // ----- Game flow Modifiers -----
         public FlagCollection flagCollection = new FlagCollection();
@@ -33,6 +34,7 @@ namespace VisualNovel.Data
             dataSections.Add(playerInventory);
             dataSections.Add(characterCollection);
             dataSections.Add(playerTraitCollection);
+            dataSections.Add(playerSkillCollection);
             dataSections.Add(flagCollection);
         }
 

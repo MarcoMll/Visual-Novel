@@ -5,6 +5,7 @@ namespace VisualNovel.Minigames.Combat
 {
     using Environment;
     using UI;
+    using VisualNovel.Data;
     
     public class CombatMinigame : MinigameBase
     {
@@ -47,6 +48,12 @@ namespace VisualNovel.Minigames.Combat
                 baseHealthPoints = 20
             };
             _player = new FighterRuntime(playerBase);
+
+            var dataManager = GameDataManager.Instance;
+            if (dataManager?.playerInventory != null)
+            {
+                _player.SetItems(dataManager.playerInventory.EquippedItems);
+            }
 
             _currentEnemyIndex = -1;
             SetNextEnemy();

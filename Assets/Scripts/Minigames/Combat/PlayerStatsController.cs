@@ -20,18 +20,34 @@ namespace VisualNovel.Minigames.Combat
         private FighterRuntime _playerRuntime;
 
         public Action onActionPointAssigned;
+        public Action onStatsChanged;
         public int totalLeftActionPoints => _totalLeftActionPoints;
-        public int actionPointsPerRound => _playerRuntime.ActionPointsPerRound;
-        
-        public int BaseDamage => _playerRuntime?.BaseStats.baseDamage ?? 0;
+        public int actionPointsPerRound => _playerRuntime?.ActionPointsPerRound ?? 0;
+
+        public int BaseDamage => _playerRuntime?.BaseDamage ?? 0;
 
         public void Initialize(FighterRuntime playerRuntime)
         {
+            if (_playerRuntime != null)
+            {
+                _playerRuntime.OnCombatModifierChanged -= HandleRuntimeModifierChanged;
+            }
+
             _playerRuntime = playerRuntime;
-            _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
+            if (_playerRuntime != null)
+            {
+                _playerRuntime.OnCombatModifierChanged += HandleRuntimeModifierChanged;
+                _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
+            }
+            else
+            {
+                _totalLeftActionPoints = 0;
+            }
             _attackActionPoints = 0;
             _defenceActionPoints = 0;
             _restActionPoints = 0;
+
+            onStatsChanged?.Invoke();
         }
         
         public void ModifyActionPoint(ActionPointType type, int delta)
@@ -77,7 +93,7 @@ namespace VisualNovel.Minigames.Combat
 
         public void ResetPoints()
         {
-            _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
+            _totalLeftActionPoints = _playerRuntime?.ActionPointsPerRound ?? 0;
 
             _attackActionPoints = 0;
             _defenceActionPoints = 0;
@@ -89,6 +105,19 @@ namespace VisualNovel.Minigames.Combat
             attackPoints = _attackActionPoints;
             defencePoints = _defenceActionPoints;
             restPoints = _restActionPoints;
+        }
+
+        private void HandleRuntimeModifierChanged(CombatModifierType type)
+        {
+            onStatsChanged?.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            if (_playerRuntime != null)
+            {
+                _playerRuntime.OnCombatModifierChanged -= HandleRuntimeModifierChanged;
+            }
         }
     }
 }

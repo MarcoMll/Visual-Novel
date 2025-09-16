@@ -24,16 +24,17 @@ namespace VisualNovel.Minigames.Combat.UI
         public void Initialize(PlayerStatsController playerStatsController)
         {
             _playerStatsController = playerStatsController;
-            
+
             if (_playerStatsController == null) // moved from OnEnable here to avoid issues
             {
                 Debug.LogError("PlayerStatsController is absent!");
                 return;
             }
-            
+
             _playerStatsController.onActionPointAssigned += UpdateUi;
+            _playerStatsController.onStatsChanged += UpdateUi;
             UpdateUi();
-            
+
             attackButton.OnLeftClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Attack, 1));
             defenceButton.OnLeftClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Defence, 1));
             restButton.OnLeftClick.AddListener(() => _playerStatsController.ModifyActionPoint(ActionPointType.Rest, 1));
@@ -46,7 +47,10 @@ namespace VisualNovel.Minigames.Combat.UI
         private void OnDisable()
         {
             if (_playerStatsController != null)
+            {
                 _playerStatsController.onActionPointAssigned -= UpdateUi;
+                _playerStatsController.onStatsChanged -= UpdateUi;
+            }
         }
 
         private void UpdateUi()

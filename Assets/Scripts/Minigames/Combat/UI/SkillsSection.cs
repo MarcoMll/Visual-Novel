@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using TMPro;
@@ -21,7 +22,12 @@ namespace VisualNovel.Minigames.Combat.UI
         /// <summary>
         /// Populates the section with skill visualizers.
         /// </summary>
-        public void Initialize(IList<BaseSkill> skills, string sectionTitle, ISet<BaseSkill> baseSkills = null)
+        public void Initialize(
+            IList<BaseSkill> skills,
+            string sectionTitle,
+            ISet<BaseSkill> baseSkills = null,
+            Action<BaseSkill> onSkillSelected = null,
+            Action<BaseSkill> onSkillDeselected = null)
         {
             if (sectionTitleText != null)
             {
@@ -41,7 +47,7 @@ namespace VisualNovel.Minigames.Combat.UI
 
                     var visualizer = Instantiate(skillVisualizerPrefab, skillsGrid);
                     var isBaseSkill = baseSkills != null && baseSkills.Contains(skill);
-                    visualizer.Initialize(skill, isBaseSkill);
+                    visualizer.Initialize(skill, isBaseSkill, onSkillSelected, onSkillDeselected);
                     spawnedVisualizers.Add(visualizer);
                 }
             }

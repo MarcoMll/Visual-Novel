@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace VisualNovel.Minigames.Combat.UI
 {
@@ -45,6 +46,13 @@ namespace VisualNovel.Minigames.Combat.UI
                 }
             }
 
+            if (skillsGrid is RectTransform skillsGridRect)
+            {
+                // Force the layout system to update before recalculating the layout element size.
+                LayoutRebuilder.ForceRebuildLayoutImmediate(skillsGridRect);
+            }
+
+            // Run the recalculation only after the layout is up to date.
             layoutElementResizer?.Recalculate();
         }
 

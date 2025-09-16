@@ -8,5 +8,8 @@ namespace GameAssets.ScriptableObjects.Core
     {
         [Header("Effects")]
         public int baseDamageBonus;
+
+        [Header("Costs")]
+        public int actionPointsPrice;
     }
 }

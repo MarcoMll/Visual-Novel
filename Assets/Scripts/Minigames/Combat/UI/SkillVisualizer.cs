@@ -23,8 +23,8 @@ namespace VisualNovel.Minigames.Combat.UI
         private BaseSkill _skill;
         private bool _isBaseSkill;
         private bool _isSelected;
-        private Action<BaseSkill> _onSkillSelected;
-        private Action<BaseSkill> _onSkillDeselected;
+        private Func<BaseSkill, bool> _onSkillSelected;
+        private Func<BaseSkill, bool> _onSkillDeselected;
 
         public BaseSkill Skill => _skill;
         public bool IsSelected => _isSelected;
@@ -36,8 +36,10 @@ namespace VisualNovel.Minigames.Combat.UI
         public void Initialize(
             BaseSkill skill,
             bool baseSkill,
-            Action<BaseSkill> onSkillSelected = null,
-            Action<BaseSkill> onSkillDeselected = null)
+            bool startSelected,
+            bool skillAlreadyActive,
+            Func<BaseSkill, bool> onSkillSelected = null,
+            Func<BaseSkill, bool> onSkillDeselected = null)
         {
             _skill = skill;
             _isBaseSkill = baseSkill;
@@ -46,13 +48,25 @@ namespace VisualNovel.Minigames.Combat.UI
 
             SetupButtonListeners();
 
-            if (_isBaseSkill)
+            _isSelected = false;
+
+            if (startSelected)
             {
-                SelectSkill();
+                if (skillAlreadyActive)
+                {
+                    _isSelected = true;
+                    UpdateSelectionIndicator(true);
+                }
+                else
+                {
+                    if (SelectSkill() == false)
+                    {
+                        UpdateSelectionIndicator(false);
+                    }
+                }
             }
             else
             {
-                _isSelected = false;
                 UpdateSelectionIndicator(false);
             }
 
@@ -62,39 +76,49 @@ namespace VisualNovel.Minigames.Combat.UI
         /// <summary>
         /// Marks the skill as selected in the UI and applies its effects.
         /// </summary>
-        public void SelectSkill(bool invokeCallback = true)
+        public bool SelectSkill(bool invokeCallback = true)
         {
             if (_isSelected)
             {
-                return;
+                return true;
+            }
+
+            if (invokeCallback && _skill != null)
+            {
+                var result = _onSkillSelected?.Invoke(_skill) ?? true;
+                if (result == false)
+                {
+                    return false;
+                }
             }
 
             _isSelected = true;
             UpdateSelectionIndicator(true);
-
-            if (invokeCallback && _skill != null)
-            {
-                _onSkillSelected?.Invoke(_skill);
-            }
+            return true;
         }
 
         /// <summary>
         /// Marks the skill as deselected in the UI.
         /// </summary>
-        public void DeselectSkill(bool invokeCallback = true)
+        public bool DeselectSkill(bool invokeCallback = true)
         {
             if (_isBaseSkill || _isSelected == false)
             {
-                return;
+                return false;
+            }
+
+            if (invokeCallback && _skill != null)
+            {
+                var result = _onSkillDeselected?.Invoke(_skill) ?? true;
+                if (result == false)
+                {
+                    return false;
+                }
             }
 
             _isSelected = false;
             UpdateSelectionIndicator(false);
-
-            if (invokeCallback && _skill != null)
-            {
-                _onSkillDeselected?.Invoke(_skill);
-            }
+            return true;
         }
 
         private void UpdateSelectionIndicator(bool selected)

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using GameAssets.ScriptableObjects.Core;
 using UnityEngine;
 
 namespace VisualNovel.Minigames.Combat
@@ -17,6 +19,7 @@ namespace VisualNovel.Minigames.Combat
         private int _restActionPoints;
 
         private int _totalLeftActionPoints;
+        private int _reservedSkillActionPoints;
         private FighterRuntime _playerRuntime;
 
         public Action onActionPointAssigned;
@@ -37,11 +40,13 @@ namespace VisualNovel.Minigames.Combat
             if (_playerRuntime != null)
             {
                 _playerRuntime.OnCombatModifierChanged += HandleRuntimeModifierChanged;
-                _totalLeftActionPoints = _playerRuntime.ActionPointsPerRound;
+                _reservedSkillActionPoints = CalculateReservedSkillActionPoints(_playerRuntime.ActiveSkills);
+                _totalLeftActionPoints = Mathf.Max(0, _playerRuntime.ActionPointsPerRound - _reservedSkillActionPoints);
             }
             else
             {
                 _totalLeftActionPoints = 0;
+                _reservedSkillActionPoints = 0;
             }
             _attackActionPoints = 0;
             _defenceActionPoints = 0;
@@ -49,7 +54,7 @@ namespace VisualNovel.Minigames.Combat
 
             onStatsChanged?.Invoke();
         }
-        
+
         public void ModifyActionPoint(ActionPointType type, int delta)
         {
             if (delta == 0) return;
@@ -85,7 +90,7 @@ namespace VisualNovel.Minigames.Combat
 
             onActionPointAssigned?.Invoke();
         }
-        
+
         public bool AllActionPointsDistributed()
         {
             return _totalLeftActionPoints == 0;
@@ -93,13 +98,58 @@ namespace VisualNovel.Minigames.Combat
 
         public void ResetPoints()
         {
-            _totalLeftActionPoints = _playerRuntime?.ActionPointsPerRound ?? 0;
+            if (_playerRuntime != null)
+            {
+                _reservedSkillActionPoints = CalculateReservedSkillActionPoints(_playerRuntime.ActiveSkills);
+                _totalLeftActionPoints = Mathf.Max(0, _playerRuntime.ActionPointsPerRound - _reservedSkillActionPoints);
+            }
+            else
+            {
+                _totalLeftActionPoints = 0;
+                _reservedSkillActionPoints = 0;
+            }
 
             _attackActionPoints = 0;
             _defenceActionPoints = 0;
             _restActionPoints = 0;
         }
-        
+
+        public bool TryReserveSkillActionPoints(int amount)
+        {
+            if (amount <= 0)
+            {
+                return true;
+            }
+
+            if (_totalLeftActionPoints < amount)
+            {
+                return false;
+            }
+
+            _reservedSkillActionPoints += amount;
+            _totalLeftActionPoints -= amount;
+            onActionPointAssigned?.Invoke();
+            return true;
+        }
+
+        public void ReleaseSkillActionPoints(int amount)
+        {
+            if (amount <= 0)
+            {
+                return;
+            }
+
+            var releaseAmount = Mathf.Min(amount, _reservedSkillActionPoints);
+            if (releaseAmount <= 0)
+            {
+                return;
+            }
+
+            _reservedSkillActionPoints -= releaseAmount;
+            _totalLeftActionPoints += releaseAmount;
+            onActionPointAssigned?.Invoke();
+        }
+
         public void GetDistributedActionPoints(out int attackPoints, out int defencePoints, out int restPoints)
         {
             attackPoints = _attackActionPoints;
@@ -110,6 +160,25 @@ namespace VisualNovel.Minigames.Combat
         private void HandleRuntimeModifierChanged(CombatModifierType type)
         {
             onStatsChanged?.Invoke();
+        }
+
+        private static int CalculateReservedSkillActionPoints(IEnumerable<BaseSkill> activeSkills)
+        {
+            if (activeSkills == null)
+            {
+                return 0;
+            }
+
+            var total = 0;
+            foreach (var skill in activeSkills)
+            {
+                if (skill is CombatSkill combatSkill && combatSkill.actionPointsPrice > 0)
+                {
+                    total += combatSkill.actionPointsPrice;
+                }
+            }
+
+            return total;
         }
 
         private void OnDestroy()

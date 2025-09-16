@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using UnityEngine;
@@ -33,7 +34,12 @@ namespace VisualNovel.Minigames.Combat.UI
         /// <summary>
         /// Creates a new section inside the panel.
         /// </summary>
-        public SkillsSection CreateSection(IList<BaseSkill> skills, string sectionTitle, ISet<BaseSkill> baseSkills = null)
+        public SkillsSection CreateSection(
+            IList<BaseSkill> skills,
+            string sectionTitle,
+            ISet<BaseSkill> baseSkills = null,
+            Action<BaseSkill> onSkillSelected = null,
+            Action<BaseSkill> onSkillDeselected = null)
         {
             if (playerSkillsPanel == null || skillsSectionPrefab == null)
             {
@@ -41,7 +47,7 @@ namespace VisualNovel.Minigames.Combat.UI
             }
 
             var sectionInstance = Instantiate(skillsSectionPrefab, playerSkillsPanel);
-            sectionInstance.Initialize(skills, sectionTitle, baseSkills);
+            sectionInstance.Initialize(skills, sectionTitle, baseSkills, onSkillSelected, onSkillDeselected);
             spawnedSections.Add(sectionInstance);
             return sectionInstance;
         }

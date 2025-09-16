@@ -46,6 +46,7 @@ namespace VisualNovel.Minigames.Combat.UI
         private FighterRuntime _enemy;
         private bool _roundInProgress;
         private int _round = 1;
+        private bool _skillsInitialized;
 
         [System.Serializable]
         private struct TimingSettings
@@ -94,7 +95,6 @@ namespace VisualNovel.Minigames.Combat.UI
 
             audioContainer.Initialize();
 
-            InitializePlayerSkillsPanel();
         }
 
         /// <summary>
@@ -102,12 +102,20 @@ namespace VisualNovel.Minigames.Combat.UI
         /// </summary>
         public void SetupCombatants(FighterRuntime player, FighterRuntime enemy)
         {
+            var previousPlayer = _player;
+
             if (_player != null && playerHealthBar != null)
             {
                 _player.OnHealthChanged -= playerHealthBar.ModifyCurrentHealthValue;
             }
 
             _player = player;
+
+            if (!_skillsInitialized || previousPlayer != _player)
+            {
+                InitializePlayerSkillsPanel();
+                _skillsInitialized = true;
+            }
 
             if (playerHealthBar != null)
             {
@@ -265,7 +273,7 @@ namespace VisualNovel.Minigames.Combat.UI
                 yield return new WaitForSeconds(timings.preImpact);
                 attackerVisualizer.SetNumber(attackPoints - defencePoints);
                 yield return new WaitForSeconds(timings.hideTime);
-                var damage = (attackPoints - defencePoints) * attacker.BaseStats.baseDamage;
+                var damage = (attackPoints - defencePoints) * attacker.BaseDamage;
                 defender.TakeDamage(damage);
 
                 AudioHandler.Instance.PlaySfx(AudioHandler.Instance.PickRandom(audioContainer.GetAllAudioClipsFromGroup("hits")));
@@ -317,6 +325,12 @@ namespace VisualNovel.Minigames.Combat.UI
                 return;
             }
 
+            if (_player == null)
+            {
+                Debug.LogWarning("Player runtime is not available while initializing combat skills panel.");
+                return;
+            }
+
             var dataManager = GameDataManager.Instance;
             if (dataManager == null)
             {
@@ -341,6 +355,20 @@ namespace VisualNovel.Minigames.Combat.UI
                     {
                         baseSkills.Add(skill);
                     }
+                }
+            }
+
+            var activeSkillsSnapshot = new List<BaseSkill>(_player.ActiveSkills);
+            foreach (var activeSkill in activeSkillsSnapshot)
+            {
+                if (activeSkill == null)
+                {
+                    continue;
+                }
+
+                if (baseSkillLookup.Contains(activeSkill) == false)
+                {
+                    _player.RemoveSkill(activeSkill);
                 }
             }
 
@@ -384,9 +412,33 @@ namespace VisualNovel.Minigames.Combat.UI
 
             playerCombatSkillsPanel.ClearSections();
             if (baseSkills.Count > 0)
-                playerCombatSkillsPanel.CreateSection(baseSkills, "Навыки", baseSkillLookup);
+            {
+                playerCombatSkillsPanel.CreateSection(baseSkills, "Навыки", baseSkillLookup, ApplySkillToPlayer, RemoveSkillFromPlayer);
+            }
             if (equipmentSkills.Count > 0)
-                playerCombatSkillsPanel.CreateSection(equipmentSkills, "Оружие", baseSkillLookup);
+            {
+                playerCombatSkillsPanel.CreateSection(equipmentSkills, "Оружие", baseSkillLookup, ApplySkillToPlayer, RemoveSkillFromPlayer);
+            }
+        }
+
+        private void ApplySkillToPlayer(BaseSkill skill)
+        {
+            if (_player == null || skill == null)
+            {
+                return;
+            }
+
+            _player.ApplySkill(skill);
+        }
+
+        private void RemoveSkillFromPlayer(BaseSkill skill)
+        {
+            if (_player == null || skill == null)
+            {
+                return;
+            }
+
+            _player.RemoveSkill(skill);
         }
     }
 }

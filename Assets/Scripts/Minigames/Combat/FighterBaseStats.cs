@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using UnityEngine;
 
@@ -14,5 +15,6 @@ namespace VisualNovel.Minigames.Combat
         public int baseDamage = 5;
         public Vector2 characterScale = Vector2.one;
         public int layer;
+        public List<ItemSO> startingItems = new();
     }
 }

@@ -10,37 +10,18 @@ namespace VisualNovel.Minigames.Combat.UI
     public class SkillVisualizer : MonoBehaviour
     {
         [SerializeField] private Image skillIcon;
-        [SerializeField] private Toggle toggle;
+        
+        [Header("Selection Indicator")]
+        [SerializeField] private Image selectionIndicatorImage;
+        
+        [SerializeField] private Sprite selectedSprite;
+        [SerializeField] private Sprite idleSprite;
 
         private BaseSkill _skill;
         private bool _isBaseSkill;
 
         public BaseSkill Skill => _skill;
-        public bool IsSelected => toggle != null && toggle.isOn;
-
-        private void Awake()
-        {
-            ConfigureToggle();
-
-            if (toggle != null)
-            {
-                toggle.onValueChanged.AddListener(HandleToggleValueChanged);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (toggle != null)
-            {
-                toggle.onValueChanged.RemoveListener(HandleToggleValueChanged);
-            }
-        }
-
-        private void OnValidate()
-        {
-            ConfigureToggle();
-            UpdateIcon();
-        }
+        
 
         /// <summary>
         /// Sets up the visualizer for the provided skill.
@@ -50,67 +31,39 @@ namespace VisualNovel.Minigames.Combat.UI
             _skill = skill;
             _isBaseSkill = baseSkill;
 
-            ConfigureToggle();
-            UpdateIcon();
-            UpdateToggleState(_isBaseSkill);
+            if (_isBaseSkill)
+                SelectSkill();
+            
+            UpdateSkillImage();
         }
 
         /// <summary>
-        /// Marks the skill as selected in the UI.
+        /// Marks the skill as selected in the UI and applies its effects.
         /// </summary>
-        public void Select()
+        public void SelectSkill()
         {
-            UpdateToggleState(true);
+            UpdateSelectionIndicator(true);
         }
 
         /// <summary>
         /// Marks the skill as deselected in the UI.
         /// </summary>
-        public void Deselect()
+        public void DeselectSkill()
         {
             if (_isBaseSkill)
             {
-                UpdateToggleState(true);
                 return;
             }
-
-            UpdateToggleState(false);
+            
+            UpdateSelectionIndicator(false);
         }
 
-        private void ConfigureToggle()
+        private void UpdateSelectionIndicator(bool selected)
         {
-            if (toggle == null)
-            {
-                return;
-            }
-
-            toggle.transition = Selectable.Transition.SpriteSwap;
+            selectionIndicatorImage.sprite = selected ? selectedSprite : idleSprite;
         }
-
-        private void HandleToggleValueChanged(bool isOn)
-        {
-            if (_isBaseSkill && !isOn)
-            {
-                UpdateToggleState(true);
-                return;
-            }
-
-            UpdateToggleState(isOn);
-        }
-
-        private void UpdateToggleState(bool isOn)
-        {
-            if (toggle == null)
-            {
-                return;
-            }
-
-            toggle.SetIsOnWithoutNotify(isOn);
-            //toggle.interactable = !_isBaseSkill;
-            //toggle.PlayEffect(true);
-        }
-
-        private void UpdateIcon()
+        
+        private void UpdateSkillImage()
         {
             if (skillIcon == null)
             {

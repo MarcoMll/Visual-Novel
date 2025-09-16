@@ -106,8 +106,8 @@ namespace VisualNovel.Minigames.Combat.UI
             }
 
             toggle.SetIsOnWithoutNotify(isOn);
-            toggle.interactable = !_isBaseSkill;
-            toggle.PlayEffect(true);
+            //toggle.interactable = !_isBaseSkill;
+            //toggle.PlayEffect(true);
         }
 
         private void UpdateIcon()

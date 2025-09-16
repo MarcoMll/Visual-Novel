@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameAssets.ScriptableObjects.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace VisualNovel.Minigames.Combat.UI
 {

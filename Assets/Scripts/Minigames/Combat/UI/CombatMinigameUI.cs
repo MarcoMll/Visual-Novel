@@ -383,8 +383,10 @@ namespace VisualNovel.Minigames.Combat.UI
             }
 
             playerCombatSkillsPanel.ClearSections();
-            playerCombatSkillsPanel.CreateSection(baseSkills, "Player Skills", baseSkillLookup);
-            playerCombatSkillsPanel.CreateSection(equipmentSkills, "Equipped Item Skills", baseSkillLookup);
+            if (baseSkills.Count > 0)
+                playerCombatSkillsPanel.CreateSection(baseSkills, "Навыки", baseSkillLookup);
+            if (equipmentSkills.Count > 0)
+                playerCombatSkillsPanel.CreateSection(equipmentSkills, "Оружие", baseSkillLookup);
         }
     }
 }

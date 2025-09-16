@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5e6f7081923456789abcdef0123456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPrefab: {fileID: 3171634481198444764, guid: 7beaac336fd414b4e9bfde71e544678a, type: 3}
+  uiPrefab: {fileID: 6450428817866126756, guid: 7beaac336fd414b4e9bfde71e544678a, type: 3}
   playerStatsController: {fileID: 1860029132457879032}
 --- !u!114 &1860029132457879032
 MonoBehaviour:

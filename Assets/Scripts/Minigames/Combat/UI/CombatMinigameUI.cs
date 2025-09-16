@@ -368,9 +368,15 @@ namespace VisualNovel.Minigames.Combat.UI
 
                 if (baseSkillLookup.Contains(activeSkill) == false)
                 {
-                    _player.RemoveSkill(activeSkill);
+                    var removed = _player.RemoveSkill(activeSkill);
+                    if (removed && activeSkill is CombatSkill combatSkill && _playerStats != null)
+                    {
+                        _playerStats.ReleaseSkillActionPoints(combatSkill.actionPointsPrice);
+                    }
                 }
             }
+
+            var activeSkillLookup = new HashSet<BaseSkill>(_player.ActiveSkills);
 
             var equipmentSkills = new List<BaseSkill>();
             var equipmentSkillLookup = new HashSet<BaseSkill>();
@@ -413,32 +419,91 @@ namespace VisualNovel.Minigames.Combat.UI
             playerCombatSkillsPanel.ClearSections();
             if (baseSkills.Count > 0)
             {
-                playerCombatSkillsPanel.CreateSection(baseSkills, "Навыки", baseSkillLookup, ApplySkillToPlayer, RemoveSkillFromPlayer);
+                playerCombatSkillsPanel.CreateSection(baseSkills, "Навыки", baseSkillLookup, activeSkillLookup, ApplySkillToPlayer, RemoveSkillFromPlayer);
             }
             if (equipmentSkills.Count > 0)
             {
-                playerCombatSkillsPanel.CreateSection(equipmentSkills, "Оружие", baseSkillLookup, ApplySkillToPlayer, RemoveSkillFromPlayer);
+                playerCombatSkillsPanel.CreateSection(equipmentSkills, "Оружие", baseSkillLookup, activeSkillLookup, ApplySkillToPlayer, RemoveSkillFromPlayer);
             }
         }
 
-        private void ApplySkillToPlayer(BaseSkill skill)
+        private bool ApplySkillToPlayer(BaseSkill skill)
         {
             if (_player == null || skill == null)
             {
-                return;
+                return false;
             }
 
-            _player.ApplySkill(skill);
+            if (IsSkillAlreadyActive(skill))
+            {
+                return true;
+            }
+
+            var combatSkill = skill as CombatSkill;
+            if (combatSkill != null)
+            {
+                if (_playerStats == null)
+                {
+                    return false;
+                }
+
+                if (_playerStats.TryReserveSkillActionPoints(combatSkill.actionPointsPrice) == false)
+                {
+                    return false;
+                }
+            }
+
+            var applied = _player.ApplySkill(skill);
+            if (applied == false)
+            {
+                if (combatSkill != null)
+                {
+                    _playerStats?.ReleaseSkillActionPoints(combatSkill.actionPointsPrice);
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
-        private void RemoveSkillFromPlayer(BaseSkill skill)
+        private bool RemoveSkillFromPlayer(BaseSkill skill)
         {
             if (_player == null || skill == null)
             {
-                return;
+                return false;
             }
 
-            _player.RemoveSkill(skill);
+            var removed = _player.RemoveSkill(skill);
+            if (removed == false)
+            {
+                return false;
+            }
+
+            if (skill is CombatSkill combatSkill && _playerStats != null)
+            {
+                _playerStats.ReleaseSkillActionPoints(combatSkill.actionPointsPrice);
+            }
+
+            return true;
+        }
+
+        private bool IsSkillAlreadyActive(BaseSkill skill)
+        {
+            if (skill == null || _player == null)
+            {
+                return false;
+            }
+
+            foreach (var activeSkill in _player.ActiveSkills)
+            {
+                if (activeSkill == skill)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

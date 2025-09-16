@@ -38,8 +38,9 @@ namespace VisualNovel.Minigames.Combat.UI
             IList<BaseSkill> skills,
             string sectionTitle,
             ISet<BaseSkill> baseSkills = null,
-            Action<BaseSkill> onSkillSelected = null,
-            Action<BaseSkill> onSkillDeselected = null)
+            ISet<BaseSkill> activeSkills = null,
+            Func<BaseSkill, bool> onSkillSelected = null,
+            Func<BaseSkill, bool> onSkillDeselected = null)
         {
             if (playerSkillsPanel == null || skillsSectionPrefab == null)
             {
@@ -47,7 +48,7 @@ namespace VisualNovel.Minigames.Combat.UI
             }
 
             var sectionInstance = Instantiate(skillsSectionPrefab, playerSkillsPanel);
-            sectionInstance.Initialize(skills, sectionTitle, baseSkills, onSkillSelected, onSkillDeselected);
+            sectionInstance.Initialize(skills, sectionTitle, baseSkills, activeSkills, onSkillSelected, onSkillDeselected);
             spawnedSections.Add(sectionInstance);
             return sectionInstance;
         }

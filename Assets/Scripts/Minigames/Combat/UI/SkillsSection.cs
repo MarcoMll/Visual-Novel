@@ -26,8 +26,9 @@ namespace VisualNovel.Minigames.Combat.UI
             IList<BaseSkill> skills,
             string sectionTitle,
             ISet<BaseSkill> baseSkills = null,
-            Action<BaseSkill> onSkillSelected = null,
-            Action<BaseSkill> onSkillDeselected = null)
+            ISet<BaseSkill> activeSkills = null,
+            Func<BaseSkill, bool> onSkillSelected = null,
+            Func<BaseSkill, bool> onSkillDeselected = null)
         {
             if (sectionTitleText != null)
             {
@@ -47,7 +48,9 @@ namespace VisualNovel.Minigames.Combat.UI
 
                     var visualizer = Instantiate(skillVisualizerPrefab, skillsGrid);
                     var isBaseSkill = baseSkills != null && baseSkills.Contains(skill);
-                    visualizer.Initialize(skill, isBaseSkill, onSkillSelected, onSkillDeselected);
+                    var isActive = activeSkills != null && activeSkills.Contains(skill);
+                    var shouldStartSelected = isBaseSkill || isActive;
+                    visualizer.Initialize(skill, isBaseSkill, shouldStartSelected, isActive, onSkillSelected, onSkillDeselected);
                     spawnedVisualizers.Add(visualizer);
                 }
             }
